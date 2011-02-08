@@ -113,6 +113,9 @@ TODO - Plenty at present
 TODO - Again plenty
 
 ## Warnings
+This software is by no means production ready. It's currently only a direct
+import of the DimDim source as of January 6th 2011. The source is unorganised and
+lacks documentation. 
 
 ## Contributions/Contacts
 Many thanks to:
