@@ -1,0 +1,150 @@
+
+.common-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.common-label
+{
+	text-align: center;
+	vertical-align: middle;
+	margin: 2px;
+}
+
+.common-table-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	margin: 5px;
+}
+
+.common-table-header
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	margin: 5px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.common-anchor
+{
+	color: darkblue;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+}
+
+.common-onepx-border
+{
+	border: 1px solid #AAAAAA;
+}
+
+.anchor-cursor
+{
+	cursor: default;
+	cursor: pointer;
+}
+
+.common-float-panel-content
+{
+	border-top: 2px solid #C3D9FF;
+	border-right: 4px solid #C3D9FF;
+	border-bottom: 2px solid #C3D9FF;
+	border-left: 4px solid #C3D9FF;
+}
+
+.common-float-panel-header
+{
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+	padding: 0px 0px 2px 2px;
+	cursor: move;
+	font-weight: bold;
+}
+
+.popin-control-image
+{
+	margin-left: 4px;
+}
+
+.draggable-panel-header
+{
+	cursor: move;
+}
+
+.common-bold-text
+{
+	font-weight: bold;
+}
+
+.common-glass-panel
+{
+  background-image: url(images/lightbox-bg.png);
+  background-repeat: repeat;
+  cursor: not-allowed;
+}
+
+* html .common-glass-panel
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/lightbox-bg.png", sizingMethod="scale");
+}
+
+.common-4px-spacing
+{
+	margin: 4px;
+}
+
+.common-4px-top-bottom-spacing
+{
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+/***************** Meeting Info **************/
+
+.meeting-info-dialog-box
+{
+}
+
+.meeting-info-label
+{
+	width: 80px;
+	margin: 5px;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+}
+
+.meeting-info-text
+{
+	width: 475;
+	margin: 5px;
+	vertical-align: top;
+}
+
+.meeting-info-text-box
+{
+	border: 1px solid black;
+}
+
+.powerpoint-info-text
+{
+	width: 300px;
+	margin: 5px;
+	vertical-align: top;		
+}
+
+.loading-message-panel
+{
+	background-image: url(images/background.gif);
+	background-repeat: repeat-x;
+	height: 100%;
+	width: 100%;
+}
+

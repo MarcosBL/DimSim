@@ -1,0 +1,6 @@
+<module>
+	<inherits name='com.dimdim.conference.ui.panels.Panels'/>
+	<inherits name='com.dimdim.conference.ui.layoutCommon.LayoutCommon'/>
+	<entry-point class='com.dimdim.conference.ui.layout2.client.MainLayout'/>
+</module>
+

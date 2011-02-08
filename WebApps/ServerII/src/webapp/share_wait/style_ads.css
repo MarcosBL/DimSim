@@ -1,0 +1,259 @@
+BODY {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	HEIGHT: 100%;
+	font-family: Arial;
+	font-size: 11px;
+}
+
+body a:link{
+color:#436AB8; text-decoration:none;
+}
+body a:visited{
+color:#436AB8; text-decoration:none;
+}
+body a:hover{
+color:#436AB8; text-decoration:underline;
+}
+body a:active{
+color:#436AB8; text-decoration:none;
+}
+
+sup{font-size:9px;}
+
+#container {
+	width: 97%;
+	margin: 0 auto;
+}
+
+.Hide { display:none; }
+	.Show { display:block; }
+	
+.floating
+{
+	float:left;
+}
+
+.floating_right
+{
+	float:right;
+}
+
+#mainText
+{
+	font-size:14px;
+	color:#727272;
+	width:100%;
+	text-align:center;
+}
+
+#synchroLogo
+{
+	background-image:url(synchro_logo.png);
+	background-repeat:no-repeat;
+	width:470px;
+	height:163px;
+}
+
+* html #synchroLogo
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='synchro_logo.png', sizingMethod='crop');
+}
+
+.video_top
+{
+	position:relative;
+	z-index:2;
+	font-weight:bold;
+	font-size:13px;
+	color:#0087bc;
+	float:left;	
+	padding-left:45px;
+	padding-top:13px;
+}
+
+.Talktous_top
+{
+	z-index:1;
+	position:relative;
+	font-weight:bold;
+	font-size:13px;
+	color:#0087bc;
+	padding-left:220px;
+	padding-top:15px;
+}
+
+
+.add_btns
+{
+	background-image: url(add_btn.png);
+	background-repeat:no-repeat;
+	height: 25px;
+	width: 74px;
+	color:#ffffff;
+	font-size:9px;
+	cursor:pointer;
+	text-align:center;
+	padding:0px;
+	margin:0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	border:0px;
+}
+
+
+.send_btn {
+background-image: url(send.png);
+background-repeat:no-repeat;
+height: 33px;
+width: 99px;
+padding-top:5px;
+text-align:center;
+cursor:pointer;
+}
+
+* html .send_btn
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='send.png', sizingMethod='crop');
+}
+
+.video_link
+{
+	color:#0096ff;
+	margin-right:30px;
+	padding-left:20px;
+	cursor:pointer;
+}
+
+#videoplayer_mask
+{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:1400px;
+	z-index:10000;
+	background-image: url(../images/tranasparent.png);
+	background-repeat: repeat;
+}
+
+* html #videoplayer_mask
+{
+	background-image: url(../images/tranasparent_white.gif);
+	background-repeat: repeat;
+}
+
+
+#videoplayer_container
+{
+	position:absolute;
+	background-color:#ffffff;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #333333;
+	padding:5px;
+	left:100px;
+	top:100px;
+	width:850;
+	height:550px;
+	z-index:10001;
+}
+
+#letusknow_container
+{
+	margin-left:20%;
+	width:294px;
+}
+
+
+#letusknow_container_btn
+{
+	width:294px;
+	height:47px;
+	background-image:url(talktous_greybg.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+* html #letusknow_container_btn
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='talktous_greybg.png', sizingMethod='crop');
+}
+
+#talktous_form
+{
+	position:absolute;
+	z-index:1;
+	background-color:#f3f7fc;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333333;
+	margin-top:170px;
+	margin-left:10px;
+	width:330px;
+}
+
+
+#letusknow_form
+{
+	position:absolute;
+	z-index:0;
+	background-color:#f3f7fc;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333333;
+	margin-top:-300px;
+	margin-left:100px;
+	width:300px;
+}
+
+.video_player_icon
+{
+	background-image:url(play_video.png);
+	background-repeat:no-repeat;
+	width:24px;
+	height:23px;
+	margin-left:7px;
+	position:relative;
+	z-index:2;
+	cursor:pointer;
+}
+
+* html .video_player_icon
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='play_video.png', sizingMethod='crop');
+}
+
+.whatSync
+{
+	font-weight:bold;		
+}	
+
+.button_Signup
+{
+	background-image:url(clckSignup.png);
+	background-repeat:no-repeat;
+	width:124px;
+	height:34px;	
+	margin-left:15%;
+	cursor:pointer;
+}
+
+* html .button_Signup
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='clckSignup.png', sizingMethod='crop');
+}

@@ -1,0 +1,9 @@
+#!/bin/bash
+echo setting environment...
+export FCGI_DIR=/usr/local/Code/Dependencies/Reflector/fcgi
+export CORONA_DIR=/usr/local/Code/Dependencies/Reflector/corona
+echo compiling fcgi app...
+g++ -o dimdimReflector -Wno-deprecated -lcorona -lfcgi++ -lz -lpthread -ljpeg -I$FCGI_DIR/include -I$CORONA_DIR/include -L$FCGI_DIR/lib -L$CORONA_DIR/lib src/*.cpp src/dimdim/common/*.cpp src/dimdim/fcgi/*.cpp src/dimdim/rfb/*.cpp src/dimdim/screen/*.cpp src/dimdim/amf/*.cpp src/dimdim/flv/*.cpp
+#echo compiling lighty config gen tool...
+#g++ -o dimdim-gen-lighty-config src/tools/*.cpp
+echo done

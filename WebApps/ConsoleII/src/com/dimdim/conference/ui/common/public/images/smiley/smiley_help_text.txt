@@ -1,0 +1,9 @@
+:-)   -> Smile.png
+:-(   -> Sad.png
+:D   -> Laugh.png
+X-(   -> Angry.png
+<:-P  -> Celebrate.png		 
+:((   -> Cry.png
+B-)   -> Cool.png
+:-*   -> Adore.png
+:-/   -> Surprise.png

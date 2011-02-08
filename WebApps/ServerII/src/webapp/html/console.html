@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Conference Console - Layout Sample</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+
+	<!-- built on dojo! -->
+	<script language="JavaScript" type="text/javascript" src="../turbo/turbo.js"></script>
+	<script language="JavaScript" type="text/javascript">
+		// function executes when page is loaded
+		dojo.addOnLoad(function()
+		{
+			turbo.themes.setTheme('H2O');
+		});
+	</script>
+	  <link href="../css/examples1.css" rel="stylesheet" type="text/css">
+	  <link href="../css/examples.css" rel="stylesheet" type="text/css" />
+	  <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+	  <link href="../css/toolbar-ico.css" rel="stylesheet" type="text/css" />
+	<style>
+		body, html {
+			margin: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<div class="box" turboAlign="client"id="container">
+	<div turboAlign="top" id="header-titlebar"style="height: 148px">
+	  <div id="header-titlebar-left" style="display:inline;">Meeting:
+	  <form name="d" style="display:inline;"><input type="text" size="13" name="d2" style=" border:none; width: 55px; margin-top: 3px; background-color: #7cc1ee; font-weight: bold;"></form>
+		<script>
+		<!--
+			var seconds=0;
+			var minutes=0;
+			var hours=0;
+			document.d.d2.value='0';
+			var current_time = new Date();
+			var current_hours = current_time.getHours();
+			var current_minutes = current_time.getMinutes();
+			var current seconds = current_time.getSeconds();
+			function display()
+			{
+				var digital = new Date();
+				var hours = digital.getHours()-current_hours;
+				var minutes = digital.getMinutes()-current_minutes;
+				var seconds = digital.getSeconds()-current_seconds;
+
+				document.d.d2.value=hours+":"+minutes+":"+seconds;
+				setTimeout("display()",100)
+			}
+			display()
+		//-->
+		</script>
+	</div>
+	<span class="title">dimdim web conference</span>
+
+	<div id="header-titlebar-rt">
+			<ul>
+				<li><img src="../images/title-ico-usr.gif" alt="user" /><a href="#">Prakash Khot</a></li>
+				<li><img src="../images/title-ico-pref.gif" alt="prefs" /><a href="#">Preferences</a></li>
+				<li><img src="../images/title-ico-signout.gif" alt="signout" /><a href="#">Signout</a></li>
+			</ul>
+	</div>
+	<div id="header-toolbar">
+		<div id="header-toolbar-menu">
+	</div>
+   </div>
+  </div>
+  <div class="box" turboalign="client">
+ 		<div turboalign="left" style="width: 200px">Navigation Panels</div>
+ 		<div turboalign="right" style="width: 64px">Ad Panel</div>
+ 		<div turboalign="bottom" style="height: 20px">Status Panel</div>
+ 		<div turboalign="client">Collaboration Workspace</div>
+</html>

@@ -1,0 +1,4 @@
+<module>
+	<inherits name='com.dimdim.conference.ui.publisher.Publisher'/>
+	<inherits name='com.dimdim.conference.ui.common.Common'/>
+</module>

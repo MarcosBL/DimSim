@@ -1,0 +1,29 @@
+	# -------------------------------------------
+	# START EVENT BLOCK - EVENT_INDEX
+	# -------------------------------------------
+	
+	# object construction
+	event_EVENT_INDEX = ConfEvent();
+	
+	# the type of event (av, chat, ppt etc.)
+	event_EVENT_INDEX.type = "roster";
+	
+	# subtype of event
+	event_EVENT_INDEX.subType = "roster.left";
+	# event initiator
+	event_EVENT_INDEX.initiatedBy = "USER_ID";
+	# event timestamp (ms)
+	event_EVENT_INDEX.timeStamp = EVENT_TIME;
+	
+	# this is additional event data (name value pairs)
+	# -----------------------------------------
+	# TBD
+	# -----------------------------------------
+	
+	# add the event to the event list
+	confDetails.eventList.append(event_EVENT_INDEX);
+	
+	# --------------------------------------
+	# END EVENT BLOCK
+	# --------------------------------------
+

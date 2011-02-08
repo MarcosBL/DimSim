@@ -1,0 +1,255 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_SINGLEINST          ICON                    "singleinst.ico"
+IDI_SMALL               ICON                    "small.ico"
+IDI_DIMDIM_PUB_TRAY     ICON                    "wi0064-24.ico"
+IDI_DIMDIM_PUB_TRAY_PROGRESS ICON                    ".\\Dring.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_SINGLEINST ACCELERATORS 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_PUB_TRAY_MENU MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "About",                       ID_PUB_ABOUT
+        MENUITEM "Import PAC File",             ID_IMPORTPACFILE
+        MENUITEM "Install Mirror Driver",       ID_PUB_INSTALL
+        MENUITEM "Properties",                  ID_PROPERTIES
+        MENUITEM "Exit",                        ID_PUB_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 4,0,0,0
+ PRODUCTVERSION 4,0,0,0
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Manages screencaster and converter processes"
+            VALUE "CompanyName", "Dimdim"
+            VALUE "FileDescription", "Dimdim Publisher Component"
+            VALUE "FileVersion", "4, 0, 0, 0"
+            VALUE "InternalName", "Dimdim Publisher Component"
+            VALUE "LegalCopyright", "Copyright (c) Dimdim Inc.  All rights reserved."
+            VALUE "OriginalFilename", "dpc.exe"
+            VALUE "ProductName", "Dimdim"
+            VALUE "ProductVersion", "4, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PUBPROP_DLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 164
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_SIMPLEPROPS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 150
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_ADVPROPS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 151
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_PUBPROXY_DLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 167
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 63
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PUBPROP_DLG DIALOGEX 0, 0, 166, 116
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Screencaster Properties"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TAB_DIMDIM,"SysTabControl32",0x0,4,5,156,88
+    PUSHBUTTON      "&Apply",IDOK,110,98,50,14
+END
+
+IDD_SIMPLEPROPS_DLG DIALOGEX 0, 0, 154, 76
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         "High bandwidth profile",IDC_RADIO_HIBW,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,48,124,12
+    CONTROL         "Low bandwidth profile",IDC_RADIO_LOBW,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,11,16,124,12
+    CONTROL         "Medium bandwidth profile",IDC_RADIO_MBW,"Button",
+                    BS_AUTORADIOBUTTON,11,33,97,10
+END
+
+IDD_ADVPROPS_DLG DIALOGEX 0, 0, 154, 76
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Turn on logging",IDC_CHECK_LOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,11,44,65,10
+    GROUPBOX        "Policy",IDC_STATIC_POLICY,5,6,142,60
+    CONTROL         "Create local screencast dump",IDC_CHECK_ENABLEDUMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,22,110,10
+END
+
+IDD_PUBPROXY_DLG DIALOGEX 0, 0, 169, 65
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Import PAC File"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&Import",IDOK,55,44,51,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,112,44,50,14
+    EDITTEXT        IDC_EDIT_PPROXY,6,24,156,14,ES_AUTOHSCROLL
+    LTEXT           "Please enter URL of the PAC file.",IDC_STATIC,7,10,106,
+                    8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "singleinst"
+    IDC_SINGLEINST          "SINGLEINST"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

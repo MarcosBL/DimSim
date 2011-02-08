@@ -1,0 +1,124 @@
+<html>
+	<head>
+		<title>Dimdim Desktop Publisher Test</title>
+		<SCRIPT LANGUAGE="JavaScript">
+		<!--
+		function launchShareBar()
+		{
+			DimdimDesktopPublisher1.RunDesktopShare();
+			return true;
+		};
+		function launchPPTUploader()
+		{
+					DimdimDesktopPublisher1.RunPresentationUpload();
+					return true;
+		};
+		function launchGenericApplication()
+		{
+					DimdimDesktopPublisher1.LaunchGenericApp("excel.exe", "");
+					return true;
+		};
+		function launchPDF()
+		{
+					DimdimDesktopPublisher1.LaunchGenericApp("pdf", "");
+					return true;
+		};
+		function launchBrowser1()
+		{
+					DimdimDesktopPublisher1.LaunchGenericApp("internet", "");
+					return true;
+		};
+		function launchBrowser2()
+		{
+					DimdimDesktopPublisher1.LaunchGenericApp("internet", "http://www.dimdim.com");
+					return true;
+		};
+		function launchAppShare()
+		{
+					if(DimdimDesktopPublisher1.ShowAppShareSelector())
+					{
+						alert("Selected Application : "+DimdimDesktopPublisher1.AppHandleToShare);
+						DimdimDesktopPublisher1.RunApplicationShare();
+					}
+					else
+					{
+						alert("Cancelled The App Share!!!");
+					}
+					return true;
+		};
+		function showAppSelector()
+		{
+			if(DimdimDesktopPublisher1.ShowAppShareSelector())
+			{
+				alert("Selected Application : "+DimdimDesktopPublisher1.AppHandleToShare);
+			}
+			else
+			{
+				alert("Cancelled The App Share!!!");
+			}
+			return true;
+		};
+		function showWindowsHandle()
+		{
+			alert("Windows handle is: "+DimdimDesktopPublisher1.AppHandleToShare);
+		};
+		function showAppCaption()
+		{
+			alert("Selected App is: "+DimdimDesktopPublisher1.GetSharedResourceName(0));
+		};
+		function checkVersion()
+		{
+			alert("Installed ActiveX Version : "+DimdimDesktopPublisher1.GetDimdimControlVersion());
+		};
+		-->
+		</SCRIPT>
+	</head>
+	<body bgcolor="white">
+
+
+
+		<OBJECT ID="DimdimDesktopPublisher1" WIDTH=0 HEIGHT=0
+		   CLASSID="CLSID:B7506368-4932-4D3E-8627-094CF20E3024">
+		   <PARAM name="ConferenceKey" value="conf1">
+		   <PARAM name="ResourceId" value="1234">
+		   <PARAM name="PresenterId" value="presId">
+		   <PARAM name="PresenterPassKey" value="presPassKey">
+		   <PARAM name="HTTPUrl" value="http://jayantpandit.ca:8080/conferenceConsole/ScreenShare.action">
+		   <PARAM name="RTMPUrl" value="rtmp://jayantpandit.ca/oflaDemo">
+		   <PARAM name="MediaId" value="red5StreamDemo">
+		   <PARAM name="AppHandleToShare" value="0">
+		   <font color="red">You do not seem to have this control installed or you are not running a browser that understands ActiveX.</font>
+   		</OBJECT>
+
+		<FORM NAME="FormOne">
+			<INPUT TYPE="Button" NAME="BtnOne" VALUE="Start Desktop Sharing" onClick="launchShareBar();">
+		</FORM>
+		<FORM NAME="FormTwo">
+			<INPUT TYPE="Button" NAME="BtnTwo" VALUE="Start Presentation Upload" onClick="launchPPTUploader();">
+		</FORM>
+		<FORM NAME="FormThree">
+			<INPUT TYPE="Button" NAME="Btn3" VALUE="Show Application Selector" onClick="showAppSelector();">
+		</FORM>
+		<FORM NAME="FormFour">
+			<INPUT TYPE="Button" NAME="Btn4" VALUE="Version Check" onClick="checkVersion();">
+		</FORM>
+		<FORM NAME="FormFive">
+			<INPUT TYPE="Button" NAME="Btn5" VALUE="Launch Excel" onClick="launchGenericApplication();">
+		</FORM>
+		<FORM NAME="FormFive_1">
+			<INPUT TYPE="Button" NAME="Btn5_1" VALUE="Launch PDF" onClick="launchPDF();">
+		</FORM>
+		<FORM NAME="FormFive_2">
+			<INPUT TYPE="Button" NAME="Btn5_2" VALUE="Launch Browser 1" onClick="launchBrowser1();">
+		</FORM>
+		<FORM NAME="FormFive_3">
+			<INPUT TYPE="Button" NAME="Btn5_3" VALUE="Launch Browser (dimdim)" onClick="launchBrowser2();">
+		</FORM>
+		<FORM NAME="FormSix">
+			<INPUT TYPE="Button" NAME="Btn6" VALUE="Show Windows Handle" onClick="showWindowsHandle();">
+		</FORM>
+		<FORM NAME="FormSeven">
+			<INPUT TYPE="Button" NAME="Btn7" VALUE="Show Application Caption" onClick="showAppCaption();">
+		</FORM>
+	</body>
+</html>

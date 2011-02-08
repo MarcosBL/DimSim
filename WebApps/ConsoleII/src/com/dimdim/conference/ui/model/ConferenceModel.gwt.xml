@@ -1,0 +1,4 @@
+<module>
+	<inherits name='com.dimdim.conference.ui.json.JSON'/>
+	<inherits name='com.dimdim.ui.common.Common'/>
+</module>

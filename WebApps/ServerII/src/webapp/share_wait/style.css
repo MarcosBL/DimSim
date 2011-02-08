@@ -1,0 +1,62 @@
+body {
+	font-family: verdana, arial, tahoma;
+	font-size: 80%;
+	color: #fff;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+}
+
+#headerBg
+{
+	background:url('banner_bgTile.png') repeat-x;
+}
+
+#header
+{
+	background:url('banner.png') no-repeat left top;
+	height:107px;
+	padding-top:300px;
+	padding-right:30px;
+}
+
+*html #header
+{
+	height:407px;
+}
+.headerText
+{
+	text-align:right;
+}
+
+.text1
+{
+	font-size:20px;;
+	font-weight:bold;
+}
+
+.text2
+{
+	font-size:18px;
+	font-style:italic;
+}
+
+.greenBox
+{
+	background-color:#6c9a44; 
+	width:472px;
+	height:200px;
+	text-align:right;
+	float:left;
+	font-size:14px;
+}
+
+.text3
+{
+	color:#797a7b;font-weight:bold;font-size:14px;
+}
+
+.poweredByPod
+{
+	padding:30px;
+}

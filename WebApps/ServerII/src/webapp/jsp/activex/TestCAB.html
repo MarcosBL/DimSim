@@ -1,0 +1,197 @@
+<html>
+	<head>
+		<title>Dimdim Desktop Publisher Test</title>
+		<SCRIPT LANGUAGE="JavaScript">
+
+window.app_selected = false;
+window.selected_app_handle = 0;
+window.selected_app_name = "";
+
+
+		function launchShareBar()
+		{
+			DimdimDesktopPublisher1.RunDesktopShare();
+			return true;
+		};
+		function launchPPTUploader()
+		{
+			DimdimDesktopPublisher1.RunPresentationUpload();
+			return true;
+		};
+		function launchGenericApplication()
+		{
+			DimdimDesktopPublisher1.LaunchGenericApp("excel.exe", "");
+					return true;
+		};
+
+		function launchAppSelector()
+		{
+			app_selected = false;
+			selected_app_handle = 0;
+			selected_app_name = "";
+
+			app_selected = DimdimDesktopPublisher1.ShowAppShareSelector();
+		}
+		function checkAppSelected()
+		{
+			alert("Checking for the result of the appplication selector");
+
+			var result = DimdimDesktopPublisher1.DimdimHasFinished();
+			if (result != 0)
+			{
+			  if (result == 1)
+			  {
+				alert("Selected Application Handle: "+DimdimDesktopPublisher1.DimdimGetResult);
+				selected_app_handle = DimdimDesktopPublisher1.DimdimGetResult;
+				alert("Selected Application Name: "+DimdimDesktopPublisher1.GetSharedResourceName(0));
+			  }
+			  else
+			  {
+				alert("Application selector was cancelled");
+			  }
+			}
+			else
+			{
+				alert("Selector still open");
+			}
+		};
+		function launchAppShare()
+		{
+			alert("Launch application share for window:"+selected_app_handle);
+			if(selected_app_handle != 0)
+			{
+				DimdimDesktopPublisher1.AppHandleToShare = selected_app_handle;
+				DimdimDesktopPublisher1.RunApplicationShare();
+			}
+			else
+			{
+				alert("Application selector was cancelled");
+			}
+		};
+
+		function stopscreenshare()
+		{
+			DimdimDesktopPublisher1.StopPublishing();
+		};
+
+		function stoppresentationupload()
+		{
+			DimdimDesktopPublisher1.StopPresentationUpload();
+		};
+
+	    function SetNetworkProfileValue()
+		{
+
+  		  alert("Set Value Called");
+
+		  var param = "networkProfile";
+		 // var value = "0";
+		  var value = "2";
+		  //var value = "3";
+		  var returnvalue = DimdimDesktopPublisher1.setOption(param,value);
+		  alert("Value Set : "+returnvalue);
+
+		};
+
+		function GetNetworkProfileValue()
+		{
+		//	alert("Get Value Called");
+		//	var param = 'networkProfile';
+		//	var result = DimdimDesktopPublisher1.getOption(param);
+		//	alert("Value is "+);
+		alert("Installed ActiveX Version : "+DimdimDesktopPublisher1.DimdimGetConfigOption("imageQuality"));
+		};
+
+
+		function checkVersion()
+		{
+			if ( DimdimDesktopPublisher2 != null &&	DimdimDesktopPublisher2.GetDimdimControlVersion!=null )
+			{
+				alert("Installed ActiveX Version : "+DimdimDesktopPublisher2.GetDimdimControlVersion());
+			}
+		
+			if ( DimdimDesktopPublisher1 != null &&	DimdimDesktopPublisher1.GetDimdimControlVersion!=null )
+			{
+				alert("Installed ActiveX Version : "+DimdimDesktopPublisher1.GetDimdimControlVersion());
+			}
+			
+			
+			
+		};
+
+		</SCRIPT>
+	</head>
+	<body bgcolor="white">
+
+
+
+		<OBJECT ID="DimdimDesktopPublisher1" WIDTH=0 HEIGHT=0
+		   CLASSID="CLSID:D4A78C50-D29C-46D6-A02C-DA2F5BD2D278"
+		   codebase="dimdimPublisherControl.ocx" VIEWASTEXT>
+		   <PARAM name="ConferenceKey" value="conf1">
+		   <PARAM name="ResourceId" value="1234">
+		   <PARAM name="PresenterId" value="presId">
+		   <PARAM name="PresenterPassKey" value="presPassKey">
+		   <PARAM name="HTTPUrl" value="http://localhost:8080/dimdim/ScreenShare.action">
+		   <PARAM name="RTMPUrl" value="rtmp://localhost/oflaDemo">
+		   <PARAM name="RTMPTUrl" value="rtmpt://localhost:8088/oflaDemo">
+		   <PARAM name="MediaId" value="streambha">
+		   <PARAM name="AppHandleToShare" value="0">
+		   <font color="red">You do not seem to have this control installed or you are not running a browser that understands ActiveX.</font>
+   		</OBJECT>
+   		
+   		<OBJECT ID="DimdimDesktopPublisher2" WIDTH=0 HEIGHT=0
+		   CLASSID="CLSID:CA7BB8E5-FE0B-46F8-8705-E64EE0D64850"
+		   codebase="dimdimPublisherControl250.ocx" VIEWASTEXT>
+		   <PARAM name="ConferenceKey" value="conf1">
+		   <PARAM name="ResourceId" value="1234">
+		   <PARAM name="PresenterId" value="presId">
+		   <PARAM name="PresenterPassKey" value="presPassKey">
+		   <PARAM name="HTTPUrl" value="http://localhost:8080/dimdim/ScreenShare.action">
+		   <PARAM name="RTMPUrl" value="rtmp://localhost/oflaDemo">
+		   <PARAM name="RTMPTUrl" value="rtmpt://localhost:8088/oflaDemo">
+		   <PARAM name="MediaId" value="streambha">
+		   <PARAM name="AppHandleToShare" value="0">
+		   <font color="red">You do not seem to have this control installed or you are not running a browser that understands ActiveX.</font>
+   		</OBJECT>
+
+		<FORM NAME="FormOne">
+			<INPUT TYPE="Button" NAME="BtnOne" VALUE="Start Desktop Sharing" onClick="launchShareBar();">
+		</FORM>
+		<FORM NAME="FormTwo">
+			<INPUT TYPE="Button" NAME="BtnTwo" VALUE="Start Presentation Upload" onClick="launchPPTUploader();">
+			<INPUT TYPE="Button" NAME="Btn52"  VALUE="Stop Presentation Upload" onClick="stoppresentationupload();">
+		</FORM>
+
+<p>Use the three buttons to test the application share selection and launch.
+<ul>
+<li>First click on "show application selector" and either cancel or select and application</li>
+<li>Second click on "check application selection" which will show the result of the selection</li>
+<li>Third click on "launch application share" which will launch the share of selected application, if any</li>
+</ul>
+
+		<FORM NAME="FormThree">
+			<INPUT TYPE="Button" NAME="Btn31" VALUE="Show Application Selector" onClick="launchAppSelector();">
+			<INPUT TYPE="Button" NAME="Btn32" VALUE="Check Application Selection" onClick="checkAppSelected();">
+			<INPUT TYPE="Button" NAME="Btn33" VALUE="Launch Application Share" onClick="launchAppShare();">
+			<INPUT TYPE="Button" NAME="Btn50" VALUE="Stop Screen Share" onClick="stopscreenshare();">
+		</FORM>
+
+<p>This button will show the version number of the installed x control.</p>
+		<FORM NAME="FormFour">
+			<INPUT TYPE="Button" NAME="Btn4" VALUE="Version Check" onClick="checkVersion();">
+		</FORM>
+		<FORM NAME="FormFive">
+			<INPUT TYPE="Button" NAME="Btn5" VALUE="Launch Excel" onClick="launchGenericApplication();">
+		</FORM>
+
+
+		</FORM>
+		<FORM NAME="FormTwelve">
+				<INPUT TYPE="Button" NAME="BtnTwelve" VALUE="Set Network Profile" onClick="SetNetworkProfileValue();">
+		</FORM>
+		<FORM NAME="FormThirteen">
+				<INPUT TYPE="Button" NAME="BtnThirteen" VALUE="Get Network Profile" onClick="GetNetworkProfileValue();">
+		</FORM>
+	</body>
+</html>

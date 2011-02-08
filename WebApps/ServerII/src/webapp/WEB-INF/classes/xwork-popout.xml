@@ -1,0 +1,30 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="popout" extends="webwork-default" namespace="/html/popout">
+    	
+		<global-results>
+			<result name="login">/jsp/common/commonResponse.jsp</result>
+			<result name="input">/jsp/common/commonResponse.jsp</result>
+			<result name="error">/jsp/common/commonResponse.jsp</result>
+		</global-results>
+		
+		<action name="PopoutPanel"
+				class="com.dimdim.conference.action.popout.PopoutPanelAction">
+			<result name="workspace">WorkspacePopout.jsp?cflag=${cflag}</result>
+			<result name="success">WorkspacePopout.jsp?cflag=${cflag}</result>
+			<result name="debug">WorkspacePopout.jsp?cflag=${cflag}</result>
+		</action>
+		
+		<action name="PopinPanel"
+				class="com.dimdim.conference.action.popout.PopinPanelAction">
+			<result name="workspace">/jsp/common/commonResponse.jsp</result>
+			<result name="success">/jsp/common/commonResponse.jsp</result>
+			<result name="debug">/jsp/common/commonResponse.jsp</result>
+		</action>
+		
+	</package>
+</xwork>

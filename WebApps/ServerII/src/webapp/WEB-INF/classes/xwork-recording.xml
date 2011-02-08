@@ -1,0 +1,26 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+    <include file="webwork-default.xml"/>
+    
+    <package name="recording" extends="webwork-default">
+    
+    	<global-results>
+			<result name="login">/jsp/common/noResponse.jsp</result>
+			<result name="input">/jsp/common/noResponse.jsp</result>
+			<result name="error">/jsp/common/noResponse.jsp</result>
+			<result name="success">/jsp/common/noResponse.jsp</result>
+    	</global-results>
+    	
+		<action name="Recording"
+					class="com.dimdim.conference.action.recording.RecordingControlAction">
+		</action>
+    	
+		<action name="SetRecordingStopOptions"
+					class="com.dimdim.conference.action.recording.SetRecordingStopOptionsAction">
+		</action>
+    	
+    </package>
+</xwork>
+

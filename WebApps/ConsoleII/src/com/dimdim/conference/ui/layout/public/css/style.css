@@ -1,0 +1,2865 @@
+@charset "utf-8";
+/* CSS Document */
+
+BODY {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	HEIGHT: 100%;
+	background-color: #ffffff;
+	font-family: Arial;
+	font-size: 11px;
+	color: #5E5E5E;
+}
+
+
+body a:link{
+color:#436AB8; text-decoration:none;
+}
+body a:visited{
+color:#436AB8; text-decoration:none;
+}
+body a:hover{
+color:#436AB8; text-decoration:underline;
+}
+body a:active{
+color:#436AB8; text-decoration:none;
+}
+
+#container {
+	width: 99%;
+	margin: 0 auto;
+	padding:.5%;
+}
+
+.console-logo-image
+{
+	width: 138px;
+	height: 58px;
+	padding:5px;
+}
+
+.floating
+{
+	float:left;
+}
+
+.meetingid-txt
+{
+	font-size:10px;
+	color:#2c2c2c;
+	font-weight:bold;
+}
+
+
+.dailin-txt
+{
+	font-size:10px;
+	color:#636363;
+	font-weight:bold;
+}
+
+#time_meeting
+{
+	color:#00008b;
+	font-size:12px;
+	font-weight:bold;
+}
+
+#notifications
+{
+	font-size:12px;
+	cursor:pointer;
+		color:#00008b;
+}
+
+
+#left_column_div
+{
+	width:252px;
+	padding-left:4px;
+}
+
+#collab_area
+{
+    background-color:#ffffff;
+}
+
+#collab_area iframe
+{
+	border:none;
+}
+
+#main_chat
+{
+	padding-top:4px;
+}
+
+.chat_icon
+{
+ background-image: url(../images/chat_icon.png);
+ height: 37px;
+ width: 41px;
+ background-repeat: no-repeat;
+ float:left;
+ 
+}
+
+* html .chat_icon
+{
+ background-image:none;
+ background-color: transparent;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/chat_icon.png', sizingMethod='crop');
+}
+#show_items
+{
+	padding-top:16px;
+	padding-left:45px;
+	padding-right:16px;
+	float:left;
+}
+
+.navigation_arrows
+{
+	padding-top: 16px;
+	padding-left: 200px;
+	position:absolute;
+	z-index:0;
+}
+
+*html .navigation_arrows
+{
+	margin-left: -200px;
+}
+
+#participants
+{
+	padding-top:16px;
+	padding-left:45px;
+	padding-right:16px;
+	float:left;
+}
+
+#chat_pod_header
+{
+	padding-top:12px;
+	padding-left:30px;
+	position:absolute;
+	z-index:0;
+	
+}
+
+* html #chat_pod_header
+{
+	margin-left:-150px;
+}
+
+/*********  left hand site share & manage btns Starts here  **********/
+
+.leftpod_btns
+{
+	background-image: url(../images/leftpod_btns.png);
+	background-repeat:no-repeat;
+	height: 22px;
+	width: 75px;
+	color:#ffffff;
+	font-size:11px;
+	font-weight:bold;
+	font-style:none;
+	cursor:pointer;	
+	text-align:center;
+	font:Arial, Helvetica, sans-serif;
+}
+
+* html .leftpod_btns
+{
+ background-image:none;
+ background-color: transparent;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/leftpod_btns.png', sizingMethod='crop');
+}
+
+
+.leftpod_btns_hover
+{
+	background-image: url(../images/leftpod_btns_hover.png);
+	background-repeat:no-repeat;
+	height: 22px;
+	width: 75px;
+	color:#ffffff;
+	font-size:11px;
+	font-weight:bold;
+	font-style:none;
+	cursor:pointer;
+	text-align:center;
+	font:Arial, Helvetica, sans-serif;
+}
+
+* html .leftpod_btns_hover
+{
+ background-image:none;
+ background-color: transparent;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/leftpod_btns_hover.png', sizingMethod='crop');
+}
+
+
+
+#share_button_wrapper
+{
+	width : 75px;
+	padding-top:3px;
+	position:absolute;
+	z-index: 0;	
+}
+
+* html #share_button_wrapper
+{
+	margin-left:-45px;
+}
+
+#items_manage
+{
+	width : 70px;
+	padding-top:3px;
+	margin-left:7px;
+	position:absolute;
+	z-index: 0;
+}
+
+* html #items_manage
+{
+	margin-left:-40px;
+}
+
+#participants_manage
+{
+	width : 70px;
+	padding-top:3px;
+	margin-left:7px;
+	position:absolute;
+	z-index: 0;
+}
+
+* html #participants_manage
+{
+	margin-left:-40px;
+}
+
+#users_invite
+{
+	width : 75px;
+	padding-top:3px;
+	position:absolute;
+	z-index: 0;
+}
+
+* html #users_invite
+{
+	margin-left:-45px;
+}
+
+
+#res_share
+{
+	width : 75px;
+	padding-top:3px;
+	position:absolute;
+	z-index: 0;
+	
+}
+
+* html #res_share
+{
+	margin-left:-45px;
+}
+
+
+/*********  left hand site share & manage btns ends here  **********/
+
+.notifications_icon
+{
+ background-image: url(../images/notifications.png);
+ background-repeat: no-repeat;
+ height: 16px;
+ width: 20px;
+ float:left;
+ 
+}
+
+* html .notifications_icon
+{
+	 background-image:none;
+	 background-color: transparent;
+	 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/notifications.png', sizingMethod='crop');
+}
+
+
+#res_showing
+{
+	padding-top:10px;
+	font-size:11px;
+	color:#666666;
+}
+
+.leftpod_top {
+	background-image: url(../images/leftpods_top.png);
+	background-repeat: no-repeat;
+	height: 34px;
+	width: 248px;
+}
+
+* html .leftpod_top
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/leftpods_top.png', sizingMethod='crop');
+}
+
+.leftpod_bottom {
+	background-image: url(../images/leftpods_bottom.png);
+	background-repeat: no-repeat;
+	height: 23px;
+	width: 248px;
+}
+
+.leftpod_middle {
+	background-image: url(../images/leftpods_middle.png);
+	background-repeat: repeat-y;
+	width: 248px;
+	padding-left:4px;	
+}
+
+
+.participants_icon
+{
+	background-image: url(../images/participants_icon.png);
+	height: 33px;
+	width: 29px;
+	background-repeat: no-repeat;
+	float:left;	
+}
+
+
+* html .participants_icon
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/participants_icon.png', sizingMethod='crop');
+}
+
+#now_sharing
+{
+	font-size:11px;
+	padding-top:15px;
+	padding-left:43px;
+}
+
+.displaying_icon
+{
+	background-image: url(../images/now_displaying.png);
+	height: 35px;
+	width: 36px;
+	background-repeat: no-repeat;
+	float:left;	
+}
+
+
+* html .displaying_icon
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/now_displaying.png', sizingMethod='crop');
+}
+
+
+.items_icon
+{
+	background-image: url(../images/items_icon.png);
+	height: 33px;
+	width: 29px;
+	background-repeat: no-repeat;
+	float:left;
+	
+}
+
+* html .items_icon
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/items_icon.png', sizingMethod='crop');
+}
+
+#middle_top_btns
+{
+	font-size:12px;
+	margin-top:7px;
+	color:#00008b;
+}
+
+.chatpod_top {
+	background-image: url(../images/chatpod_top.png);
+	background-repeat: no-repeat;
+	height: 37px;
+	width:267px;
+}
+
+* html .chatpod_top
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/chatpod_top.png', sizingMethod='crop');
+}
+
+.chatpod_middle {
+	background-image: url(../images/leftpods_middle.png);
+	background-repeat: repeat;
+	width: 267px;
+}
+
+.chatpod_bottom {
+	background-image: url(../images/chatpods_bottom.png);
+	background-repeat: no-repeat;
+	height: 9px;
+	width: 267px;
+}
+
+
+.active_link
+{
+	color: red;
+}
+
+.inactive_link
+{
+	color: blue;
+}
+
+.blinking_link
+{
+	color: red;
+	text-decoration:blink;
+}
+
+.Hide { display:none; }
+.Show { display:block; }	
+	
+/******* List styles that are used in the new 1.5.1 lists ********/
+
+.text-margin
+{
+	margin-left: 3px;
+	margin-right: 2px;
+	vertical-align: middle;
+}
+
+.image-margin
+{
+	margin-left: 2px;
+	margin-right: 2px;
+	vertical-align: middle;
+}
+
+.list-panel
+{
+}
+
+.list-entry-panel
+{
+	width: 240px;
+	height: 28px;
+	border: 1px solid #BEBEBE;
+	background-color:#d9d9d9;
+	font-weight:bold;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+.list-entry-panel-hover
+{
+	background: blue;
+}
+
+.list-entry-panel-share
+{
+background-image:url(../images/sharing_bg.png);
+background-repeat:repeat-x;
+}
+
+.list-entry-panel-share td
+{
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+.user-list-hover
+{
+	background-color:#e8eef7;
+	color:#FFFFFF;
+	cursor:pointer;
+	font-size:13px;
+}
+
+.user-list-hover td div
+{
+	color:#00008b;
+}
+
+.user-list-hover td div div
+{
+	color:#999999;
+}
+
+.user-list-disabled
+{
+	color:#999999;
+}
+
+.user-list-disabled td div
+{
+	color:#999999;
+}
+
+.user-list-enabled
+{
+	cursor:pointer;
+	background-color:#ffffff;
+	color:#00008b;
+}
+
+.user-list-enabled td div
+{
+	color:#00008b;
+}
+
+.user-list-enabled td div div
+{
+	color:#999999;
+}
+.list-entry-panel-share-hover
+{
+	background-image:url(../images/sharing_hover_bg.png);
+	background-repeat:repeat-x;	
+}
+
+.list-entry-panel-share-hover td
+{
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+
+.list-entry-panel-stop-hover
+{
+	background-image:url(../images/hover_bg.png);
+	background-repeat:repeat-x;
+}
+
+.list-entry-panel-stop-hover td
+{
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+.list-entry-panel-gap
+{
+	margin-top: 0px;
+}
+
+.list-section-container
+{
+	bakground: green;
+}
+
+.list-entry-label
+{
+	width: 84px;
+	font-weight: bold;
+	margin-left: 2px;
+}
+
+.list-entry-wide-label
+{
+	width: 150px;
+	font-weight: bold;
+	margin-left: 2px;
+	color: darkblue;
+	text-decoration: underline;
+}
+
+.list-entry-panel-image-panel
+{
+}
+
+.list-entry-panel-image
+{
+	margin-left: 2px;
+	margin-right: 1px;
+}
+
+.list-container-header
+{
+	width: 240px;
+}
+
+.list-container-footer
+{
+	background-color: #C3D9FF;
+	width: 240px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.list-container-footer-link
+{
+	font-weight: bold;
+}
+
+.list-entry-panel-background
+{
+	/*	background: #E7EEF8; */
+	background-image:url(../images/default_bg.png);
+	background-repeat:repeat-x;
+}
+
+.list-entry-panel-background td
+{
+	color:#333333;
+	font-weight:bold;
+}
+
+
+.host-list-entry-panel-background
+{
+	background: #C2D3A2;
+	font-weight:bold;
+}
+
+.active-presenter-list-entry-panel-background
+{
+	background: #C2B2A2;
+	font-weight:bold;
+}
+.self-list-entry-panel-background
+{
+	background: #ADD3ED;
+		font-weight:bold;
+}
+
+.user-list-entry-panel-background
+{
+	background: #E4E4E4;
+		font-weight:bold;
+}
+
+.list-browse-control
+{
+	width: 42px;
+}
+
+.list-browse-control-image
+{
+	width: 16px;
+}
+
+.list-browse-control-label
+{
+	width: 10px;
+}
+
+.list-browse-control-image
+{
+	width: 16px;
+	cursor:pointer;
+}
+
+
+.list-control-table
+{
+	width: 400px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	background-color: #C3D9FF;
+}
+
+.list-control-image
+{
+	width: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.list-popup-scroll-panel
+{
+	height: 120px;
+}
+
+/****************************from commonstyles *****************************/
+
+.common-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.common-label
+{
+	text-align: center;
+	vertical-align: middle;
+	margin: 2px;
+}
+
+.common-table-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	margin: 5px;
+}
+
+.common-table-header
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	margin: 5px;
+	vertical-align: middle;
+}
+
+
+.user-menu-item
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 13px;
+	text-align: left;
+	margin: 5px;
+	vertical-align: middle;
+	color:#0000cc;
+	font-weight:normal;
+}
+
+.common-anchor
+{
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.common-onepx-border
+{
+	border: 1px solid #CCCCCC;
+}
+
+.anchor-cursor
+{
+	cursor: pointer;
+}
+
+.common-float-panel-content
+{
+	border-top: 2px solid #C3D9FF;
+	border-right: 4px solid #C3D9FF;
+	border-bottom: 2px solid #C3D9FF;
+	border-left: 4px solid #C3D9FF;
+}
+
+.common-float-panel-header
+{
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+	padding: 0px 0px 2px 2px;
+	cursor: move;
+	font-weight: bold;
+}
+
+.popin-control-image
+{
+	margin-left: 4px;
+}
+
+.draggable-panel-header
+{
+	cursor: move;
+}
+
+.common-bold-text
+{
+	font-weight: bold;
+}
+
+
+.common-glass-panel-lighter
+{
+  background-image: url(../images/lightbox-bg-lighter.png);
+  background-repeat: repeat;
+  cursor: not-allowed;
+}
+
+* html .common-glass-panel-lighter
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/lightbox-bg-lighter.png", sizingMethod="scale");
+}
+
+.common-glass-panel
+{
+  background-image: url(../images/lightbox-bg.png);
+  background-repeat: repeat;
+  cursor: not-allowed;
+}
+
+* html .common-glass-panel
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/lightbox-bg.png", sizingMethod="scale");
+}
+
+.common-4px-spacing
+{
+	margin: 4px;
+}
+
+.common-4px-top-bottom-spacing
+{
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+/***************** Meeting Info **************/
+
+.meeting-info-dialog-box
+{
+}
+
+.meeting-info-label
+{
+	width: 80px;
+	margin: 5px;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+}
+
+.meeting-info-text
+{
+	width: 475;
+	margin: 5px;
+	vertical-align: top;
+}
+
+.meeting-info-text-box
+{
+	/*border: 1px solid black;*/
+	background-color: white;
+}
+
+.powerpoint-info-text
+{
+	width: 300px;
+	margin: 5px;
+	vertical-align: top;		
+}
+
+.loading-message-panel
+{
+	background-image: url(images/background.gif);
+	background-repeat: repeat-x;
+	height: 100%;
+	width: 100%;
+}
+
+/************* console style sheet*********************/
+
+.console-top-panel
+{
+  color: black;
+}
+
+.console-top-links-panel
+{
+}
+
+.console-top-links-line
+{
+}
+
+.rp
+{
+  background-color: #C3D9FF;
+}
+
+.console-top-panel-link
+{
+	text-align: center;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+/*	text-decoration: underline;*/
+	cursor: pointer;
+	margin: 2px;
+}
+
+.console-workspace-top-link
+{
+	text-align: center;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 12px;
+	color: darkblue;
+	text-decoration: none;
+	cursor: pointer;
+	margin: 2px;
+}
+.console-top-panel-seperator
+{
+	margin: 2px;
+	vertical-align: middle;
+	font-size: 11px;
+}
+
+.console-sub-tab-link
+{
+	text-align: center;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.console-sub-tab-seperator
+{
+	margin: 2px;
+	vertical-align: middle;
+	font-size: 11px;
+}
+
+.console-label
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.console-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.send-invite-button
+{
+	width: 100px;
+	text-align: center;
+}
+
+.dm-popup-panel-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 14px;
+	margin: 5px;
+}
+
+.dm-popup-panel-label
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 14px;
+	margin: 5px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.dm-popup-close-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #D4D0C8;
+  background-image: url(../images/btn-bgr-tile.png);
+  background-repeat: repeat-x;
+  color: #FFFFFF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+  height: 18px;
+  width: 70px;
+  border: 1px solid #AAAAAA;
+  text-align: center;
+	cursor: pointer;
+}
+
+.console-page
+{
+}
+
+.console-middle-panel
+{
+	margin-top: 31px;
+}
+
+.console-middle-left-panel
+{
+	margin-top: 10px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+}
+
+.console-middle-left-panel-float
+{
+	font-size: 4px;
+}
+
+.console-middle-left-panel .heading
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: small;
+}
+
+.console-applist-even-row
+{
+	font-size: 14px;
+	background-color: #ffffff;
+	height: 30px;
+	padding: 2px;
+	margin: 2px;
+}
+
+.console-applist-odd-row
+{
+	font-size: 14px;
+	background-color: #ffffff;
+	height: 30px;
+	padding: 2px;
+	margin: 2px;
+}
+
+.console-applist-header-row
+{
+	background-color: #efefef;
+}
+
+.console-apptable
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #b5b5b5;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.console-share-action
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-decoration: underline;
+	color: darkblue;
+	cursor: pointer;
+}
+
+.console-collab-area
+{
+	width: 740px;
+	height: 700px;
+	background-color: #C3D9FF;
+}
+
+.console-resourcePlayer
+{
+	background-color: #C3D9FF;
+}
+
+.console-resourcePlayer-fullwidth
+{
+	width: 720px;
+	height: 690px;
+	background-color: #FFFFFF;
+}
+
+.console-collab-chat-header
+{
+	width: 250px;
+	height: 20px;
+	background-color: #C3D9FF;
+}
+
+.console-collab-header-fullwidth
+{
+	width: 740px;
+	height: 20px;
+	background-color: #C3D9FF;
+}
+.console-collab-header
+{
+	background-color: #C3D9FF;
+}
+
+.console-collab-header-links
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  	font-size: 11px;
+  	/*background-color: #C3D9FF;*/
+  	margin-top: 3px;
+  	margin-bottom: 3px;
+  	margin-right: 10px;
+	margin-left: 10px;
+  	text-align: right;
+  	text-decoration: underline;
+}
+
+.console-left-area
+{
+	width: 100px;
+	margin-top: 10px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+}
+
+/************** Invitation Panel */
+
+.dm-send-invitation-panel
+{
+	margin-left: 4px;
+	width: 236px;
+}
+
+.dm-send-invitation-panel-link
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+.dm-users-list
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+.dm-users-list-visible
+{
+	background: white;
+	background-color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.dm-users-list-footer
+{
+	background-color: #C3D9FF;
+	width: 242px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.dm-users-list-link
+{
+	text-align: center;
+	vertical-align: bottom;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.dm-users-list-label
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	cursor: default;
+	cursor: default;
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 3px;
+	margin-left: 2px;
+	color: darkblue;
+	text-decoration: underline;
+}
+
+.dm-user-panel
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.dm-user-panel-search
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  padding: 1px;
+  margin-bottom: 4px;
+  cursor: default;
+	width: 130px;
+}
+
+.dm-user-role-image
+{
+  margin-left: 6px;
+  margin-right: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.dm-popup-header-label
+{
+  width: 120px;
+}
+
+.dm-user-name
+{
+}
+
+.dm-user-panel-selected
+{
+  background-color: #E8EEF7;
+  cursor: pointer;
+  cursor: default;
+}
+
+.dm-user-panel-unselected
+{
+}
+
+.dm-user-info-popup
+{
+	border: 2px solid #CCCCCC;
+	width: 200px;
+	width: 30px;
+  background-color: #E8EEF7;
+}
+
+.dm-user-info-header
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.dm-local-user-entry-panel
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  cursor: pointer;
+  width: 140px;
+	background-color: #E8EEF7;
+}
+
+
+/************* Hover popups  ******************/
+
+.dm-hover-popup
+{
+	border: 2px solid #CCCCCC;
+	background-color: white;
+	padding: 0px;
+}
+
+.dm-hover-popup-firefox-with-audio-broadcaster
+{
+}
+
+.dm-hover-popup-firefox-with-audio-player
+{
+}
+
+.dm-hover-popup-content
+{
+}
+
+.dm-hover-popup-links-panel
+{
+}
+
+.dm-hover-popup-link
+{
+}
+
+.dm-hover-popup-body
+{
+}
+
+.dm-hover-popup-header
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.dm-hover-popup-header-buttons
+{
+}
+
+.dm-hover-popup-button
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	background-color: #C3D9FF;
+	margin: 4px;
+	margin-left: 8px;
+	border: 1px solid #CCCCCC;
+}
+
+.dm-hover-popup-header-control
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 4px;
+	margin-left: 8px;
+}
+
+.dm-hover-popup-invisible-button
+{
+	color: #C3D9FF;
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+	margin: 4px;
+	margin-left: 8px;
+	border: 1px solid #C3D9FF;
+}
+
+.hover-popup-text
+{
+	margin-left: 8px;
+}
+
+.resource-popup-help-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 24px;
+	margin-top: 10px;
+}
+
+/*  The common dialog styles to get the background and the round corner border.  */
+
+.common-dialog-outer-panel
+{
+	border-top: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+}
+
+.upload-error
+{
+	color: red;
+}
+
+.common-dialog-rounded-corner-panel
+{
+	margin: 4px;
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.common-dialog-row
+{
+	width: 100%;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.line-break
+{
+	line-height: 1px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+
+.section-break
+{
+	line-height: 1px;
+	width: 100%;
+	margin-top: 0px;
+	border-bottom: 2px solid #CCCCCC;
+	margin-bottom: 2px;
+}
+
+.control-table-header
+{
+	text-align: left;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 5px;
+}
+
+.control-table-text
+{
+	text-align: left;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.dialog-message-label
+{
+	margin-left: 10px;
+}
+
+
+/*********** Command Wait Popup ****************/
+
+.command-wait-popup
+{
+	border: 2px solid #CCCCCC;
+	background-color: #E8EEF7;
+	padding: 4px;
+	width: 120px;
+	height: 70px;
+	cursor: wait;
+}
+
+.cursor-wait
+{
+	cursor: wait;
+}
+
+.dialog-z-index
+{
+	position: relative;
+	z-index: 0;
+}
+
+.second-level-popup-z-index
+{
+	position: relative;
+	z-index: 2;
+}
+
+.resource-sharing-player
+{
+	position: relative;
+	z-index: 0;
+}
+
+/**************************************************/
+
+.resource-control-dialog-box
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.resource-control-dialog-height
+{
+	height: 175px;
+}
+
+.resource-image-header
+{
+	width: 20px;
+	color: #E8EEF7;
+}
+
+.resource-name-header
+{
+	width: 160px;
+}
+
+.resource-type-header
+{
+	width: 160px;
+}
+
+.resource-delete-button-header
+{
+	width: 60px;
+}
+
+.resource-image
+{
+	width: 30px;
+	vertical-align: middle;
+}
+
+.resource-name
+{
+	width: 160px;
+}
+
+.resource-type
+{
+	width: 160px;
+}
+
+.resource-delete-button
+{
+	width: 60px;
+}
+
+/******  Individual Resource Management dialog boxes  *****/
+
+.resource-delete-dialog-line-break
+{
+	line-height: 1px;
+	width: 290px;
+	margin-top: 5px;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 2px;
+}
+
+.resource-delete-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.resource-delete-dialog-height-one
+{
+	height: 120px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+.resource-delete-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 2px;
+}
+
+/*********** Rename resource *************/
+
+.resource-rename-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.resource-rename-dialog-height-one
+{
+	height: 120px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+.resource-rename-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 2px;
+}
+
+.resource-rename-new-name
+{
+	vertical-align: middle;
+	width: 130px;
+	border: 1px solid #CCCCCC;
+}
+
+/************** About meeting  ************/
+
+.about-meeting-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.about-meeting-dialog-height-one
+{
+}
+
+.about-meeting-dialog-height-two
+{
+}
+
+.about-info-text
+{
+	width: 125;
+	margin: 5px;
+	vertical-align: top;
+}
+
+/********** Meeting info dialog box  ************/
+
+.meeting-info-dialog-width
+{
+	width: 618px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.meeting-info-dialog-height-one
+{
+}
+
+.meeting-info-dialog-height-two
+{
+}
+
+/********** Meeting closed dialog box  ************/
+
+.meeting-closed-dialog-width
+{
+	width: 342px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.meeting-closed-dialog-height-one
+{
+	height: 142px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+.meeting-closed-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 2px;
+}
+
+/*********** Change Picture *************/
+
+.change-picture-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.change-picture-dialog-height-one
+{
+	height: 210px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+.change-picture-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 2px;
+}
+
+/*********** Upload ppt *************/
+
+.upload-ppt-dialog-width
+{
+	width: 400px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.upload-ppt-dialog-height-one
+{
+	height: 210px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+.upload-ppt-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 2px;
+}
+
+/********** Default message dialog box for common short messages  ************/
+
+.default-message-dialog-width
+{
+	width: 342px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.default-message-dialog-content
+{
+	width: 277px;
+}
+
+.default-message-dialog-height-one
+{
+	height: 100px;
+	margin-left: 50px;
+	margin-right: 10px;
+}
+
+.default-message-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	margin-right: 2px;
+}
+
+/**************** Settings Dialog *****************/
+
+.settings-item-heading
+{
+	text-align: right;
+	width: 165px;
+	margin-right: 10px;
+	margin-bottom: 8px;
+}
+
+.settings-button-tag-text
+{
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-bottom: 8px;
+}
+
+.feedback-button-tag-text
+{
+	height: 20px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.feedback-button
+{
+	height: 20px;
+	margin-left: 80px;
+}
+
+/*********** Enter URL *************/
+
+.enter-url-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #CCCCCC;
+	margin-bottom: 0px;
+}
+
+.enter-url-dialog-height-one
+{
+	height: 160px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+.enter-url-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #CCCCCC;
+	margin-right: 2px;
+}
+
+.enter-url-dialog-content
+{
+	width: 235px;
+}
+
+.enter-url-field
+{
+	width: 200px;
+	margin: 5px;
+}
+
+.ppt-upload-filename-textbox
+{
+  margin-top: 8px;
+  width: 200px;
+}
+
+/******************* gwt widgets style *****************************/
+.gwt-DialogBox {
+	border: 2px solid #CCCCCC;
+	background-color: white;
+}
+
+.gwt-DialogBox .Caption
+{
+	background-color: rgb(195, 217, 255);
+	padding: 4px;
+	padding-bottom: 4px;
+	font-weight: bold;
+	cursor: default;
+}
+
+.gwt-MenuBar
+{
+	background-color: #C3D9FF;
+	cursor: pointer;
+}
+
+.gwt-MenuItem
+{
+	font-size: 80%;
+	margin: 1px;
+	cursor: pointer;
+}
+
+.gwt-MenuItem-selected
+{
+	background-color: #E8EEF7;
+}
+
+.gwt-Tree
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.gwt-Tree .gwt-TreeItem
+{
+	font-size: 80%;
+	cursor: default;
+}
+
+.gwt-Tree .gwt-TreeItem-selected
+{
+	background-color: #C3D9FF;
+}
+
+.gwt-StackPanel
+{
+	background-color: white;
+	border: 1px solid #CCCCCC;
+	width: 15em;
+}
+
+.gwt-StackPanel .gwt-StackPanelItem {
+	background-image: url(gray_gradient.gif);
+	background-repeat: repeat-x;
+	background-color: #EEEEEE;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.gwt-StackPanel .gwt-StackPanelItem-selected
+{
+}
+
+.gwt-Button
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	background-color: #C3D9FF;
+	border: 1px solid #CCCCCC;
+}
+
+/*********** Tk styles *******************/
+
+.tk-GlassPanel-not-used {
+  background: black;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  cursor: not-allowed;
+}
+
+.tk-ModalDialog {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0px;
+}
+
+.tk-ModalDialog .Caption {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  background-image: url(../images/modal-dialog-header-tile.png);
+  background-repeat: repeat-x;
+  padding: 4px;
+  margin: 4px;
+  cursor: default;
+}
+
+
+.tk-ModalDialog-content {
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px;
+}
+
+.tk-ModalDialog-content .gwt-Button {
+  margin-top: 8px;
+}
+
+.tk-AlertDialog-captionIcon {
+  vertical-align: middle;
+}
+
+.tk-AlertDialog-captionLeft, .tk-AlertDialog-captionRight {
+  width: 16px;
+}
+
+.tk-AlertDialog-captionCenter {
+  font-size: 90%;
+  font-weight: bold;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.tk-AlertDialog-buttons {
+  margin: 0 auto;
+}
+
+.tk-AlertDialog-hotKeyChar {
+  text-decoration: underline;
+}
+
+/*********************************from invitation styles these are used in some other dialogues too **************************/
+
+.send-invitation-small-form-box
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.send-invitation-small-form-email
+{
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	width: 230px;
+	border: 1px solid #CCCCCC;
+	overflow: auto;
+}
+
+.send-invitation-preview-box
+{
+	border-top: 3px solid #C3D9FF;
+	border-right: 5px solid #C3D9FF;
+	border-bottom: 3px solid #C3D9FF;
+	border-left: 5px solid #C3D9FF;
+}
+
+.send-invitation-preview-rounded-corner-box
+{
+	margin: 4px;
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.invitations-preview-comment
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 5px;
+	margin-top: 7px;
+}
+
+.invitations-preview-textarea
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	width: 97%;
+	overflow: auto;
+}
+
+.invitations-preview-send-button
+{
+  white-space: nowrap;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #D4D0C8;
+  background-image: url(../images/btn-bgr-tile.png);
+  background-repeat: repeat-x;
+  color: #FFFFFF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+  height: 18px;
+  border: 1px solid #AAAAAA;
+  text-align: center;
+  cursor: pointer;
+}
+
+/**************************/
+
+.invitations-dialog-box
+{
+	width: 400px;
+}
+
+.email-error-message
+{
+	color: RED;
+  	font-size: 11px;
+}
+
+/****************************** Chat Popup Styles *****************************/
+
+.dm-chat-popup {
+	background-color: White;
+	border: 1px solid #CCCCCC;
+	padding: 0px;
+	width: 248px;
+}
+
+.discussion-chat-top-padding
+{
+	padding-top: 4px;
+}
+
+.dm-chat-message-scroller {
+	background-color: gray;
+}
+
+.dm-seperator-line {
+	background-image: url(images/placeholder.gif);
+	background-repeat: repeat-x;
+}
+
+.dm-popup-footer {
+	border-top: 1px solid #CCCCCC;
+}
+
+.dm-popup-header {
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.dm-chat-text-area
+{
+	border: 1px solid blue;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 6px;
+	overflow: auto;
+	width: 230px;
+}
+
+.dm-chat-message-area-pane
+{
+}
+
+.dm-chat-message-area
+{
+	background-color: white;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.chat-message
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 4px;
+	margin-bottom: 2px;
+	vertical-align: middle;
+	width: 230px;
+}
+
+.chat-image
+{
+	vertical-align:text-bottom
+}
+
+.chat-instruction-panel
+{
+	border-top: 1px solid #CCCCCC;
+}
+
+.chat-instruction
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 9px;
+	margin-left: 10px;
+	color: #CCCCCC;
+}
+
+.chat-emoticon
+{
+	vertical-align: middle;
+	horizontal-align: middle;
+}
+.chat-emoticon-cell
+{
+	border: 1px solid white;
+}
+
+.chat-emoticon-cell-highlight
+{
+	border: 1px solid #CCCCCC;
+}
+
+.chat-emoticon-popup
+{
+	border: 2px solid #CCCCCC;
+	padding: 0px;
+	background: white;
+	background-color: white;
+	width: 75px;
+	height: 75px;
+}
+
+.chat-text-area
+{
+	overflow:auto;
+}
+.chat-emoticon-lable
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 9px;
+	margin-right: 10px;
+	width: 60px;
+	color: BLUE;
+	cursor: pointer;
+}
+
+.chat-message-first-line
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.chat-message-line
+{
+	margin-left: 15px;
+	margin-bottom: 2px;
+}
+
+.host-chat-message
+{
+	color: red;
+}
+
+.remote-chat-message
+{
+	color: blue;
+}
+
+.chat-header-message-unread
+{
+	background-color: #FF8A00;
+  font-weight: bold;
+}
+
+.chat-header-buttons-panel
+{
+}
+
+.chat-header-button
+{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.flash-container {
+}
+
+.flash-content {
+}
+
+.minimize-chat-popup
+{
+	background-image: url("images/minimize.png");
+	background-color: transparent;
+}
+
+* html .minimize-chat-popup
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/minimize.png", sizingMethod="crop");
+}
+
+.maximize-chat-popup
+{
+	background-image: url("images/maximize.png");
+	background-color: transparent;
+}
+
+* html .maximize-chat-popup
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/maximize.png", sizingMethod="crop");
+}
+
+.close-chat-popup
+{
+	background-image: url("images/close.png");
+	background-color: transparent;
+}
+
+* html .close-chat-popup
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/close.png", sizingMethod="crop");
+}
+
+.blink-chat-popup
+{
+}
+
+/***********************mood reelated style cahnges. ****************/
+/*
+.dm-mood-control-panel
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  padding-left: 6px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  cursor: hand;
+  width: 240px;
+}
+*/
+
+.dm-mood-control-message
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  cursor: hand;
+  width: 231px;
+	background-color: #E8EEF7;
+	border: 1px solid #E8EEF7;
+}
+
+.dm-mood-image-panel
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.dm-user-mood-image
+{
+  margin-left: 6px;
+  margin-right: 4px;
+}
+
+.dm-mood-image-panel-selected
+{
+	background-color: #C3D9FF;
+}
+
+.dm-mood-control-selected
+{
+	background-color: #C3D9FF;
+	border: 1px solid #CCCCCC;
+}
+
+.mood-custom-message-box
+{
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 22px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	cursor: default;
+	cusror: pointer;
+	width: 210px;
+	border: 1px solid #CCCCCC;
+}
+
+/**********  Styles for the moods handling *******************/
+
+/** GWT overrides, just to be sure  **/
+
+.gwt-MenuBar	{	}
+.gwt-MenuBar .gwt-MenuItem	{	}
+.gwt-MenuBar .gwt-MenuItem-selected
+{
+	background: white;
+	background-color: white;
+}
+
+.mood-selection-popup
+{
+	background: white;
+	background-color: white;
+	width: 140px;
+	border: 1px solid #CCCCCC;
+}
+
+.mood-image
+{
+	vertical-align: middle;
+}
+
+.mood-menu-entry
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	cursor: pointer;
+	margin-top: 3px;
+	margin-left: 8px;
+	margin-bottom: 3px;
+	background: white;
+	background-color: white;
+}
+
+.mood-menu-entry-border
+{
+}
+
+.mood-menu-entry-selected
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.mood-label
+{
+	margin-left: 8px;
+}
+
+.mood-menu-bar
+{
+	text-align: left;
+	width: 100%;
+}
+
+.mood-menu-item
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	width: 100%;
+	text-align: left;
+	margin-left: 10px;
+}
+
+/**************************meeting assistant styles *******************************/
+
+.meeting-assistent-panel
+{
+	background-image: url("../images/assistent/wizard-back.png");
+	width: 550px;
+	height: 390px;
+}
+
+.meeting-assistent-header-1
+{
+	width: 536px;
+	margin-top: 8px;
+	margin-right: 8px;
+}
+
+.meeting-assistent-header-2
+{
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color:#444444;
+}
+
+.wizard-label-base
+{
+	height: 56px;
+	margin-right: 20px;
+}
+
+.wizard-label
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+}
+
+.wizard-label-panel
+{
+}
+
+.gray-label-panel
+{
+	width: 236px;
+	height: 63px;
+	background-image: url("../images/assistent/gray-tile.png");
+	background-repeat: repeat-x;
+}
+
+.red-label-panel
+{
+	width: 236px;
+	height: 63px;
+	background-image: url("../images/assistent/red-tile.png");
+	background-repeat: repeat-x;
+}
+
+.green-label-panel
+{
+	width: 236px;
+	height: 63px;
+	background-image: url("../images/assistent/green-tile.png");
+	background-repeat: repeat-x;
+}
+
+.blue-label-panel
+{
+	width: 236px;
+	height: 63px;
+	background-image: url("../images/assistent/blue-tile.png");
+	background-repeat: repeat-x;
+}
+
+#MeetingAssistentDialog .tk-ModalDialog
+{
+	border: 0px;
+	padding: 0px;
+}
+
+#MeetingAssistentDialog .tk-ModalDialog-content
+{
+	padding: 0px;
+}
+
+/***********************user popup styles**********************/
+
+.user-popup-data-panel
+{
+}
+
+.user-popup-links-panel
+{
+	margin: 4px;
+}
+
+.user-popup-email-entry
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 36px;
+}
+
+.user-popup-control-link
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.user-popup-mood-text
+{
+	vertical-align: middle;
+	color: gray;
+  	margin-top: 2px;
+	margin-left: 36px;
+	margin-bottom: 2px;
+}
+
+.user-popup-mood-text-with-image
+{
+	vertical-align: middle;
+	color: gray;
+  	margin-top: 2px;
+	margin-left: 4px;
+	margin-bottom: 2px;
+}
+
+.user-popup-control-link-disabled
+{
+	color: gray;
+	text-decoration: none;
+}
+
+.user-name-in-popup
+{
+	width: 120;
+}
+
+.user-remove-control-link
+{
+	margin-left: 36px;
+}
+
+.user-change-picture-control-link
+{
+	margin-left: 120px;
+}
+
+/****************** Control Table Dialog Styles ****************/
+
+.control-table-header-checkbox
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	width:10px;
+}
+
+.control-table-header-checkbox-combo
+{
+	width: 80px;
+}
+
+.user-control-dialog-box
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.user-image-header
+{
+	width: 40px;
+}
+
+.user-name-header
+{
+	width: 120px;
+}
+
+.user-email-header
+{
+	width: 160px;
+}
+
+.user-chat-button-header
+{
+	width: 60px;
+}
+
+.user-audio-button-header
+{
+	width: 60px;
+}
+
+.user-video-button-header
+{
+	width: 60px;
+}
+
+.user-image
+{
+	width: 40px;
+	vertical-align: middle;
+}
+
+.user-name
+{
+	width: 130px;
+}
+
+.user-email
+{
+	width: 160px;
+}
+
+.user-chat-button
+{
+	width: 60px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.user-audio-button
+{
+	width: 60px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.user-video-button
+{
+	width: 60px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.conference-permissions-header
+{
+	width: 240px;
+}
+
+.conference-permissions-comment-1
+{
+	width: 240px;
+}
+
+.conference-chat-button-header
+{
+	width: 60px;
+}
+
+.conference-audio-button-header
+{
+	width: 60px;
+}
+
+.conference-video-button-header
+{
+	width: 60px;
+}
+
+.conference-button-filler
+{
+	width: 60px;
+	color: #E8EEF7;
+}
+
+.lobby-name
+{
+	width: 160px;
+}
+
+.lobby-email
+{
+	width: 160px;
+}
+
+/******* Different backgrounds for different roles.   ********/
+
+.active-presenter-label-background
+{
+	width: 170px;
+	background: #003366;
+	background-color: #003366;
+	font-color: white;
+	color: white;
+	font-weight: bold;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	padding-left: 4px;
+	margin-left: 5px;
+}
+
+.presenter-label-background
+{
+	width: 170px;
+	background: white;
+	background-color: white;
+	font-weight: bold;
+	padding: 2px;
+}
+
+.attendee-label-background
+{
+	width: 170px;
+	background: #336633;
+	background-color: #336633;
+	font-color: white;
+	color: white;
+	font-weight: bold;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	padding-left: 4px;
+	margin-left: 5px;
+}
+
+.active-presenter-list-entry-background
+{
+	background: #E0ECFF;
+	background-color: #E0ECFF;
+}
+
+.presenter-list-entry-background
+{
+	background: white;
+	background-color: white;
+}
+
+.attendee-list-entry-background
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+/****************** Change Photo Dialog *************/
+
+.change-photo-dialog-content
+{
+	margin: 5px;
+}
+
+.change-photo-picture
+{
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 30px;
+	border: 1px solid #CCCCCC;
+}
+
+.change-photo-picture-caption
+{
+	margin-bottom: 4px;
+}
+
+.change-photo-radio-button
+{
+	margin: 2px;
+}
+
+.photo-file-upload-field
+{
+}
+
+.change-photo-label
+{
+	margin-left: 5px;
+}
+
+.change-photo-upload-label
+{
+	margin-left: 25px;
+}
+
+.common-error-message
+{
+	color: RED;
+  	font-size: 11px;
+}
+
+/********************* Two fixed size dialogs small and large *************************/
+
+/***** Small dialog *****/
+
+.small-dialog-width
+{
+	width: 342px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.small-dialog-content
+{
+	width: 277px;
+}
+
+.small-dialog-height-one
+{
+	height: 100px;
+	margin-left: 50px;
+	margin-right: 10px;
+}
+
+.small-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	margin-right: 2px;
+}
+
+/***** Large dialog *****/
+
+.large-dialog-width
+{
+	width: 442px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.large-dialog-content
+{
+	width: 377px;
+}
+
+.large-dialog-height-one
+{
+	height: 210px;
+	margin-left: 50px;
+	margin-right: 10px;
+}
+
+.large-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	margin-right: 2px;
+}
+
+/********** cobrowse styles *************/
+
+.padding-5
+{
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.add_btns
+{
+ background-image: url(../images/add_btn.png);
+ background-repeat:no-repeat;
+ height: 20px;
+ width: 45px;
+ color:#ffffff;
+ font-size:9px;
+ cursor:pointer;
+ text-align:center;
+ font-family: Arial, Helvetica, sans-serif;
+ font-style: normal;
+ font-weight: bold;
+ border:0px;
+}
+
+* html .add_btns
+{
+ background-image:none;
+ background-color: transparent;
+ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/add_btn.png', sizingMethod='crop');
+}

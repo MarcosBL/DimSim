@@ -1,0 +1,46 @@
+	# -------------------------------------------------------------------------------------------------------------------
+	#--------------------------------------------------- EVENT LIST ENDS ---------------------------------
+	# -------------------------------------------------------------------------------------------------------------------
+
+	# post conf data
+	avUsed = AV_USED;
+	pptUsed = PPT_USED;
+	dtpUsed = DTP_USED;
+	recordingUsed = RECORDING_USED;
+	callbackUrl1 = "PORTAL_CALLBACK_URL";
+	callbackUrl2= "OTHER_CALLBACK_URL";
+	
+	if callbackUrl1 and len(callbackUrl1) > 0:
+		g_flags.addNotificationUrl(callbackUrl1);
+	if callbackUrl2 and len(callbackUrl2) > 0:
+		g_flags.addNotificationUrl(callbackUrl2);
+	
+		
+	verbose("main","Conference Details : "+str(confDetails));
+	
+	if recordingUsed:
+		# end rad processing
+		sys.stderr.write(" >>> creating archive...\n");
+		# make the create archive call
+		try:
+			if not confDetails.createArchive():
+				fatal("main","failed to create conference archive!");
+			else:
+				sys.stderr.write(" >>> notifying registered urls...\n");
+				g_flags.notifyUrls();
+		finally:
+			confDetails.delTmpDirContents();
+	else:
+		sys.stderr.write(">>> Recording not used. Skipping rad script execution!\n");
+	# end rad processing
+	sys.stderr.write(" >>> RAD Script "+__file__+" finished!\n");
+		
+
+if __name__ == "__main__":
+	main();
+	sys.exit(0);
+	
+
+#
+#	END Dimdim Recording Script
+#

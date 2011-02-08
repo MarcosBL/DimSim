@@ -1,0 +1,25 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+    <include file="webwork-default.xml"/>
+    
+    <package name="partners" extends="webwork-default">
+    
+    	<global-results>
+			<result name="login">/jsp/common/noResponse.jsp</result>
+			<result name="input">/jsp/common/noResponse.jsp</result>
+			<result name="error">/jsp/common/noResponse.jsp</result>
+			<result name="success">/jsp/common/noResponse.jsp</result>
+    	</global-results>
+    	
+		<action name="CheckStartConference"
+					class="com.dimdim.conference.action.roster.CheckStartConferenceAction">
+			<result name="login">jsp/signin2/StartConference.jsp</result>
+			<result name="input">jsp/signin2/StartConference.jsp</result>
+			<result name="error">jsp/signin2/StartConference.jsp</result>
+			<result name="success" type="redirect">WelcomeToConference.action?flag=${flag}</result>
+		</action>
+    </package>
+</xwork>
+

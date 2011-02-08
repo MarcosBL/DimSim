@@ -1,0 +1,12 @@
+
+The list behavior is same for 3 features, users list, resource list and lobby for now. Will make
+sense to use a common list model and layout. This particular list listener should be either simple
+or none, because this list is final display component. There is no direct modification to it and
+no other component is affected by it. The list model is driven by the events in the underlying
+user or resource model.
+
+Lower level objects will not raise events. These will mostly be consumers of the events. These
+are the data objects, and lowest level layout objects.
+
+Intermmediate objects will be listeners of server events and 
+

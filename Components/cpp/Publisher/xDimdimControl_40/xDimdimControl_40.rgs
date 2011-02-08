@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'xDimdimControl_40'
+		'xDimdimControl_40.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

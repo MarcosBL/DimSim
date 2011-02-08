@@ -1,0 +1,65 @@
+<project name="ServerCommon" default="help" basedir=".">
+	<property file="build.properties" />
+
+	<target name="help">
+	  <echo>
+            o To build the dimdim webapp, simply run:
+
+                 ant build
+
+        </echo>
+	</target>
+
+	<path id="cp">
+		<fileset dir="../../ThirdPartyPackages/Javamail">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/Webworks">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/tomcat">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/ical4j">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<macrodef name="compile">
+		<attribute name="srcdir" />
+		<attribute name="destdir" />
+		<attribute name="classpath" default="" />
+		<attribute name="classpathref" default="cp" />
+		<attribute name="excludes" default="" />
+		<attribute name="source" default="1.4" />
+		<attribute name="target" default="1.4" />
+		<sequential>
+			<mkdir dir="@{destdir}" />
+			<javac srcdir="@{srcdir}" destdir="@{destdir}" classpath="@{classpath}"
+				classpathref="@{classpathref}" debug="on" source="@{source}" target="@{target}" />
+			<jar destfile="${basedir}/dist/ServerCommon.jar" basedir="@{destdir}">
+				<manifest>
+					<attribute name="Auther" value="${user.name}"/>
+				</manifest>
+			</jar>
+		</sequential>
+	</macrodef>
+
+	<target name="build">
+		
+		<!-- prepare -->
+		<delete dir="${basedir}/tmp" />
+		<mkdir dir="${basedir}/tmp" />
+		<mkdir dir="${basedir}/dist" />
+		
+		<compile srcdir="${basedir}/src" destdir="${basedir}/tmp" />
+		
+		<copy filtering="no" todir="../../ThirdPartyPackages/ServerCommon">
+			<fileset dir="${basedir}/dist">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		
+	</target>
+
+</project>

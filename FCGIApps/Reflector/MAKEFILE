@@ -1,0 +1,14 @@
+# ------------------------------------------------------------
+# Makefile for dimdimReflector
+# -------------------------------------------------------------
+CC=g++
+EXE_NAME=dimdimReflector
+FCGI_DIR=~/DevLibs/fcgi-2.4.0
+CORONA_DIR=~/DevLibs/corona-1.0.2
+CC_OPTS=-I$FCGI_DIR/include -I$CORONA_DIR/include -Wno-deprecated
+LIKER_OPTS=-lcorona -lfcgi++ -lz -lpthread -ljpeg -L$FCGI_DIR/lib -L$CORONA_DIR/lib
+SRC_FILES=src/*.cpp src/dimdim/common/*.cpp src/dimdim/fcgi/*.cpp src/dimdim/rfb/*.cpp src/dimdim/screen/*.cpp src/dimdim/amf/*.cpp src/dimdim/flv/*.cpp
+all:
+	$(CC) -o $(EXE_NAME) $(CC_OPTS) $(LINKER_OPTS) $(SRC_FILES)
+clean:
+	rm -rf $(EXE_NAME)

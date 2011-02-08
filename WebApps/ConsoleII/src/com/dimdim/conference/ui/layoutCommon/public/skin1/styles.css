@@ -1,0 +1,333 @@
+/* Common Top Level Styles. These are mostly inherited from by more specific styles. */
+
+/* Body styles */
+
+#right_column_div
+{
+	width:252px;
+	padding-left:4px;
+}
+
+/*********** Background ***********/
+
+.console-background
+{
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+}
+
+.background-header
+{
+	background:	URL(images/TopGradient.jpg);
+	background-repeat: repeat-x;
+	height: 115px;
+}
+
+.background-middle
+{
+	background-color: #FDFDFD;
+}
+
+.background-footer
+{
+	background:	URL(images/BottomGradient.jpg);
+	background-repeat: repeat-x;
+	height: 60px;
+}
+
+/******************/
+
+.logo-image
+{
+}
+
+/*******************/
+
+.console-content
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: transparent;
+}
+
+/* The links and buttons in the top panel  */
+
+.logo-text
+{
+	font-family: helvetica;
+	font-size: 20px;
+	color:white;
+	font-weight:bold;
+}
+
+/** Meeting id **/
+
+.meetingid-label
+{
+	font-size:11px;
+	color:white;
+	margin-right: 1px;
+}
+
+.meetingid-seperator
+{
+	font-size:11px;
+	color: white;
+	margin-right: 5px;
+	margin-left: 1px;
+}
+
+.meetingid-text
+{
+	font-size:11px;
+	color: white;
+	font-weight:bold;
+	margin-right: 10px;
+	margin-left: 1px;
+}
+
+/** Phone number **/
+
+.phone-number-label
+{
+	font-size:11px;
+	color: white;
+	margin-right: 1px;
+}
+
+.phone-number-seperator
+{
+	font-size:11px;
+	color: white;
+	margin-right: 5px;
+	margin-left: 1px;
+}
+
+.phone-number-text
+{
+	font-size:11px;
+	color: white;
+	font-weight:bold;
+	margin-right: 10px;
+	margin-left: 1px;
+}
+
+/** Phone passcode **/
+
+.passcode-label
+{
+	font-size:11px;
+	color: white;
+	margin-right: 1px;
+}
+
+.passcode-seperator
+{
+	font-size:11px;
+	color: white;
+	margin-right: 5px;
+	margin-left: 1px;
+}
+
+.passcode-text
+{
+	font-size:11px;
+	color: white;
+	font-weight:bold;
+	margin-right: 10px;
+	margin-left: 1px;
+}
+
+.signout_link
+{
+	font-size:11px;
+	color:white;
+	font-weight:bold;
+}
+
+.tools-button
+{
+	width: 50px;
+	height: 16px;
+	background:	URL(images/tools_bg.png);
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.tools-button-label
+{
+	color: blue;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 2px;
+	margin-right: 1px;
+	cursor: pointer;
+}
+
+
+/* Tools popup */
+
+.tool-popup-panel
+{
+}
+
+.tool-entry
+{
+	font-size: 13px;
+	margin: 0px;
+	padding-top: 6px;
+	padding-right: 30px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	color:#00008b;
+	cursor:pointer;
+}
+
+/*	Common label hover style  */
+
+.list-name-label
+{
+	margin-left: 5px;
+}
+
+.common-list-entry-label-hover
+{
+	background-color:#e8eef7;
+}
+
+.common-list-entry-label
+{
+	background-color:#ffffff;
+}
+
+/* Resource popup */
+
+.resource-popup-header-entry
+{
+	font-size: 13px;
+	margin: 0px;
+	padding-top: 6px;
+	padding-right: 30px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	color:#00008b;
+}
+
+.resource-popup-header-panel
+{
+}
+
+.resource-popup-footer-entry
+{
+	font-size: 13px;
+	margin: 0px;
+	padding-top: 6px;
+	padding-right: 30px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	color:#00008b;
+}
+
+.resource-entry
+{
+	font-size: 13px;
+	margin: 0px;
+	padding-top: 6px;
+	padding-right: 30px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	color:#00008b;
+	cursor:pointer;
+}
+
+.resource-entry-panel
+{
+	border-bottom: 1px solid #CCCCCC;
+}
+.first-resource-entry-panel
+{
+	border-top: 1px solid #CCCCCC;
+}
+
+/*	Firefox movie height issue fix	*/
+
+#pptMovie
+{
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+}
+
+#pptMovieDiv
+{
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+}
+
+#forceheight, x:moz-any-link, x:default {display:block; font-size:0;}
+#forceheight { display:none; }
+
+/*  User Menu Scroll Fix  */
+
+.user-menu-entry
+{
+	text-align: left;
+	vertical-align: middle;
+	font-weight:normal;
+	font-size: 13px;
+	margin: 0px;
+	padding-top: 6px;
+	padding-right: 30px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	color:#00008b;
+	cursor:pointer;
+}
+
+.user-menu-entry-disabled
+{
+	color:#999999;
+	cursor: not-allowed;
+}
+
+.user-menu-entry-disabled td div
+{
+	color:#999999;
+}
+
+.user-menu-entry-enabled
+{
+}
+
+.user-menu-entry-enabled td div
+{
+	color:#00008b;
+}
+
+.user-menu-entry-enabled td div div
+{
+	color:#999999;
+}
+
+.user-menu-entry-hover
+{
+	background-color:#e8eef7;
+}
+
+.user-menu-entry-hover td div
+{
+	color:#00008b;
+}
+
+.user-menu-entry-hover td div div
+{
+	color:#999999;
+}
+

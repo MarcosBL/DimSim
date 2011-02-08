@@ -1,24 +1,30 @@
 # Ignore these files
 # Git automatically ignores empty directories
 
+# DimSim - Note the usual suspects such as .o etc I have commented out due to
+# the state of the initial import. Unfortunately a large portion of the code base
+# is in fact distributed as binary.
+
+
 # Compiled source #
 ###################
-*.class
-*.o
-*.so
+#*.class
+#*.o
+#*.so
 
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
 # git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
+
+#*.7z
+#*.dmg
+#*.gz
+#*.iso
+#*.jar
+#*.rar
+#*.tar
+#*.zip
 
 # Logs and databases #
 ######################

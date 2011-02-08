@@ -1,0 +1,1 @@
+C:\www\lighttpd\lighttpd.exe -m \www\lighttpd\lib -f C:\www\MediaServer\lighttpd.conf

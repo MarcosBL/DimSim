@@ -1,0 +1,81 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<include file="xwork-admin.xml"/>
+
+	<include file="xwork-check.xml"/>
+
+	<include file="xwork-envcheck.xml"/>
+
+	<include file="xwork-conf.xml"/>
+
+	<include file="xwork-layout.xml"/>
+
+	<include file="xwork-layout2.xml"/>
+
+	<include file="xwork-popout.xml"/>
+
+	<include file="xwork-signin.xml"/>
+
+	<include file="xwork-ui-ppt.xml"/>
+
+	<include file="xwork-ui-whiteboard.xml"/>
+
+	<include file="xwork-roster.xml"/>
+
+	<include file="xwork-resource.xml"/>
+
+	<include file="xwork-presentation.xml"/>
+
+	<include file="xwork-sharing.xml"/>
+
+	<include file="xwork-chat.xml"/>
+
+	<include file="xwork-data.xml"/>
+
+	<include file="xwork-recording.xml"/>
+
+	<include file="xwork-portal.xml"/>
+
+	<package name="default" extends="webwork-default">
+		<default-action-ref name="home" />
+
+    	<global-results>
+			<result name="login">/jsp/signin2/WebAppRoot.jsp</result>
+			<result name="input">/jsp/signin2/WebAppRoot.jsp</result>
+			<result name="error">/jsp/signin2/WebAppRoot.jsp</result>
+			<result name="success">/jsp/common/commonResponse.jsp</result>
+    	</global-results>
+    	
+		<action name="home"
+				class="com.dimdim.conference.action.common.GetWebAppRootAction">
+			<result type="redirect">html/signin/signin.action?cflag=${cflag}</result>
+		</action>
+		
+		<action name="error"
+				class="com.dimdim.conference.action.common.ShowErrorAction">
+			<result>/jsp/common/StandAloneResponse.jsp</result>
+		</action>
+		
+		<action name="WebAppRoot"
+				class="com.dimdim.conference.action.common.GetWebAppRootAction">
+			<result type="redirect">html/signin/signin.action?cflag=${cflag}</result>
+		</action>
+		
+		<action name="GetEvents"
+					class="com.dimdim.conference.action.ajax.GetEventsAction">
+			<result name="login">/jsp/common/getNextEventResponse.jsp</result>
+			<result name="error">/jsp/common/getNextEventResponse.jsp</result>
+			<result name="success">/jsp/common/getNextEventResponse.jsp</result>
+		</action>
+		
+		<action name="PingServer"
+				class="com.dimdim.conference.action.common.PingServerAction">
+			<result>/jsp/common/getNextEventResponse.jsp</result>
+		</action>
+		
+	</package>
+</xwork>

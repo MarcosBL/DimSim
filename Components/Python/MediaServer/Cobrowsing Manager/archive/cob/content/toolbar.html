@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <script type="text/javascript" language="javascript" src="cobjs/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" language="javascript" src="cobjs/jquery.dropshadow.js"></script>
+    <script type="text/javascript" language="javascript" src="cobjs/jquery.blockUI.js"></script>
+    <title>Toolbar Setup</title>
+    <style type="text/css">
+        .dimdimsl_messageBox
+        {
+            display:none;
+            cursor: default;
+        }
+        .dimdimsl_mbTitle
+        {
+            position: absolute;
+            top: 4px;
+            left: 5px;
+            font-family: verdana;
+            font-size: 12px;
+            font-variant: small-caps;
+            font-weight: bold;
+            width: 200px;
+            height: 10px;
+            text-align: left;
+        }
+        .dimdimsl_mbContent
+        {
+            position: absolute;
+            top: 25px;
+            left: 20px;
+            width: 360px;
+            height: 40px;
+            font-family: verdana;
+            font-size: 11px;
+            text-align: left;
+        }
+        .dimdimsl_mbClose
+        {
+            position: absolute;
+            top: 4px;
+            right: 10px;
+            cursor: pointer;
+            width: 50px;
+        }
+    </style>
+    <script language="javascript" type="text/javascript">
+        function dimdimsl_showMessage(title, content)
+        {
+            jQuery("#dimdimsl_mbTitle").html(title);
+            jQuery("#dimdimsl_mbContent").html(content);
+            jQuery.blockUI(
+                            {message:jQuery("#dimdimsl_messageBox"), css:
+                                                            { 
+                                                                border: 'none', 
+                                                                backgroundColor: 'rgb(209, 217, 255)', 
+                                                                opacity: '1', 
+                                                                height: '75px',
+                                                                width: '400px'
+                                                            }
+                            }); 
+        }
+        function dimdimsl_closeMessage()
+        {
+            jQuery.unblockUI();
+        }
+        jQuery(document).ready(function()
+                                {
+                                    dimdimsl_showMessage("Error", "OUT OF CONTEXT CONTENT TEMPLATE");
+                                });
+    </script>
+
+</head>
+<body>
+        <div class="dimdimsl_messageBox" id="dimdimsl_messageBox">
+            <div class="dimdimsl_mbTitle" id="dimdimsl_mbTitle"></div>
+            <div class="dimdimsl_mbContent" id="dimdimsl_mbContent"></div>
+            <button class="dimdimsl_mbClose" id="dimdimsl_mbClose" onclick="dimdimsl_closeMessage()">close</button>
+        </div>
+</body>
+</html>

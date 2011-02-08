@@ -1,0 +1,24 @@
+
+.info
+{
+	color: black;
+	background-color: transperant;
+	font-weight: normal;
+}
+
+.warn
+{
+	color: rgb(120,0,0);
+	background-color: transperant;
+	font-weight: normal;
+}
+
+.error
+{
+	color: red;
+	background-color: transperant;
+	font-weight: normal;
+}
+
+
+

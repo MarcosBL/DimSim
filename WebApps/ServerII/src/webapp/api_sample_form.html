@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Schedule Conference API Trial Page</title>
+  <link rel="stylesheet" href="css/landing_pages.css" type="text/css">
+  <link rel="stylesheet" href="css/local_validations.css" type="text/css">
+  <style type="text/css">@import url(css/calendar-win2k-1.css);</style>
+  <script language="JavaScript1.2" type="text/javascript" src="js/dimdim.js"></script>
+  <script language="JavaScript1.2" type="text/javascript" src="js/local_validations.js"></script>
+  <script type="text/javascript" src="js/calendar.js"></script>
+  <script type="text/javascript" src="js/calendar-lang/calendar-en.js"></script>
+  <script type="text/javascript" src="js/calendar-setup.js"></script>
+
+<script type="text/javascript">
+
+function submitCreateForm()
+{
+	var errs = 0;
+
+	if (!validateEmail(document.forms.createConferenceForm.organizerEmail,
+			'msg_organizerEmail',true,
+			'Organizer Email required')) errs += 1;
+	if (!validatePresent(document.forms.createConferenceForm.organizerDisplayName,
+			'msg_organizerDisplayName', 'Presenter display name required')) errs += 1;
+	if (!validatePresent(document.forms.createConferenceForm.confName,
+			'msg_confName', 'Conference name required')) errs += 1;
+	if (!validatePresent(document.forms.createConferenceForm.confKey,
+			'msg_confKey', 'Conference key required')) errs += 1;
+	if (!validatePresent(document.forms.createConferenceForm.i_timeStr,
+			'msg_timeStr', 'Valid date required')) errs += 1;
+
+	if (errs == 0)
+	{
+		alert("Parameters OK");
+		scheduleConference( document.forms.createConferenceForm.baseUrl.value,
+			document.forms.createConferenceForm.organizerEmail.value,
+			document.forms.createConferenceForm.organizerDisplayName.value,
+			document.forms.createConferenceForm.confName.value,
+			document.forms.createConferenceForm.confKey.value,
+			"",
+			document.forms.createConferenceForm.attendees.value,
+			document.forms.createConferenceForm.timeStr.value,
+			document.forms.createConferenceForm.timeZone.value,
+			"true",
+			successHandler,
+			failureHandler );
+	}
+}
+
+var successHandler = function(o)
+{
+	if (o.responseText !== undefined)
+	{
+		var resp = eval('('+o.responseText+')');
+
+		if (resp.result == "success")
+		{
+			if (resp.url != "")
+			{
+				alert("Success: url-"+resp.url);
+			}
+			else
+			{
+				alert("Success: result-"+resp.result);
+			}
+		}
+		else if (resp.message != "")
+		{
+			alert("Server Error:"+resp.message);
+		}
+	}
+	else
+	{
+		alert("No response from server");
+	}
+}
+
+var failureHandler = function(o)
+{
+	alert("Server Failure:"+o.statusText);
+}
+
+</script>
+
+</head>
+<body>
+<NOSCRIPT>
+<P>Javascript needs to be enabled</P>
+</NOSCRIPT>
+<div id="top_black_band" class="top_black_band">
+  <div id="top-black-logo"><img src="images/logo.jpg"></div>
+</div>
+<div id="top_blue_band" class="top_blue_band"></div>
+<div id="center_band" class="center_band">
+<table width="100%">
+  <tr>
+    <td width="20%">
+    </td>
+    <td width="80%" border="0" cellpadding="0" cellspacing="0" >
+      <form name="createConferenceForm" action="" method="post" enctype="application/x-www-urlencoded">
+              <table class="landing_page_body" border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td><img src="images/placeholder.gif" height="5"></td>
+                  </tr>
+
+                  <tr>
+                    <td class="heading">API Trial</td>
+                  </tr>
+
+                  <tr>
+                    <td class="dark_blue"><img src="images/placeholder.gif" height="1"></td>
+                  </tr>
+
+                  <tr>
+                    <td><img src="images/placeholder.gif" height="20"></td>
+                  </tr>
+
+                  <tr>
+                    <td><img src="images/placeholder.gif" height="20"></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+<div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+	<td width="15%" class="regular_text" align="right"><label for="organizerEmail">Base URL:</label></td>
+	<td width="2%"><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td width="25%"><input class="input_field" size="35" name="baseUrl"
+		value="http://jayantpandit.ca/dimdim/" maxlength="80"></td>
+	<td class="message_field" id="msg_baseUrl">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+    <tr>
+	<td width="15%" class="regular_text" align="right"><label for="organizerEmail">Organizer Email:</label></td>
+	<td width="2%"><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td width="25%"><input class="input_field" size="35" name="organizerEmail"
+		value="Jayant.Pandit@dimdim.com" maxlength="80"></td>
+	<td class="message_field" id="msg_organizerEmail">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+    <tr>
+	<td class="regular_text" align="right"><label for="organizerDisplayName">Organizer Name:</label></td>
+	<td><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td><input class="input_field" size="35" name="organizerDisplayName"
+		value="Jayant Pandit" maxlength="80"></td>
+	<td id="msg_organizerDisplayName" class="message_field">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+    <tr>
+	<td class="regular_text" align="right"><label for="confName">Conference Name:</label></td>
+	<td><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td><input class="input_field" size="35" name="confName"
+		value="Trial Conference 1" maxlength="80"></td>
+	<td id="msg_confName" class="message_field">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+    <tr>
+	<td class="regular_text" align="right"><label for="confKey">Conference Key:</label></td>
+	<td><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td><input class="input_field" size="35" name="confKey"
+		value="xx" maxlength="80"></td>
+	<td id="msg_confKey" class="message_field">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+    <tr>
+	<td class="regular_text" align="right"><label for="timeStr">Conference Time:</label></td>
+	<td><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td><table border="0" cellpadding="0" cellspacing="0" cellmargin="0">
+	  <tr valign="middle">
+	    <td align="left"><input class="input_field" size="40" name="timeStr" id="i_timeStr"
+		value="October 30, 2006 12:00:00 PM" maxlength="80"></td><td>
+<img src="images/calendar.gif" id="confTime" class="input_field" style="cursor: pointer; border: 1px solid;"
+	title="Select Date and Time" /></td>
+	   </tr>
+	  </table>
+	</td>
+	<td id="msg_timeStr" class="message_field">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+	<td class="regular_text" align="right"><label for="timeZone">Time Zone:</label></td>
+	<td><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td>
+	  <select class="input_field" name="timeZone" id="timeZone">
+<option value="Pacific/Kwajalein">Eniwetok,Kwajalein</option>
+<option value="Pacific/Midway">Midway Island, Samoa</option>
+<option value="HST">Hawaii</option>
+<option value="AST">Alaska</option>
+<option value="US/Pacific-New">Pacific Time (US & Canada), Tijuana</option>
+<option value="US/Arizona">Arizona</option>
+<option value="US/Mountain">Mountain Time (US & Canada)</option>
+<option value="Canada/Central">Central Time (US & Canada)</option>
+<option value="America/Guatemala">Central America</option>
+<option value="America/Mexico_City">Mexico City</option>
+<option value="Canada/Saskatchewan">Sasketchewan</option>
+<option value="America/Bogota">Bogota, Lima, Quito</option>
+<option value="America/Toronto">Eastern Time (US & Canada)</option>
+<option value="US/East-Indiana">Indiana (East)</option>
+<option value="Canada/Atlantic">Atlantic Time (Canada)</option>
+<option value="America/Caracas">Caracas, La Paz</option>
+<option value="America/Santiago">Santiago</option>
+<option value="America/St_Johns">Newfoundland</option>
+<option value="America/Araguaina">Brasilia</option>
+<option value="America/Araguaina">Buenos Aires, Georgetown</option>
+<option value="America/Godthab">Greenland</option>
+<option value="Atlantic/Azores">Azores</option>
+<option value="Atlantic/Cape_Verde">Cape Verse Is.</option>
+<option value="Africa/Casablanca">Casablanca, Monrovia</option>
+<option value="Europe/London">Dublin, Edinburough, Lisbon, London</option>
+<option value="Europe/Amsterdam">Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+<option value="Europe/Belgrade">Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+<option value="Europe/Brussels">Brussels, Copenhagen, Madrid, Paris</option>
+<option value="Europe/Sarajevo">Sarajevo, Skopje, Sofija, Vilnius, Warsaw, Zagreb</option>
+<option value="Europe/Athens">Athens, Istambul, Minsk</option>
+<option value="Europe/Bucharest">Bucharest</option>
+<option value="Africa/Cairo">Cairo</option>
+<option value="Africa/Harare">Harare, Pretoria</option>
+<option value="Europe/Helsinki">Helsinki, Riga, Tallinn</option>
+<option value="Asia/Jerusalem">Jerusalem</option>
+<option value="Asia/Baghdad">Baghdad</option>
+<option value="Asia/Kuwait">Kuwait, Riyadh</option>
+<option value="Europe/Moscow">Moscow, St. Petersburg, Volgograd</option>
+<option value="Africa/Nairobi">Nairobi</option>
+<option value="Asia/Tehran">Tehran</option>
+<option value="Asia/Muscat">Abu Dhabi, Muscat</option>
+<option value="Asia/Baku">Baku, Tbiliski, Yerevan</option>
+<option value="Asia/Kabul">Kabul</option>
+<option value="Asia/Karachi">Islamabad, Karachi, Tashkent</option>
+<option value="Asia/Calcutta">Calcutta, Chennai, Mumbai, New Delhi</option>
+<option value="Asia/Katmandu">Kathmandu</option>
+<option value="Asia/Almaty">Almaty, Novosibirsk</option>
+<option value="Asia/Dhaka">Astana, Dhaka</option>
+<option value="Asia/Colombo">Sri Jayawardenepura</option>
+<option value="Asia/Rangoon">Rangoon</option>
+<option value="Asia/Bangkok">Bangkok, Hanoi, Jakarta</option>
+<option value="Asia/Krasnoyarsk">Krasnoyarsk</option>
+<option value="Asia/Hong_Kong">Beijing, Chongging, Hong Kong, Urumqi</option>
+<option value="Asia/Irkutsk">Irkutsk, Ulaan Bataar</option>
+<option value="Asia/Singapore">Kuala Lumpur, Singapore</option>
+<option value="Australia/Perth">Perth</option>
+<option value="Asia/Taipei">Taipei</option>
+<option value="Asia/Tokyo">Osaka, Sapporo, Tokyo</option>
+<option value="Asia/Seoul">Seol</option>
+<option value="Australia/Darwin">Darwin</option>
+<option value="Australia/Brisbane">Brisbane</option>
+<option value="Australia/Canberra">Canberra, Melbourne, Sidney</option>
+<option value="Pacific/Guam">Guam, Port Moresby</option>
+<option value="Australia/Hobart">Hobart</option>
+<option value="Asia/Vladivostok">Vladivostok</option>
+<option value="Asia/Magadan">Magadan, Soloman Is, New Caledonia</option>
+<option value="Pacific/Auckland">Auckland, Wellington</option>
+<option value="Pacific/Fiji">Fiji, Kamchatka, Marshall Is.</option>
+	  </select>
+	</td>
+	<td class="message_field">&nbsp;</td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="15"></td>
+                  </tr>
+
+    <tr valign="top">
+	<td class="regular_text" align="right"><label for="attendees">Attendees:</label></td>
+	<td><img src="images/placeholder.gif" height="1" width="2"></td>
+	<td><textarea class="input_field" rows="5" cols="50" name="attendees">Jayant.Pandit@dimdim.com</textarea></td>
+	<td id="msg_attendees" class="message_field"><ww:fielderror></td>
+    </tr>
+                  <tr>
+                    <td colspan="4"><img src="images/placeholder.gif" height="8"></td>
+                  </tr>
+</table>
+</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><img src="images/placeholder.gif" height="40"></td>
+                  </tr>
+
+                  <tr>
+                    <td width="70%">
+                    <table style="width: 407px;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td class="regular_text" width="210">&nbsp;</td>
+                          <td><img src="images/placeholder.gif" height="1" width="5"></td>
+                          <td class="regular_text">
+                          <button type="button" name="continue" class="normal_button"
+						onclick="javascript:submitCreateForm();"
+						onmouseover="this.className='highlighted_button'"
+						onmouseout="this.className='normal_button'" title="Schedule">
+					<img src="images/placeholder.gif" height="1" width="70"><br>Schedule</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><img src="images/placeholder.gif" height="20"></td>
+                  </tr>
+              </table>
+      </form>
+<script type="text/javascript">
+Calendar.setup({
+  inputField : "i_timeStr",
+  dateStatusFunc: IsBeforeToday,
+  button : "confTime",
+  ifFormat : "%B %d, %Y %I:%M:%S %p",
+  showsTime : true,
+  timeFormat : "24"
+});
+
+function IsBeforeToday(MyDate)
+{
+var Today = new Date();
+Today.setTime(Today.getTime()-(1000*60*60*24));
+if (MyDate < Today)
+return true;
+else
+return false;
+}
+</script>
+    </td>
+  </tr>
+</table>
+</div>
+<div id="bottom_blue_band-floating" style="padding: 8px; font-size: 11; color: white;" class="bottom_blue_band-floating">
+Copyright 2006 Communiva Inc. (owner of dimdim.com)</div>
+<div id="bottom_black_band-floating" style="padding-left: 8px; padding-top: 40px; font-size: 11; " class="bottom_black_band-floating">
+<a href="http://www.dimdim.com/index.php?option=com_wrapper&Itemid=78" style="color: white;">dimdim Privacy Policy</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.dimdim.com/index.php?option=com_wrapper&Itemid=77" style="color: white;">dimdim Trademark and Copyright Policy</a>
+</div>
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			_uacct="UA-441834-1";
+			urchinTracker();
+		</script>
+</body>
+</html>

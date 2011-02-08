@@ -1,0 +1,75 @@
+
+.send-invitation-small-form-box
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.send-invitation-small-form-email
+{
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	width: 230px;
+	border: 1px solid #AAAAAA;
+	overflow: auto;
+}
+
+.send-invitation-preview-box
+{
+	border-top: 3px solid #C3D9FF;
+	border-right: 5px solid #C3D9FF;
+	border-bottom: 3px solid #C3D9FF;
+	border-left: 5px solid #C3D9FF;
+}
+
+.send-invitation-preview-rounded-corner-box
+{
+	margin: 4px;
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.invitations-preview-comment
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 5px;
+	margin-top: 7px;
+}
+
+.invitations-preview-textarea
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	width: 97%;
+	overflow: auto;
+}
+
+.invitations-preview-send-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  margin-left: 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+}
+
+/**************************/
+
+.invitations-dialog-box
+{
+	width: 400px;
+}
+
+.email-error-message
+{
+	color: RED;
+  	font-size: 11px;
+}

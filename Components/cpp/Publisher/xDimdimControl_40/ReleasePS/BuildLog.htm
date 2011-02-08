@@ -1,0 +1,74 @@
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=Windows-1252">
+</head>
+<body>
+<pre>
+<table width=100% bgcolor=#CFCFE5><tr> <td> <font face=arial size=+3>
+Build Log
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>
+<h3>------- Build started: Project: xDimdimControl_40PS, Configuration: Release|Win32 -------
+</h3>
+</pre></table><table width=100% bgcolor=#DFDFE5><tr><td><font face=arial size=+2>
+Command Lines
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\BAT00012E.bat" with contents
+[
+@echo off
+if exist dlldata.c goto :END
+echo Error: MIDL will not generate DLLDATA.C unless you have at least 1 interface in the main project.
+Exit 1
+:END
+
+if errorlevel 1 goto VCReportError
+goto VCEnd
+:VCReportError
+echo Project : error PRJ0019: A tool returned an error code from "Checking for required files"
+exit 1
+:VCEnd
+]
+Creating command line "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\BAT00012E.bat"
+Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\RSP00012F.rsp" with contents
+[
+/Ox /D "WIN32" /D "_WIN32_WINNT=0x0500" /D "REGISTER_PROXY_DLL" /D "NDEBUG" /D "_WINDLL" /FD /EHsc /MD /Fo"ReleasePS/" /Fd"ReleasePS/vc70.pdb" /c /TC
+.\dlldata.c
+.\_xDimdimControl_40_p.c
+.\_xDimdimControl_40_i.c
+]
+Creating command line "cl.exe @c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\RSP00012F.rsp /nologo"
+Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\RSP000130.rsp" with contents
+[
+/OUT:"ReleasePS/xDimdimControl_40PS.dll" /NOLOGO /DLL /DEF:"xDimdimControl_40PS.def" /OPT:REF /OPT:ICF kernel32.lib rpcndr.lib rpcns4.lib rpcrt4.lib oleaut32.lib uuid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib
+.\ReleasePS\_xDimdimControl_40_i.obj
+.\ReleasePS\_xDimdimControl_40_p.obj
+.\ReleasePS\dlldata.obj
+]
+Creating command line "link.exe @c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\RSP000130.rsp"
+Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\BAT000131.bat" with contents
+[
+@echo off
+regsvr32 /s /c "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\xDimdimControl_40PS.dll"
+if errorlevel 1 goto VCReportError
+goto VCEnd
+:VCReportError
+echo Project : error PRJ0019: A tool returned an error code from "Performing registration"
+exit 1
+:VCEnd
+]
+Creating command line "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\BAT000131.bat"
+</pre></table><table width=100% bgcolor=#DFDFE5><tr><td><font face=arial size=+2>
+Output Window
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>Checking for required files
+Compiling...
+dlldata.c
+_xDimdimControl_40_p.c
+_xDimdimControl_40_i.c
+Generating Code...
+Linking...
+   Creating library ReleasePS/xDimdimControl_40PS.lib and object ReleasePS/xDimdimControl_40PS.exp
+Performing registration
+</pre></table><table width=100% bgcolor=#DFDFE5><tr><td><font face=arial size=+2>
+Results
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>
+Build log was saved at "file://c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\ReleasePS\BuildLog.htm"
+xDimdimControl_40PS - 0 error(s), 0 warning(s)</pre></table><table   width=100% height=20 bgcolor=#CFCFE5><tr><td><font face=arial size=+2>
+</font></table></body></html>

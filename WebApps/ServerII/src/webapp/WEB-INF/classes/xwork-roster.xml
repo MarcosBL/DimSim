@@ -1,0 +1,150 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+    <include file="webwork-default.xml"/>
+    
+    <package name="roster" extends="webwork-default">
+    
+    	<global-results>
+			<result name="login">/jsp/common/commonResponse.jsp</result>
+			<result name="input">/jsp/common/commonResponse.jsp</result>
+			<result name="error">/jsp/common/commonResponse.jsp</result>
+			<result name="success">/jsp/common/commonResponse.jsp</result>
+    	</global-results>
+    	
+		<action name="GetConsole"
+					class="com.dimdim.conference.action.roster.GetConsoleAction">
+			<result name="success">/jsp/common/noResponse.jsp</result>
+			<result name="not_in_conference" type="redirect">/error.action</result>
+			<result name="already_joined" type="redirect">/error.action</result>
+			<result name="login" type="redirect">/error.action</result>
+			<result name="input" type="redirect">/error.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+		
+ 		<action name="ConsoleLoaded"
+					class="com.dimdim.conference.action.roster.ConsoleLoadedAction">
+			<result>/jsp/common/noResponse.jsp</result>
+		</action>
+ 		
+ 		<action name="ReloadConsole"
+					class="com.dimdim.conference.action.roster.ReloadConsoleAction">
+			<result name="success" type="redirect">
+				<![CDATA[html/layout2/GetReloadedConsole.action?confKey=${confKey}&cflag=${cflag}&uri=${uri}&reloadConsole=${reloadConsole}]]>
+			</result>
+			<result name="not_in_conference" type="redirect">/error.action</result>
+			<result name="already_joined" type="redirect">/error.action</result>
+			<result name="login" type="redirect">/error.action</result>
+			<result name="input" type="redirect">/error.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+ 		
+ 		<action name="ConsoleReloaded"
+					class="com.dimdim.conference.action.roster.ConsoleReloadedAction">
+			<result>/jsp/common/noResponse.jsp</result>
+		</action>
+ 		
+ 		<action name="SendJoinInvitation"
+					class="com.dimdim.conference.action.roster.SendJoinInvitationAction">
+			<result name="login">/jsp/common/noResponse.jsp</result>
+			<result name="input">/jsp/common/noResponse.jsp</result>
+			<result name="error">/jsp/common/noResponse.jsp</result>
+			<result name="success">/jsp/common/noResponse.jsp</result>
+		</action>
+ 		
+ 		<action name="SendFeedback"
+					class="com.dimdim.conference.action.roster.SendFeedbackAction">
+			<result name="login">/jsp/common/noResponse.jsp</result>
+			<result name="input">/jsp/common/noResponse.jsp</result>
+			<result name="error">/jsp/common/noResponse.jsp</result>
+			<result name="success">/jsp/common/noResponse.jsp</result>
+		</action>
+ 		
+ 		<action name="GetConferenceInfo"
+					class="com.dimdim.conference.action.roster.GetConferenceInfoAction">
+			<result name="success">/jsp/common/conferenceInfo.jsp</result>
+		</action>
+ 		
+ 		<action name="ExtendSessionTimeout"
+					class="com.dimdim.conference.action.roster.ExtendSessionTimeoutAction">
+		</action>
+    	
+ 		<action name="ResetSessionTimeout"
+					class="com.dimdim.conference.action.roster.ResetSessionTimeoutAction">
+		</action>
+    	
+ 		<action name="LeaveConference"
+					class="com.dimdim.conference.action.roster.LeaveConferenceAction">
+		</action>
+    	
+ 		<action name="RemoveParticipant"
+					class="com.dimdim.conference.action.roster.RemoveParticipantAction">
+		</action>
+    	
+		<action name="SetMood"
+					class="com.dimdim.conference.action.roster.SetMoodAction">
+		</action>
+		
+		<action name="SetName"
+					class="com.dimdim.conference.action.roster.SetNameAction">
+		</action>
+    	
+		<action name="SetProfileOptions"
+					class="com.dimdim.conference.action.roster.SetProfileOptionsAction">
+		</action>
+    	
+		<action name="SetRole"
+					class="com.dimdim.conference.action.roster.SetRoleAction">
+		</action>
+		
+		<action name="GrantEntry"
+					class="com.dimdim.conference.action.roster.GrantEntryAction">
+		</action>
+		
+		<action name="DenyEntry"
+					class="com.dimdim.conference.action.roster.DenyEntryAction">
+		</action>
+		
+		<action name="GrantEntryToAll"
+					class="com.dimdim.conference.action.roster.GrantEntryToAllAction">
+		</action>
+		
+		<action name="EnableLobby"
+					class="com.dimdim.conference.action.roster.EnableLobbyAction">
+		</action>
+		
+		<action name="DisableLobby"
+					class="com.dimdim.conference.action.roster.DisableLobbyAction">
+		</action>
+		
+		<action name="UploadPhoto"
+				class="com.dimdim.conference.action.roster.UploadPhotoAction">
+		</action>
+		
+		<action name="SetPhotoToDefault"
+				class="com.dimdim.conference.action.roster.SetPhotoToDefaultAction">
+		</action>
+		
+		<action name="MakeActivePresenter"
+				class="com.dimdim.conference.action.roster.MakeActivePresenterAction">
+		</action>
+		
+		<action name="MakePresenter"
+				class="com.dimdim.conference.action.roster.MakePresenterAction">
+		</action>
+		
+		<action name="SetChatPermission"
+					class="com.dimdim.conference.action.permission.SetChatPermissionAction">
+		</action>
+		
+		<action name="SetAudioPermission"
+					class="com.dimdim.conference.action.permission.SetAudioPermissionAction">
+		</action>
+		
+		<action name="SetVideoPermission"
+					class="com.dimdim.conference.action.permission.SetVideoPermissionAction">
+		</action>
+		
+    </package>
+</xwork>

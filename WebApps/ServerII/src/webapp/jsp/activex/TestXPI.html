@@ -1,0 +1,456 @@
+<html>
+	<head>
+		<title>Dimdim Desktop Publisher Test</title>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+window.app_selected = false;
+window.selected_app_handle = 0;
+window.selected_app_name = "";
+window.app_shared= 0;
+
+
+
+		function launchAppSelector()
+		{
+			app_selected = false;
+			selected_app_handle = 0;
+			selected_app_name = "";
+
+			document.embeds["DimdimDesktopPublisher1"].ShowAppSelector();
+		};
+
+		function checkAppSelected()
+		{
+			alert("Checking for the result of the appplication selector");
+
+			var result = document.embeds["DimdimDesktopPublisher1"].DimdimHasFinished();
+			if (result != 0)
+			{
+			  if (result == 1)
+			  {
+				selected_app_handle = document.embeds["DimdimDesktopPublisher1"].DimdimGetResult();
+				alert("Selected Application Handle: "+selected_app_handle);
+				alert("Selected Application Name: "+document.embeds["DimdimDesktopPublisher1"].GetSharedResourceName(0));
+			  }
+			  else
+			  {
+				alert("Application selector was cancelled");
+			  }
+			}
+			else
+			{
+				alert("Selector still open");
+			}
+		};
+		function launchAppShare()
+		{
+		//	if (window.app_shared == 0)
+		//	{
+				if (selected_app_handle != 0)
+				{
+					document.embeds["DimdimDesktopPublisher1"].
+										RunApplicationShare('j1',
+										'j1p',
+						 				'xxxx',
+										's1',
+										'rtmp://localhost/oflaDemo',
+										'rtmp://localhost/oflaDemo',
+										'sss',
+										selected_app_handle,
+										'xx');
+					window.app_shared = 1;
+				}
+				else
+				{
+					alert("Application selector was cancelled");
+				}
+		//	} else
+		//	{
+		//	alert("Another application is already shared");
+		//	}
+		};
+
+		function stopscreenshare()
+		{
+			document.embeds["DimdimDesktopPublisher1"].KillScreenShare();
+		};
+
+		function stoppresentationupload()
+		{
+			document.embeds["DimdimDesktopPublisher1"].KillPresentationUpload();
+		};
+
+
+
+		function checkUpgradeRequired()
+		{
+				//	First check for the browser type.
+
+			if ((navigator.userAgent.indexOf("Firefox")!=-1) && (navigator.userAgent.indexOf("Gecko")!=-1))
+			{
+				var	major = 2;
+				var minor = 0;
+				var build = 3;
+				var build2 = 7;
+				var version = ( (build2 % 100) + (build % 100) * 100 + (minor % 100) * 10000 + (major % 100) * 1000000);
+
+				if (checkInstallation() == 1)
+				{
+				//	The control exists. Now the install process for new install and upgrade are different
+				//	So forward the user accordingly.
+
+					if ( getVersion() >= version )
+					{
+						return false;
+					}
+					else
+					{
+						return true;
+					}
+				}
+				else
+				{
+					return true;
+				}
+			}
+		}
+
+		function checkInstallation()
+		{
+			if (navigator.plugins && navigator.plugins.length > 0)
+			{
+				var bFound = 0;
+				for (i = 0; i < navigator.plugins.length; i++)
+				{
+					plugin = navigator.plugins[i];
+					if (plugin.name == "Dimdim")
+					{
+						bFound = 1;
+						break;
+					}
+				}
+
+//				if (bFound == 1)
+//					alert("Plugin installed");
+//				else
+//					alert("Plugin not installed");
+
+				return bFound;
+			}
+		}
+
+
+		function checkActiveXControl()
+		{
+				//	First check for the browser type.
+
+				if ((navigator.userAgent.indexOf("Firefox")!=-1) && (navigator.userAgent.indexOf("Gecko")!=-1))
+				{
+					var	major = 2;
+					var minor = 0;
+					var build = 3;
+					var build2 = 7;
+					var version = ( (build2 % 100) + (build % 100) * 100 + (minor % 100) * 10000 + (major % 100) * 1000000);
+
+					if (checkInstallation() == 1)
+					{
+						//	The control exists. Now the install process for new install and upgrade are different
+						//	So forward the user accordingly.
+
+						if ( getVersion() >= version )
+						{
+							alert("Proceed");// Proceed
+						}
+						else
+						{
+							alert("Plug Needs Upgrade");// Upgrade
+						}
+					}
+					else
+					{
+						alert("Plug In Installed");//Install
+					}
+				}
+		}
+
+
+
+		function getVersion()
+		{
+//			var version = window.embeds["DimdimDesktopPublisher1"].getVersion();
+			var version = document.DimdimDesktopPublisher1.getVersion();
+			alert("Version: "+version);
+			return version;
+		};
+
+
+		function showAppSelector()
+		{
+			alert("Application Selector");
+			var handleToApp = document.embeds["DimdimDesktopPublisher1"].ShowAppSelector();
+			alert("Handle to Chosen Application is : "+handleToApp);
+
+			document.embeds["DimdimDesktopPublisher1"].RunApplicationShare();
+
+			return true;
+		};
+
+		function showDimdimHasFinished()
+		{
+			var value = document.embeds["DimdimDesktopPublisher1"].DimdimHasFinished();
+			alert("Dimdimhasfinished : "+value);
+		};
+
+
+		function launchDesktopShare()
+		{
+			alert("Application Desktop Sharing to be started");
+			//if( window.app_shared == 0)
+			//{
+					var meetingId = 'rohit';
+					var presenterId = 'rohit@dimdim.com';
+					var resourceId = 'dummyResource';
+					var streamName = 'stream1';
+					var rtmpUrl = 'rtmp://localhost/oflaDemo';
+					var rtmptUrl = 'rtmp://localhost/oflaDemo';
+					var uploadUrlStr = 'http://localhost:8080/dimdim/ScreenShare.action';
+					var presenterPassKey = 'letmein';
+					var shareWholeDesktop = 1;
+
+				document.embeds["DimdimDesktopPublisher1"].RunDesktopShare(
+					presenterId,
+					resourceId,
+					streamName,
+					meetingId ,
+					rtmpUrl,
+					rtmptUrl,
+					uploadUrlStr,
+					presenterPassKey,
+					shareWholeDesktop);
+			//} else
+			//	alert("Another Application is Shared")
+
+
+			//document.embeds["DimdimDesktopPublisher1"].RunDesktopShare();
+			return true;
+		};
+
+
+		function launchPPTUploader()
+		{
+				var presentationId = 'rohit';
+				var presenterId = 'rohit@dimdim.com';
+				var meetingId = 'dummy';
+				var presenterPassKey = 'letmein';
+				var uploadUrlStr = 'http://localhost:8080/dimdim/ScreenShare.action';
+				var resourceIdStr = '';
+
+			alert("Application launchPPTUploader");
+
+			document.embeds["DimdimDesktopPublisher1"].RunPresentationUpload(presentationId,
+										 presenterId,
+										 meetingId ,
+									 presenterPassKey,
+										 uploadUrlStr,
+									 resourceIdStr);
+			return true;
+		};
+
+
+		function launchPPTUploaderWithCheck()
+				{
+						var checkFlag = 0;
+						var presentationId = 'rohit';
+						var presenterId = 'rohit@dimdim.com';
+						var meetingId = 'dummy';
+						var presenterPassKey = 'letmein';
+						var uploadUrlStr = 'http://192.168.0.102:8080/dimdim/ScreenShare.action';
+						var resourceIdStr = '';
+
+					alert("Application launchPPTUploader");
+
+					checkFlag = document.embeds["DimdimDesktopPublisher1"].RunPresentationUploadWithCheck(presentationId,
+												 presenterId,
+												 meetingId ,
+											 presenterPassKey,
+												 uploadUrlStr,
+											 resourceIdStr);
+
+
+					return true;
+				};
+
+		function showVersion()
+		{
+			alert("Application showVersion!!!");
+			var appHandle = document.embeds["DimdimDesktopPublisher1"].showVersion();
+
+		}
+
+
+		function launchGenericApp()
+		{
+			var exename = 'excel.exe';
+			var docname = 'c:\\dimdim-audit.csv';
+			document.embeds["DimdimDesktopPublisher1"].LaunchApplication(exename , docname);
+			return true;
+	    };
+
+	      function SetNetworkProfileValue()
+		{
+  		  alert("Set Value Called");
+
+		  var param = 'networkProfile';
+		  var value = '3';
+		  //var value = '2';
+		  //var value = '3';
+		  var returnvalue = document.embeds["DimdimDesktopPublisher1"].SetConfigOption(param,value);
+
+		  alert("Value Set : "+returnvalue);
+		};
+
+		function GetNetworkProfileValue()
+		{
+
+		  var param = 'networkProfile';
+		  var returnvalue = document.embeds["DimdimDesktopPublisher1"].GetConfigOption(param);
+
+		  alert("The current Network Profile is:"+returnvalue);
+		};
+
+		function SetImageQuality()
+		{
+  		  alert("Set Value Called");
+
+		  var param = 'imageQuality';
+		  //var value = 'low';
+		  //var value = 'medium';
+		  var value = 'medium';
+		  var returnvalue = document.embeds["DimdimDesktopPublisher1"].SetConfigOption(param,value);
+
+		  alert("Image Value Set : "+returnvalue);
+		};
+
+		function GetImageQuality()
+		{
+
+		  var param = 'imageQuality';
+		  var returnvalue = document.embeds["DimdimDesktopPublisher1"].GetConfigOption(param);
+
+		  alert("The current Image Profile is:"+returnvalue);
+		};
+		
+		function SetMouseTrack()
+		{
+		   var param = '1';
+		   document.embeds["DimdimDesktopPublisher1"].SetMouseEnabled(param);
+		};
+		
+		function GetMouseTrack()
+		{
+		  var param = document.embeds["DimdimDesktopPublisher1"].GetMouseEnabled();
+		  alert("Mouse Track:"+param);
+		};
+
+		var DimdimDesktopPublisher1 = document.getElementById('DimdimDesktopPublisher1');
+
+
+		</SCRIPT>
+
+	</head>
+
+	<body bgcolor="white">
+
+	<object id="DimdimDesktopPublisher1" type="application/x-xpinstall" width=600 height=0 codebase="http://localhost:8080/dimdim/jsp/activex/2040dimdim.xpi">
+	</object>
+	<embed id="DimdimDesktopPublisher1" type="application/x-xpinstall" width=600 height=0>
+	</embed>
+
+		<br>
+		<FORM NAME="FormOne">
+			<INPUT TYPE="Button" NAME="BtnOne" VALUE="Get Version" onClick="getVersion();">
+		</FORM>
+
+<p>Use the three buttons to test the application share selection and launch.
+<ul>
+<li>First click on "show application selector" and either cancel or select and application</li>
+<li>Second click on "check application selection" which will show the result of the selection</li>
+<li>Third click on "launch application share" which will launch the share of selected application, if any</li>
+</ul>
+
+		<FORM NAME="FormThree">
+			<INPUT TYPE="Button" NAME="Btn31" VALUE="Show Application Selector" onClick="launchAppSelector();">
+			<INPUT TYPE="Button" NAME="Btn32" VALUE="Check Application Selection" onClick="checkAppSelected();">
+			<INPUT TYPE="Button" NAME="Btn33" VALUE="Launch Application Share" onClick="launchAppShare();">
+			<INPUT TYPE="Button" NAME="Btn101" VALUE="Stop Application Share" onClick="stopscreenshare();">
+		</FORM>
+
+		<FORM NAME="FormTwo">
+			<INPUT TYPE="Button" NAME="BtnTwo" VALUE="Show Application Selector" onClick="showAppSelector();">
+		</FORM>
+
+		<FORM NAME="FormThree">
+					<INPUT TYPE="Button" NAME="BtnThree" VALUE="Start Desktop Sharing" onClick="launchDesktopShare();">
+		</FORM>
+
+		<FORM NAME="FormFour">
+			<INPUT TYPE="Button" NAME="BtnFour" VALUE="Start Presentation Upload" onClick="launchPPTUploader();">
+			<INPUT TYPE="Button" NAME="Btn100"	VALUE="Stop Presentation Upload" onClick="stoppresentationupload();">
+		</FORM>
+
+		<FORM NAME="FormFive">
+			 <INPUT TYPE="Button" NAME="BtnFive" VALUE="Launch Application Selector" onClick="launchAppShare();">
+		</FORM>
+
+		<FORM NAME="FormFive">
+			 <INPUT TYPE="Button" NAME="BtnSix" VALUE="Launch checkInstall " onClick="checkInstallation();">
+		</FORM>
+
+		<FORM NAME="FormSix">
+			 <INPUT TYPE="Button" NAME="BtnSix" VALUE="Launch Registry " onClick="showVersion();">
+		</FORM>
+		<FORM NAME="FormSeven">
+			<INPUT TYPE="Button" NAME="BtnSeven" VALUE="Start Presentation Upload With Check" onClick="launchPPTUploaderWithCheck();">
+		</FORM>
+
+		<FORM NAME="FormEight">
+					<INPUT TYPE="Button" NAME="BtnEight" VALUE="Start Generic App" onClick="launchGenericApp();">
+		</FORM>
+		<FORM NAME="FormNine">
+					<INPUT TYPE="Button" NAME="BtnNine" VALUE="DimdimHasFinished" onClick="showDimdimHasFinished();">
+		</FORM>
+		<FORM NAME="FormTen">
+					<INPUT TYPE="Button" NAME="BtnTen" VALUE="Check ActiveX Control" onClick="checkActiveXControl();">
+		</FORM>
+		<FORM NAME="FormEleven">
+					<INPUT TYPE="Button" NAME="BtnEleven" VALUE="Check Upgrade" onClick="checkUpgradeRequired();">
+		</FORM>
+				</FORM>
+		<FORM NAME="FormTwelve" ID="Form1">
+					<INPUT TYPE="Button" NAME="BtnTwelve" VALUE="Set Network Profile" onClick="SetNetworkProfileValue();" ID="Button1">
+		</FORM>
+		<FORM NAME="FormThirteen" ID="Form2">
+					<INPUT TYPE="Button" NAME="BtnThirteen" VALUE="Get Network Profile" onClick="GetNetworkProfileValue();" ID="Button2">
+		</FORM>
+
+		</FORM>
+		<FORM NAME="FormFourteen" ID="Form3">
+					<INPUT TYPE="Button" NAME="BtnFourteen" VALUE="Set Image Quality" onClick="SetImageQuality();" ID="Button3">
+		</FORM>
+
+		<FORM NAME="FormFifteen" ID="Form4">
+					<INPUT TYPE="Button" NAME="BtnFifteen" VALUE="Get Image Quality" onClick="GetImageQuality();" ID="Button4">
+		</FORM>
+		
+		<FORM NAME="FormSixteen" ID="Form5">
+					<INPUT TYPE="Button" NAME="BtnSixteen" VALUE="Set Mouse Track" onClick="SetMouseTrack();" ID="Button8">
+		</FORM>
+
+		<FORM NAME="FormSeventeen" ID="Form6">
+					<INPUT TYPE="Button" NAME="BtnSeventeen" VALUE="Get Mouse Track" onClick="GetMouseTrack();" ID="Button6">
+		</FORM>
+
+	</body>
+</html>

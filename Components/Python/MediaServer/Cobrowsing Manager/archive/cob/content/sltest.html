@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+    <script type="text/javascript" src="cobjs/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="cobjs/jquery.blockUI.js"></script>
+    <script type="text/javascript">
+    function createURLResource(url)
+    {
+        var docLocation = document.location.href.toLowerCase();
+        var documentAttributes = docLocation.split("/");
+        serverAddress = documentAttributes[0] + "//" + documentAttributes[2];
+        dimdimID = Math.floor(Math.random() * 100000);
+        resourceID = Math.floor(Math.random() * 100000);
+        var queryURL = serverAddress + '/cobrowsing/createURLResource';
+        var queryParams =
+        {
+            'dimdimID'      : dimdimID,
+            'roomID'        : '',
+            'sessionID'     : '',
+            'encodedURL'    : escape(url),
+            'resourceID'    : resourceID,
+            'resourceType'  : 'regular',
+            'cflag'         : Math.random()
+        };
+        jQuery.getJSON(queryURL, queryParams, function(data, textStatus)
+                        {
+                            try
+                            {
+                                if (data && data.result)
+                                {
+                                    var presenterLoc = '<a target="_blank" href=' + serverAddress + data.location + '/p_cache.html' + '>Presenter</a>';
+                                    var attendeeLoc = '<a target="_blank" href=' + serverAddress + data.location + '/a_cache.html' + '>Attendee</a>';
+                                    $("#showContent").html(presenterLoc + '<br><br>' + attendeeLoc);
+                                    $("div").show();
+                                }
+                            }
+                            catch(e)
+                            {
+                                // caught an exception. do nothing for now.
+                                alert(e);
+                            }
+                        });
+    }
+    $(document).ready(function()    
+    {
+        jQuery("#dimdimsl_mbClose").click(function()
+                {
+                   jQuery.unblockUI();
+                });
+        $("#dimdimsl_navigateURL").keydown(function(e)
+                                        {
+                                            if (e.which == 13)
+                                            {
+                                                var url = jQuery(this).attr("value");
+                                                if (url.indexOf("http://") != 0)
+                                                {
+                                                    url = 'http://' + url;
+                                                }
+                                                $("div").hide();
+                                                createURLResource(url);
+                                            }
+                                        });
+        jQuery("#dimdimsl_mbTitle").html('Settings Saved');
+        jQuery("#dimdimsl_mbContent").html('The setting changes have been made.');
+        jQuery.blockUI({message:jQuery("#dimdimsl_messageBox"), css:{margin: 'none', border: 'none', top: '36.4%', left: '37.3%', height: '190px', width: '360px'}, overlayCSS:{backgroundColor:'black', opacity:'0.8'}}); 
+    });
+    </script>
+    <style type="text/css">
+            .dimdimsl_messageBox
+            {
+                display:none;
+                cursor: default;
+                border : 1px solid;
+                margin: none;
+                background-color: white;
+                height: 190px;
+                width: 360px;
+                top: 0px;
+            }
+            .dimdimsl_mbTitle
+            {
+                position: absolute;
+                top: 0px;
+                left: 2px;
+                font-family: sans-serif;
+                font-size: 16px;
+                width: 353px;
+                height: 15px;
+                text-align: left;
+                text-indent: 3px;
+                background-image: url(cobjs/modal-dialog-header-tile.png);
+                background-repeat: repeat-x;
+                padding-top: 5px;
+                padding-right: 6px;
+                padding-bottom: 6px;
+                color: rgb(70, 70, 70);
+                border-bottom-color: rgb(200, 200, 200);
+            }
+            .dimdimsl_mbContentHolder
+            {
+                position: absolute;
+                top: 35px;
+                left: 9px;
+                width: 343px;
+                height: 146px;
+                border: 1px solid;
+                border-color: rgb(200, 200, 200);
+                background-color: white;
+                color: rgb(100, 100, 100);
+            }
+            .dimdimsl_mbContent
+            {
+                position: absolute;
+                top: 44px;
+                left: 19px;
+                width: 317px;
+                height: 85px;
+                font-family: sans-serif;
+                font-size: 11px;
+                text-align: left;
+                background-color: white;
+                color: rgb(70, 70, 70);
+            }
+            .dimdimsl_mbClose
+            {
+                position: absolute;
+                top: 4px;
+                right: 3px;
+                cursor: pointer;
+                width: 15px;
+                height: 13px;
+                border: none;
+                margin: none;
+                background-color: transparent;
+                background-repeat: no-repeat;
+                background-image: url(cobjs/modal-dialog-close.png);
+            }
+            .dimdimsl_mbOK
+            {
+                position: absolute;
+                top: 115px;
+                right: 17px;
+                cursor: pointer;
+                width: 70px;
+                color: rgb(255, 255, 255);
+                height: 18px;
+                cursor: pointer;
+                border: 1px solid;
+                border-color: rgb(150, 150, 150);
+                font-size: 11px;
+                background-image: url(cobjs/btn-bgr-tile.png);
+            }
+    </style>
+</head>
+<body>
+    URL: <input type="text" id="dimdimsl_navigateURL" class="dimdimsl_navigateURL" name="dimdimsl_navigateURL" value="">
+    <div style="display:none" id="showContent" name="showContent"></div>
+    <div class="dimdimsl_messageBox" id="dimdimsl_messageBox">
+        <div class="dimdimsl_mbTitle" id="dimdimsl_mbTitle"></div>
+        <div class="dimdimsl_mbContentHolder" id="dimdimsl_mbContentHolder">
+            <div class="dimdimsl_mbContent" id="dimdimsl_mbContent"></div>
+            <button class="dimdimsl_mbOK" id="dimdimsl_mbOK">OK</button>
+        </div>
+        <button class="dimdimsl_mbClose" id="dimdimsl_mbClose"></button>
+    </div>
+</body>
+</html>

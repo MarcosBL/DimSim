@@ -1,0 +1,147 @@
+
+body
+{
+	margin: 0px;
+	padding: 0px;
+	background-image: url(images/background.gif);
+	background-repeat: repeat-x;
+}
+
+.common-text-field-border
+{
+	border: 1px solid #AAAAAA;
+	padding-left: 2px;
+}
+
+.common-anchor
+{
+	color: darkblue;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+}
+
+.common-anchor-cursor
+{
+	cursor: default;
+	cursor: pointer;
+}
+
+.signin-page-image
+{
+}
+
+.signin-full-page
+{
+}
+
+.signin-top-panel
+{
+}
+
+.signin-body-panel
+{
+}
+
+.signin-body-lhp-panel
+{
+}
+
+.signin-body-lhp-line1
+{
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 19px;
+	font-weight: bold;
+}
+
+.signin-body-lhp-line2
+{
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 19px;
+	font-weight: bold;
+	color: blue;
+}
+
+.signin-body-lhp-line3
+{
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 19px;
+}
+
+.signin-body-lhp-line4
+{
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 19px;
+}
+
+.signin-body-form-panel
+{
+}
+
+.signin-full-rhp-panel
+{
+}
+
+.signin-form-body-center
+{
+	background-image: url(images/formarea-blue-tile.png);
+	background-repeat: repeat-x;
+}
+
+.signin-form-panel
+{
+	margin-top: 20px;
+}
+
+.signin-form-header-1
+{
+	font-family: Helvetica;
+	font-size: 24px;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+.signin-form-header-2
+{
+	font-family: Helvetica;
+	font-size: 24px;
+	margin-left: 5px;
+}
+
+.bottom-panel-links
+{
+	margin-top: 5px;
+	font-size: 10px;
+}
+
+.bottom-panel-links-seperator
+{
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.locale-entry-panel
+{
+	width: 100px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.locale-change-link
+{
+	margin-right: 3px;
+}
+
+.locale-change-link-arrow
+{
+	margin-right: 30px;
+}
+

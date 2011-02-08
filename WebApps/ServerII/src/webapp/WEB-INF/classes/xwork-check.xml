@@ -1,0 +1,38 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="checks" extends="webwork-default">
+    	
+		<global-results>
+			<result name="login">/jsp/common/ConferenceCheckMsg.jsp</result>
+			<result name="input">/jsp/common/ConferenceCheckMsg.jsp</result>
+			<result name="error">/jsp/common/ConferenceCheckMsg.jsp</result>
+			<result name="success">/jsp/common/ConferenceCheckMsg.jsp</result>
+		</global-results>
+		
+		<action name="StartNewConferenceCheck"
+					class="com.dimdim.conference.action.check.StartNewConferenceCheckAction">
+			<result name="success_safari" type="redirect">
+				<![CDATA[html/envcheck/connect.action?email=${email}&confKey=${confKey}&osType=${osType}&browserType=${browserType}&uri=${uri}&cflag=$(cflag}]]> 
+			</result>
+		</action>
+		
+		<action name="RepeatStartNewConferenceCheck"
+					class="com.dimdim.conference.action.check.SafariRepeatStartNewConferenceCheckAction">
+			<result name="success_safari" type="redirect">
+				<![CDATA[html/envcheck/connect.action?email=${email}&confKey=${confKey}&osType=${osType}&browserType=${browserType}&uri=${uri}&cflag=${cflag}]]> 
+			</result>
+			<result name="error" type="redirect">
+				<![CDATA[/]]> 
+			</result>
+		</action>
+		
+		<action name="JoinConferenceCheck"
+					class="com.dimdim.conference.action.check.JoinConferenceCheckAction">
+		</action>
+		
+	</package>
+</xwork>

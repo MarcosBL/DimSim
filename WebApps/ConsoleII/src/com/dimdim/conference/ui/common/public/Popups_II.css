@@ -1,0 +1,532 @@
+
+/************* Hover popups  ******************/
+
+.dm-hover-popup
+{
+	border: 2px solid #AAAAAA;
+	background-color: white;
+	padding: 0px;
+}
+
+.dm-hover-popup-firefox-with-audio-broadcaster
+{
+}
+
+.dm-hover-popup-firefox-with-audio-player
+{
+}
+
+.dm-hover-popup-content
+{
+}
+
+.dm-hover-popup-links-panel
+{
+}
+
+.dm-hover-popup-link
+{
+}
+
+.dm-hover-popup-body
+{
+}
+
+.dm-hover-popup-header
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+  border-bottom: 1px solid #AAAAAA;
+}
+
+.dm-hover-popup-header-buttons
+{
+}
+
+.dm-hover-popup-button
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	background-color: #C3D9FF;
+	margin: 4px;
+	margin-left: 8px;
+	border: 1px solid #AAAAAA;
+}
+
+.dm-hover-popup-header-control
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	background-color: #C3D9FF;
+	margin: 4px;
+	margin-left: 8px;
+}
+
+.dm-hover-popup-invisible-button
+{
+	color: #C3D9FF;
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+	margin: 4px;
+	margin-left: 8px;
+	border: 1px solid #C3D9FF;
+}
+
+.hover-popup-text
+{
+	margin-left: 8px;
+}
+
+.resource-popup-help-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 24px;
+	margin-top: 10px;
+}
+
+/*  The common dialog styles to get the background and the round corner border.  */
+
+.common-dialog-outer-panel
+{
+	border-top: 3px solid #C3D9FF;
+	border-right: 5px solid #C3D9FF;
+	border-bottom: 3px solid #C3D9FF;
+	border-left: 5px solid #C3D9FF;
+}
+
+.common-dialog-rounded-corner-panel
+{
+	margin: 4px;
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.common-dialog-row
+{
+	width: 100%;
+	border-bottom: 1px solid #AAAAAA;
+}
+
+.line-break
+{
+	line-height: 1px;
+	width: 100%;
+	margin-top: 5px;
+	border-bottom: 1px solid #AAAAAA;
+	margin-bottom: 2px;
+}
+
+.section-break
+{
+	line-height: 1px;
+	width: 100%;
+	margin-top: 0px;
+	border-bottom: 4px solid #AAAAAA;
+	margin-bottom: 5px;
+}
+
+.control-table-header
+{
+	text-align: left;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 5px;
+}
+
+.control-table-text
+{
+	text-align: left;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.dialog-message-label
+{
+	margin-left: 10px;
+}
+
+
+/*********** Command Wait Popup ****************/
+
+.command-wait-popup
+{
+	border: 2px solid #AAAAAA;
+	background-color: #E8EEF7;
+	padding: 4px;
+	width: 120px;
+	height: 70px;
+	cursor: wait;
+}
+
+.cursor-wait
+{
+	cursor: wait;
+}
+
+.dialog-z-index
+{
+	position: relative;
+	z-index: 0;
+}
+
+.second-level-popup-z-index
+{
+	position: relative;
+	z-index: 2;
+}
+
+.resource-sharing-player
+{
+	position: relative;
+	z-index: 0;
+}
+
+/**************************************************/
+
+.resource-control-dialog-box
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.resource-control-dialog-height
+{
+	height: 175px;
+}
+
+.resource-image-header
+{
+	width: 20px;
+	color: #E8EEF7;
+}
+
+.resource-name-header
+{
+	width: 160px;
+}
+
+.resource-type-header
+{
+	width: 160px;
+}
+
+.resource-delete-button-header
+{
+	width: 60px;
+}
+
+.resource-image
+{
+	width: 30px;
+	vertical-align: middle;
+}
+
+.resource-name
+{
+	width: 160px;
+}
+
+.resource-type
+{
+	width: 160px;
+}
+
+.resource-delete-button
+{
+	width: 60px;
+}
+
+/******  Individual Resource Management dialog boxes  *****/
+
+.resource-delete-dialog-line-break
+{
+	line-height: 1px;
+	width: 290px;
+	margin-top: 5px;
+	border-bottom: 1px solid #AAAAAA;
+	margin-bottom: 2px;
+}
+
+.resource-delete-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.resource-delete-dialog-height-one
+{
+	height: 120px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.resource-delete-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+/*********** Rename resource *************/
+
+.resource-rename-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.resource-rename-dialog-height-one
+{
+	height: 120px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.resource-rename-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+.resource-rename-new-name
+{
+	vertical-align: middle;
+	width: 130px;
+	border: 1px solid #AAAAAA;
+}
+
+/************** About meeting  ************/
+
+.about-meeting-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.about-meeting-dialog-height-one
+{
+}
+
+.about-meeting-dialog-height-two
+{
+}
+
+/********** Meeting info dialog box  ************/
+
+.meeting-info-dialog-width
+{
+	width: 618px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.meeting-info-dialog-height-one
+{
+}
+
+.meeting-info-dialog-height-two
+{
+}
+
+/********** Meeting closed dialog box  ************/
+
+.meeting-closed-dialog-width
+{
+	width: 342px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.meeting-closed-dialog-height-one
+{
+	height: 142px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.meeting-closed-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+/*********** Change Picture *************/
+
+.change-picture-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.change-picture-dialog-height-one
+{
+	height: 210px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.change-picture-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+/*********** Upload ppt *************/
+
+.upload-ppt-dialog-width
+{
+	width: 400px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.upload-ppt-dialog-height-one
+{
+	height: 210px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.upload-ppt-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+/********** Default message dialog box for common short messages  ************/
+
+.default-message-dialog-width
+{
+	width: 342px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.default-message-dialog-content
+{
+	width: 277px;
+}
+
+.default-message-dialog-height-one
+{
+	height: 100px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.default-message-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+/**************** Settings Dialog *****************/
+
+.settings-item-heading
+{
+	text-align: right;
+	width: 165px;
+	margin-right: 10px;
+	margin-bottom: 8px;
+}
+
+.settings-button-tag-text
+{
+	vertical-align: middle;
+	margin-right: 5px;
+	margin-bottom: 8px;
+}
+
+.feedback-button-tag-text
+{
+	height: 20px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.feedback-button
+{
+	height: 20px;
+	margin-left: 80px;
+}
+
+/*********** Enter URL *************/
+
+.enter-url-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.enter-url-dialog-height-one
+{
+	height: 160px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.enter-url-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+.enter-url-dialog-content
+{
+	width: 235px;
+}
+
+.enter-url-field
+{
+	width: 200px;
+	margin: 5px;
+}
+
+.ppt-upload-filename-textbox
+{
+  margin-top: 8px;
+  width: 200px;
+}
+
+
+

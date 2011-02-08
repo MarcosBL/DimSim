@@ -1,0 +1,53 @@
+
+ Console skinning instructions for 4.5 console.
+ 
+ This document contains instructions for the new elements introduced in version 4.5
+ 
+ There are two stylesheets. The second stylesheet was introduced in order to support
+ skinning.
+ 
+ Location of these stylesheets under the dimdim webapp directory are 
+ 
+ html/*/css/style.css - this is the old stylesheet and is for most part same as before
+ html/*/skin1/styles.css - this is the new one and contains the styles for the new
+ 	elements introduced in version 4.5.
+ 
+ all file names are relative to html/layout2 directory except the console.properties
+ file which is in WEB-INF/classes/resources directory. All the properties mentioned
+ are in this file.
+
+X.	The overall background - To change the overall background
+
+	To change the header background - 
+		- change image skin1/TopGradient.jpg
+		- change the value of background_header_height property to the height of the image
+		
+	To change the footer background -
+		- change image skin1/BottomGradient.jpg
+		- change the value of background_footer_height property to the height of the image
+		
+	To change the logo
+		- replace images/dimdim_logo.png file
+		- console logo style is obsolete
+		- no style change is required, if required change the style logo-image in
+			skin1/styles.css
+		- change the value of logo_image_height property to the height of the image
+		
+	To change the position of the logo
+		- change the value of the property logo_image_position. This value if the distance
+			of the bottom of the image to the top of the footer background.
+			
+X.	To change the top left text style
+		- change the logo-text style in the skin1/styles.css
+		
+X.	To change the styles of the labels in the top banner
+		- each group in the top has three associated style, e.g. meetingid-label,
+			meetingid-seperator and meetingid-text. Change each as required.
+			
+X.	To change the resource list entries
+		- change style resource-entry
+		
+
+
+
+		

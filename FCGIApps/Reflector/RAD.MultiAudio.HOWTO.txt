@@ -1,0 +1,5 @@
+a) Install FFMPEG from ThirdPartyPackages/FFMPEG/dimdim-ffmpeg.tgz
+b) Install SoX from http://sox.sourceforge.net/
+c) add /usr/local/lib to LD_LIBRARY_PATH
+d) Test by typing ffmpeg and sox in shell
+e) Install the Reflector

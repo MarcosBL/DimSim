@@ -1,0 +1,186 @@
+
+html
+{
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font: 12px Verdana, Tahoma, Arial, sans-serif;
+	color: #000000;
+	margin: 0px;
+	padding: 0px;
+	height: auto;
+	background-image: url("../images/middle_back.jpg");
+	background-repeat: repeat;
+}
+
+table {
+	font: 12px Verdana, Tahoma, Arial, sans-serif;
+}
+
+.top_black_band
+{
+	padding: 0px;
+	margin: 0px;
+	background-image: url("../images/top_black.jpg");
+	background-repeat: repeat-x;
+	height: 66px;
+	width: 100%;
+}
+
+.top_blue_band
+{
+	padding: 0px;
+	margin: 0px;
+	background-image: url("../images/top_blue.jpg");
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 100%;
+}
+
+.center_band
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+.center_left
+{
+	position: relative;
+	top: 60px;
+	width: 150px;
+}
+
+.form_area
+{
+	position: relative;
+	left: 150px;
+	top: 90px;
+}
+
+.bottom_blue_band
+{
+	position: absolute;
+	bottom: 66;
+	padding: 0px;
+	margin: 0px;
+	background-image: url("../images/bottom_blue.jpg");
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 100%;
+}
+
+.bottom_black_band
+{
+	position: absolute;
+	bottom: 0;
+	padding: 0px;
+	margin: 0px;
+	background-image: url("../images/bottom_black.jpg");
+	background-repeat: repeat-x;
+	height: 66px;
+	width: 100%;
+}
+
+.bottom_blue_band-floating
+{
+	padding: 0px;
+	margin: 0px;
+	background-image: url("../images/bottom_blue.jpg");
+	background-repeat: repeat-x;
+	height: 30px;
+	width: 100%;
+}
+
+.bottom_black_band-floating
+{
+	padding: 0px;
+	margin: 0px;
+	background-image: url("../images/bottom_black.jpg");
+	background-repeat: repeat-x;
+	height: 66px;
+	width: 100%;
+}
+
+.dark_blue
+{
+	background-color: #3E789E;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px
+}
+
+.landing_page_body
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 2px;
+	text-align: left;
+}
+
+.landing_page_body .heading
+{
+	font-size: 110%;
+}
+
+.landing_page_body .regular_text
+{
+	font-size: 11px;
+}
+
+.landing_page_body .label_text
+{
+	text-align: top;
+	font-size: 11px;
+}
+
+.landing_page_body .input_field
+{
+	border: 1px solid #999999;
+	font-size: 11px;
+}
+
+.landing_page_body .input_checkbox
+{
+	font-size: 11px;
+}
+
+.landing_page_body .message_field
+{
+	font-size: 11px;
+}
+
+.landing_page_body .normal_button
+{
+	font-weight: bold;
+	border: 1px solid #98C0D9;
+	background-color: #E0F0FA;
+}
+
+.landing_page_body .highlighted_button
+{
+	font-weight: bold;
+	border: 1px solid #3E789E;
+	background-color: #98C0D9;
+}
+
+.environment_check_dialog
+{
+	border: 2px solid #999999;
+	font-size: 11px;
+}
+
+.env-check-popup
+{
+	border: 2px solid #AAAAAA;
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+	font-size: 11px;
+	left: 0px;
+	top: 0px;
+}
+
+

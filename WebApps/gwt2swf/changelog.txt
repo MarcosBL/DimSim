@@ -1,0 +1,8 @@
+version 0.4.0
+- SWFWidget becomes to be real Widget (before was composite)
+- Added isFlashPlayer installed method in SWFObjectUtil
+- Added ability to set size of swf as string in CSS units (e.g. "10px", "2em", "100%")
+- Added ability to add varibles
+- Fix error with FlashPlayer version checking and validating
+- Added protected methods in SWFWidget onBeforeSWFInjection and onAfterSWFInjection (helps in extending SWFWidget)
+- Added documentation

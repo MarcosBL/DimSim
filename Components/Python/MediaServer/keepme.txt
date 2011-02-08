@@ -1,0 +1,3 @@
+this is the media server root directory.
+
+For different flavors like SAAS, Commercial, OpenOffice etc. create sub directories under here.

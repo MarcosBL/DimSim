@@ -1,0 +1,376 @@
+BODY {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	HEIGHT: 100%;
+	background-image: url(images/pagebg.gif);
+	background-repeat: repeat-x;
+	background-color: #f4f4f4;
+	font-family: Arial;
+	font-size: 11px;
+}
+
+.toptxt{
+	font-family: Arial;
+	font-size: 11px;
+	line-height: 11px;
+	color: #444444;
+}
+.contextcopy
+{
+	 font-family: Arial;
+	 font-size: 10px;
+	 line-height: 14px;
+ 	color: #444;
+}
+
+.contextcopy a
+{
+text-decoration:none;
+}
+
+.contextcopy a:hover
+{
+text-decoration:underline;
+}
+
+body a:link{
+color:#436AB8; text-decoration:none;
+}
+body a:visited{
+color:#436AB8; text-decoration:none;
+}
+body a:hover{
+color:#436AB8; text-decoration:underline;
+}
+body a:active{
+color:#436AB8; text-decoration:none;
+}
+	
+#form{
+	padding-left: 470px;
+	width: 320px;
+	padding-top: 30px;
+}
+
+
+#submitshow
+{
+	width: 270px;
+	padding-left: 680px;
+	padding-top: 0px;
+	font-family: Arial;
+	color: #aa3109;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+.logo #logolink {
+	width: 138px;
+	float: left;
+	height: 65px;
+	cursor:pointer;
+}
+
+.logo {
+	background-repeat: no-repeat;
+	position: relative;
+	background-image: url(images/dimdim-logo.png);
+	background-position: left top;
+	background-repeat:no-repeat;
+	font-family: Arial;
+	right: 0px;
+	bottom: 0px;
+	top: 2px;
+	z-index: auto;
+	left: 0px;
+	height: 58px;
+	width: 138px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	margin-top: 10px;
+	margin-right: 15px;
+	margin-bottom: 0px;
+	margin-left: 3px;
+	padding: 0;
+		}
+		
+* html .logo
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/dimdim-logo.png", sizingMethod="crop");
+}
+		
+
+.subheadders
+{
+	font-family: Arial;
+	font-size: 2em;
+	line-height: 1.2em;
+	color: #547bc3;
+	text-decoration: none;
+	letter-spacing: 0em;
+	text-align: left;
+	word-spacing: 0.05em;
+	font-weight: bold;
+}
+
+.sidea
+{
+	background-position:right;
+	background-repeat:no-repeat;
+	width:100%;
+	height:522px;
+	font-size:25px;
+}
+
+#sidebarContent
+{
+width:97%;
+line-height:15px;
+font-size:13px;
+}
+
+#envchk_top
+{
+background-image:url(images/enc_chk_top.png);
+background-repeat:no-repeat;
+height:35px;
+padding:15px;
+font-size:13px;
+}
+
+* html #envchk_top
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/enc_chk_top.png", sizingMethod="crop");
+}
+
+#envchk_content
+{
+	background-image:url(images/enc_chk_bgtile.png);
+	background-repeat:repeat-y;
+	text-align:left;
+	padding-left:34px;
+}
+
+.checking_boxes
+{
+	background-image:url(images/envchk_boxes.png);
+	background-repeat:no-repeat;
+	width:452px;
+	height:112px;
+	padding-left:12px;
+	font-size:11px;
+}
+
+* html .checking_boxes
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/envchk_boxes.png", sizingMethod="crop");
+}
+
+#envchk_bottom
+{
+	background-image:url(images/enc_chk_bottom.png);
+	background-repeat:no-repeat;
+	height:17px;
+}
+
+* html #envchk_bottom
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/enc_chk_bottom.png", sizingMethod="crop");
+}
+
+.details
+{
+color:#0085cf;
+font-family: Arial;
+font-size: 11px;
+}
+
+/****************	Status Buttons starts here	**************/
+.nextbutton
+{
+	background-image:url(images/stat_grey.png);
+	background-repeat:no-repeat;
+	width:8px;
+	height:8px;
+}
+
+.currentbutton
+{
+background-image:url(images/stat_white.png);
+background-repeat:no-repeat;
+width:8px;
+height:8px;
+}
+
+.failbutton
+{
+background-image:url(images/stat_red.png);
+background-repeat:no-repeat;
+width:8px;
+height:8px;
+}
+
+.sucessbutton
+{
+background-image:url(images/stat_green.png);
+background-repeat:no-repeat;
+width:8px;
+height:8px;
+}
+
+.status_timeline
+{
+background-image:url(images/envchk_timeline_bgtile.png);
+background-repeat:repeat-x;
+}
+
+/****************	Status Buttons ends here	**************/
+
+#plugin_installbox
+{
+background-image:url(images/plugin_installbox.png);
+background-repeat:no-repeat;
+width:406px;
+height:259px;
+text-align:left;
+padding-left:20px;
+margin-left:10px;
+font-size:11px;
+}
+
+
+* html #plugin_installbox
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/plugin_installbox.png", sizingMethod="crop");
+}
+
+#register_content
+{
+	background-image:url(images/enc_chk_bgtile.png);
+	background-repeat:repeat-y;
+	text-align:left;
+	padding-left:34px;
+	font-size:12px;
+}
+
+
+#paidreg_top
+{
+background-image:url(images/paidreg_top.png);
+background-repeat:no-repeat;
+height:35px;
+padding:15px;
+font-size:13px;
+}
+
+* html #paidreg_top
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/paidreg_top.png", sizingMethod="crop");
+}
+
+#paidreg_content
+{
+	background-image:url(images/paidreg_bgtile.png);
+	background-repeat:repeat-y;
+	text-align:left;
+	padding-left:34px;
+}
+
+#paidreg_bottom
+{
+	background-image:url(images/paidreg_bottom.png);
+	background-repeat:no-repeat;
+	height:16px;
+}
+
+* html #paidreg_bottom
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/paidreg_bottom.png", sizingMethod="crop");
+}
+
+.Hide { display:none; }
+.Show { display:block; }
+
+.console-label
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.Install_redbtn
+{
+ background-image:url(images/plugin_install.png);
+ background-repeat:no-repeat;
+ color:#FFFFFF;
+ padding-top:4px;
+ width:81px;
+ height:22px;
+ margin-left:270px;
+ cursor:pointer;
+ position: relative;
+ z-index: 9998;
+}
+
+* html .Install_redbtn
+{
+ background-image: none;
+ background-color: transparent;
+ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/plugin_install.png", sizingMethod="crop");
+}
+
+
+#plugin_header_text
+{
+ font-family: Arial;
+ font-size: 14px; 
+}
+
+.mark_done
+{
+ background-image:url(images/mark_done.png);
+ background-repeat:no-repeat;
+ width:36px;
+ height:30px;
+}
+
+* html .mark_done
+{
+ background-image: none;
+ background-color: transparent;
+ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/mark_done.png", sizingMethod="crop");
+}
+
+.mark_error
+{
+ background-image:url(images/mark_error.png);
+ background-repeat:no-repeat;
+ width:28px;
+ height:27px;
+}
+
+* html .mark_error
+{
+ background-image: none;
+ background-color: transparent;
+ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/mark_error.png", sizingMethod="crop");
+}

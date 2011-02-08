@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xDimdimControl_40", "xDimdimControl_40.vcproj", "{200CB2FF-6420-4D82-8A77-681276CAAF0A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xDimdimControl_40PS", "xDimdimControl_40PS.vcproj", "{A2385B0E-B2E1-4DE1-9D70-89A526ACB141}"
+	ProjectSection(ProjectDependencies) = postProject
+		{200CB2FF-6420-4D82-8A77-681276CAAF0A} = {200CB2FF-6420-4D82-8A77-681276CAAF0A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{200CB2FF-6420-4D82-8A77-681276CAAF0A}.Debug.ActiveCfg = Debug|Win32
+		{200CB2FF-6420-4D82-8A77-681276CAAF0A}.Debug.Build.0 = Debug|Win32
+		{200CB2FF-6420-4D82-8A77-681276CAAF0A}.Release.ActiveCfg = Release|Win32
+		{200CB2FF-6420-4D82-8A77-681276CAAF0A}.Release.Build.0 = Release|Win32
+		{A2385B0E-B2E1-4DE1-9D70-89A526ACB141}.Debug.ActiveCfg = Debug|Win32
+		{A2385B0E-B2E1-4DE1-9D70-89A526ACB141}.Release.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

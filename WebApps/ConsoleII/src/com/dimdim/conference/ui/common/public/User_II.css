@@ -1,0 +1,312 @@
+
+.user-popup-data-panel
+{
+}
+
+.user-popup-links-panel
+{
+	margin: 4px;
+}
+
+.user-popup-email-entry
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 36px;
+}
+
+.user-popup-control-link
+{
+	text-align: let;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.user-popup-mood-text
+{
+	vertical-align: middle;
+	color: gray;
+  	margin-top: 2px;
+	margin-left: 36px;
+	margin-bottom: 2px;
+}
+
+.user-popup-mood-text-with-image
+{
+	vertical-align: middle;
+	color: gray;
+  	margin-top: 2px;
+	margin-left: 4px;
+	margin-bottom: 2px;
+}
+
+.user-popup-control-link-disabled
+{
+	color: gray;
+	text-decoration: none;
+}
+
+.user-name-in-popup
+{
+	width: 120;
+}
+
+.user-remove-control-link
+{
+	margin-left: 36px;
+}
+
+.user-change-picture-control-link
+{
+	margin-left: 120px;
+}
+
+/****************** Control Table Dialog Styles ****************/
+
+.control-table-header-checkbox
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	width:10px;
+}
+
+.control-table-header-checkbox-combo
+{
+	width: 80px;
+}
+
+.user-control-dialog-box
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.user-image-header
+{
+	width: 20px;
+	color: #E8EEF7;
+}
+
+.user-name-header
+{
+	width: 160px;
+}
+
+.user-email-header
+{
+	width: 160px;
+}
+
+.user-chat-button-header
+{
+	width: 60px;
+}
+
+.user-audio-button-header
+{
+	width: 60px;
+}
+
+.user-video-button-header
+{
+	width: 60px;
+}
+
+.user-image
+{
+	width: 30px;
+	vertical-align: middle;
+}
+
+.user-name
+{
+	width: 160px;
+}
+
+.user-email
+{
+	width: 160px;
+}
+
+.user-chat-button
+{
+	width: 60px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.user-audio-button
+{
+	width: 60px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.user-video-button
+{
+	width: 60px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 5px;
+}
+
+.conference-permissions-header
+{
+	width: 240px;
+}
+
+.conference-permissions-comment-1
+{
+	width: 240px;
+}
+
+.conference-chat-button-header
+{
+	width: 60px;
+}
+
+.conference-audio-button-header
+{
+	width: 60px;
+}
+
+.conference-video-button-header
+{
+	width: 60px;
+}
+
+.conference-button-filler
+{
+	width: 60px;
+	color: #E8EEF7;
+}
+
+.lobby-name
+{
+	width: 160px;
+}
+
+.lobby-email
+{
+	width: 160px;
+}
+
+/******* Different backgrounds for different roles.   ********/
+
+.active-presenter-label-background
+{
+	width: 170px;
+	background: #003366;
+	background-color: #003366;
+	font-color: white;
+	color: white;
+	font-weight: bold;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	padding-left: 4px;
+	margin-left: 5px;
+}
+
+.presenter-label-background
+{
+	width: 170px;
+	background: white;
+	background-color: white;
+	font-weight: bold;
+	padding: 2px;
+}
+
+.attendee-label-background
+{
+	width: 170px;
+	background: #336633;
+	background-color: #336633;
+	font-color: white;
+	color: white;
+	font-weight: bold;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	padding-left: 4px;
+	margin-left: 5px;
+}
+
+.active-presenter-list-entry-background
+{
+	background: #E0ECFF;
+	background-color: #E0ECFF;
+}
+
+.presenter-list-entry-background
+{
+	background: white;
+	background-color: white;
+}
+
+.attendee-list-entry-background
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+/****************** Change Photo Dialog *************/
+
+.change-photo-dialog-content
+{
+	margin: 5px;
+}
+
+.change-photo-picture
+{
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 30px;
+	border: 1px solid #AAAAAA;
+}
+
+.change-photo-picture-caption
+{
+	margin-bottom: 4px;
+}
+
+.change-photo-radio-button
+{
+	margin: 2px;
+}
+
+.photo-file-upload-field
+{
+}
+
+.change-photo-label
+{
+	margin-left: 5px;
+}
+
+.change-photo-upload-label
+{
+	margin-left: 25px;
+}
+
+.common-error-message
+{
+	color: RED;
+  	font-size: 11px;
+}
+
+
+

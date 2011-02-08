@@ -1,0 +1,51 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+	
+	<package name="portal" extends="webwork-default">
+	
+		<global-results>
+			<result name="login">/jsp/portal/getResultString.jsp</result>
+			<result name="input">/jsp/portal/getResultString.jsp</result>
+			<result name="error">/jsp/portal/getResultString.jsp</result>
+			<result name="success">/jsp/portal/getResultString.jsp</result>
+		</global-results>
+		
+		<action name="StartNewMeeting"
+				class="com.dimdim.conference.action.portal.StartNewMeetingAction">
+			<result name="success">/jsp/portal/getResultString.jsp</result>
+		</action>
+		
+		<action name="JoinMeeting"
+				class="com.dimdim.conference.action.portal.JoinMeetingAction">
+			<result name="success">/jsp/portal/getResultString.jsp</result>
+		</action>
+		
+		<action name="IsMeetingKeyInUse"
+				class="com.dimdim.conference.action.portal.IsMeetingKeyInUseAction">
+			<result name="success">/jsp/portal/getResultString.jsp</result>
+		</action>
+		
+		<action name="EditSettings"
+				class="com.dimdim.conference.action.portal.EditSettings">
+			<result name="success">/jsp/portal/getResultJsonBuffer.jsp</result>
+			<result name="error">/jsp/portal/getResultJsonBuffer.jsp</result>
+		</action>
+		
+		<action name="GetInfo"
+				class="com.dimdim.conference.action.portal.GetMeetingInfo">
+			<result name="success">/jsp/portal/getResultJsonBuffer.jsp</result>
+			<result name="error">/jsp/portal/getResultJsonBuffer.jsp</result>
+		</action>
+		
+		<action name="End"
+				class="com.dimdim.conference.action.portal.CloseMeeting">
+			<result name="success">/jsp/portal/getResultJsonBuffer.jsp</result>
+			<result name="error">/jsp/portal/getResultJsonBuffer.jsp</result>
+		</action>
+		
+	</package>
+</xwork>
+

@@ -1,0 +1,70 @@
+
+.common-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.common-label
+{
+	text-align: center;
+	vertical-align: middle;
+	margin: 2px;
+}
+
+.common-table-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	margin: 5px;
+}
+
+.common-table-header
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	margin: 5px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.common-anchor
+{
+	color: darkblue;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+}
+
+.anchor-cursor
+{
+	cursor: default;
+	cursor: pointer;
+}
+
+/***************** Meeting Info **************/
+
+.meeting-info-dialog-box
+{
+	width: 603px;
+}
+
+.meeting-info-label
+{
+	width: 80px;
+	margin: 5px;
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+}
+
+.meeting-info-text
+{
+	width: 475px;
+	margin: 5px;
+	vertical-align: top;
+}
+
+

@@ -1,0 +1,31 @@
+
+.discussion-av-panel
+{
+	width: 248px;
+	height: 224px;
+	border: 0px solid;
+	background: transparent;
+	background-color: transparent;
+}
+
+.discussion-av-top-margin
+{
+	margin-top: 4px;
+}
+
+.discussion-av-frame
+{
+	frameborder: 0;
+	border: 0px;
+	background: red;
+	background-color: red;
+}
+
+.dimdimAVWindowOff
+{
+}
+
+.dimdimAVWindowOn
+{
+}
+

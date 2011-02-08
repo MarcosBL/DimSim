@@ -1,0 +1,7 @@
+<module>
+	<inherits name='org.gwtwidgets.WidgetLibrary'/>
+	<inherits name='asquare.gwt.tk.Tk'/>
+	<inherits name='com.bouwkamp.gwt.user.Components'/>
+	<inherits name='com.dimdim.conference.ui.json.JSON'/>
+	<entry-point class='com.dimdim.conference.ui.envcheck.client.main.EnvCheck'/>
+</module>

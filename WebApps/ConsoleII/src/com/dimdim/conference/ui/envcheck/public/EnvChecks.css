@@ -1,0 +1,497 @@
+
+/****** Styles if the dialog box is required ********/
+
+.gwt-DialogBox
+{
+	border: 2px solid #AAAAAA;
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+	padding: 4px;
+}
+
+.gwt-DialogBox .Caption
+{
+	background-color: rgb(195, 217, 255);
+	padding: 4px;
+	padding-bottom: 4px;
+	font-weight: bold;
+	cursor: default;
+	border-bottom: 2px solid #AAAAAA;
+}
+
+
+.gwt-TabPanel {
+	margin-top: 5px;
+}
+
+.gwt-TabPanelBottom {
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  background-color: #a6c1dc;
+}
+
+.gwt-TabBar {
+  font-size: smaller;
+}
+
+.gwt-TabBar .gwt-TabBarFirst {
+  font-color: #E8EEF7;
+  width: 10px;
+  border-bottom: 2px solid white;
+}
+
+.gwt-TabBar .gwt-TabBarRest {
+  border-bottom: 2px solid white;
+}
+
+.gwt-TabBar .gwt-TabBarItem {
+  border-bottom: 2px solid white;
+	font-family: Helvetica;
+	font-size: 16px;
+  padding-top: 2px;
+  padding-right: 7px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.gwt-TabBar .gwt-TabBarItem-selected {
+  font-weight: 130%;
+  background-color: #a6c1dc;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  border-bottom: 2px solid #a6c1dc;
+  border-left: 2px solid white;
+  padding-top: 2px;
+  padding-right: 7px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  cursor: default;
+}
+
+/***************************** STYLES FOR THE TK DROP DOWNS ***********************/
+
+/* -------------------------------------------------------------------------- */
+
+.tk-DropDownPanel
+{
+  border-top: solid 2px  rgb(195, 217, 255);
+  border-right: solid 4px  rgb(195, 217, 255);
+  border-bottom: solid 2px  rgb(195, 217, 255);
+  border-left: solid 4px  rgb(195, 217, 255);
+  margin: 0px;
+  padding: 0px;
+}
+
+.tk-DropDownPanel .tk-DropDownPanel-open 
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.tk-DropDownPanel .tk-DropDownPanel-closed 
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.tk-DropDownPanel-open .tk-DropDownPanelHeader {
+  background-image: url(images/opentriangle.gif);
+}
+
+.tk-DropDownPanel-closed .tk-DropDownPanelHeader {
+  background-image: url(images/triangle.gif);
+}
+
+.tk-DropDownPanelHeader {
+  font-size: smaller;
+  font-weight: bold;
+  background-color: rgb(195, 217, 255);
+  text-align: left;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-top: 0px;
+  padding-left: 16px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+.tk-DropDownPanelContent {
+  text-align: center;
+  background: #E8EEF7;
+  background-color: #E8EEF7;
+  padding: 0px;
+}
+
+/************** Styles for tk modal dialog *********************/
+
+.tk-GlassPanel {
+  background: black;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  cursor: not-allowed;
+}
+
+.tk-ModalDialog {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0px;
+}
+
+.tk-ModalDialog .Caption {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 90%;
+  font-weight: bold;
+  background-color: rgb(195, 217, 255);
+  padding: 3px;
+  margin: 1px;
+  cursor: default;
+}
+
+.tk-ModalDialog-content {
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px;
+}
+
+.tk-ModalDialog-content .gwt-Button {
+  margin-top: 8px;
+}
+
+.tk-AlertDialog-captionIcon {
+  vertical-align: middle;
+}
+
+.tk-AlertDialog-captionLeft, .tk-AlertDialog-captionRight {
+  width: 16px;
+}
+
+.tk-AlertDialog-captionCenter {
+  font-size: 90%;
+  font-weight: bold;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.tk-AlertDialog-buttons {
+  margin: 0 auto;
+}
+
+.tk-AlertDialog-hotKeyChar {
+  text-decoration: underline;
+}
+
+
+
+/*********** Common styles ************************/
+
+.flash-container
+{
+	width: 10px;
+	height: 10px;
+	z-index: 0;
+}
+
+.flash-content
+{
+	width: 10px;
+	height: 10px;
+	z-index: 0;
+}
+
+.common-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.common-form-label
+{
+	font-weight: bold;
+	margin-right: 9px;
+}
+
+.common-form-field-suffix
+{
+	font-weight: bold;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.common-error-message
+{
+	margin-top: 5px;
+	color: red;
+	font-weight: bold;
+}
+
+.env-check-submit-button
+{
+	background-color: #C3D9FF;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-right: 16px;
+	width: 70px;
+}
+
+.env-check-button-panel
+{
+}
+
+
+/******* Styles for the whole page if the page is on its own.  *******/
+
+.env-check-logo-image
+{
+	margin-left: 10px;
+	padding: 0px;
+	border: 0px;
+}
+
+.env-check-banner-comment-panel
+{
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+}
+
+.env-check-banner-comment
+{
+	margin-top: 4px;
+	margin-right: 10px;
+	margin-bottom: 4px;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+.env-check-banner-comment-rounded-panel
+{
+	margin-left: 20px;
+}
+
+.rp
+{
+	background: #C3D9FF;
+	background-color: #C3D9FF;
+}
+
+.env-check-panel
+{
+	border-top: 1px solid #C3D9FF;
+	border-right: 3px solid #C3D9FF;
+	border-bottom: 1px solid #C3D9FF;
+	border-left: 3px solid #C3D9FF;
+	background-color: #a6c1dc;
+}
+
+.env-check-inside-panel
+{
+}
+
+.env-check-rounded-panel
+{
+	margin-bottom: 5px;
+}
+
+.env-check-image-panel
+{
+	width: 10px;
+	height: 55px;
+}
+
+.env-check-workspace-filler
+{
+}
+
+.env-check-result-row
+{
+	width: 300px;
+	height: 16px;
+	border: 1px solid #AAAAAA;
+	margin-bottom: 1px;
+	background-color: #a6c1dc;
+}
+
+.env-check-result-comment
+{
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.env-skip-check-image-panel
+{
+	width: 40px;
+	height: 40px;
+}
+
+.env-check-text-panel
+{
+}
+
+.env-skip-check-text-panel
+{
+}
+
+.env-check-label
+{
+}
+
+.env-checks-base-panel
+{
+}
+
+.env-checks-common-controls-panel
+{
+}
+
+.env-checks-workspace-panel
+{
+	margin: 5px;
+}
+
+.env-checks-tests-panel
+{
+	margin: 5px;
+}
+
+.env-checks-helptext-frame
+{
+	frameborder:"0";
+	frameborder:"NO";
+	border:0px;
+	margin-top: 0px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+.env-checks-helptext-frame-rounded
+{
+	margin-left: 130px;
+	margin-right: 10px;
+}
+
+.env-check-form-panel
+{
+	margin: 0px;
+}
+
+.env-check-form-display-panel
+{
+	margin: 0px;
+}
+
+.env-checks-panel-top-margin
+{
+	margin-top: 30px;
+}
+
+.env-check-form-field-panel
+{
+	margin: 5px;
+}
+
+/***************** *****************/
+
+.env-check-frame-popup
+{
+	border:  solid 6px  rgb(195, 217, 255);
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.flash-check-modal-dialog
+{
+	width: 290px;
+	height: 200px;
+	border: 1px solid #AAAAAA;
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.firefox-installation-info-dialog
+{
+	width: 300px;
+	height: 250px;
+	border: 0px solid #AAAAAA;
+	background: transparent;
+	background-color: transparent;
+}
+
+.firefox-installation-instruction
+{
+	margin-top: 0px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+	margin-left: 5px;
+}
+
+/*********** A few common styles ********************/
+
+
+.common-dialog-outer-panel
+{
+	border-top: 3px solid #C3D9FF;
+	border-right: 5px solid #C3D9FF;
+	border-bottom: 3px solid #C3D9FF;
+	border-left: 5px solid #C3D9FF;
+}
+
+.common-dialog-rounded-corner-panel
+{
+	margin: 4px;
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.dm-popup-close-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+  width: 70px;
+}
+
+.common-message-dialog-size
+{
+}
+
+.common-message-dialog-width
+{
+	width: 300px;
+	margin-top: 0px;
+	border-top: 1px solid #AAAAAA;
+	margin-bottom: 0px;
+}
+
+.common-message-dialog-height-one
+{
+	height: 120px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 10px;
+}
+
+.common-message-dialog-height-two
+{
+	height: 50px;
+	margin-left: 50px;
+	border-right: 1px solid #AAAAAA;
+	margin-right: 2px;
+}
+
+.common-message-dialog-content
+{
+	vertical-align: middle;
+	width: 220px;
+}
+
+
+
+

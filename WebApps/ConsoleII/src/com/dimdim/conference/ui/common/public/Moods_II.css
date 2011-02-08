@@ -1,0 +1,140 @@
+
+/*
+.dm-mood-control-panel
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  padding-left: 6px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  cursor: hand;
+  width: 240px;
+}
+*/
+
+.dm-mood-control-message
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  cursor: hand;
+  width: 231px;
+	background-color: #E8EEF7;
+	border: 1px solid #E8EEF7;
+}
+
+.dm-mood-image-panel
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.dm-user-mood-image
+{
+  margin-left: 6px;
+  margin-right: 4px;
+}
+
+.dm-mood-image-panel-selected
+{
+	background-color: #C3D9FF;
+}
+
+.dm-mood-control-selected
+{
+	background-color: #C3D9FF;
+	border: 1px solid #AAAAAA;
+}
+
+.mood-custom-message-box
+{
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 22px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	cursor: default;
+	cusror: pointer;
+	width: 210px;
+	border: 1px solid #AAAAAA;
+}
+
+/**********  Styles for the moods handling *******************/
+
+/** GWT overrides, just to be sure  **/
+
+.gwt-MenuBar	{	}
+.gwt-MenuBar .gwt-MenuItem	{	}
+.gwt-MenuBar .gwt-MenuItem-selected
+{
+	background: white;
+	background-color: white;
+}
+
+.mood-selection-popup
+{
+	background: white;
+	background-color: white;
+	width: 140px;
+	border: 1px solid #AAAAAA;
+}
+
+.mood-image
+{
+	vertical-align: middle;
+}
+
+.mood-menu-entry
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	cursor: pointer;
+	margin-top: 3px;
+	margin-left: 8px;
+	margin-bottom: 3px;
+	background: white;
+	background-color: white;
+}
+
+.mood-menu-entry-border
+{
+}
+
+.mood-menu-entry-selected
+{
+	background: #E8EEF7;
+	background-color: #E8EEF7;
+}
+
+.mood-label
+{
+	margin-left: 8px;
+}
+
+.mood-menu-bar
+{
+	text-align: left;
+	width: 100%;
+}
+
+.mood-menu-item
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	width: 100%;
+	text-align: left;
+	margin-left: 10px;
+}
+

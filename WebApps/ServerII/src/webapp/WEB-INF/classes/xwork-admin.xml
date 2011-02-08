@@ -1,0 +1,44 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="admin" extends="webwork-default">
+    	
+		<global-results>
+			<result name="login">/jsp/admin/AdminLogin.jsp</result>
+			<result name="input">/jsp/admin/AdminLogin.jsp</result>
+			<result name="error">/jsp/admin/AdminLogin.jsp</result>
+			<result name="success">/jsp/admin/AdminLogin.jsp</result>
+		</global-results>
+		
+		<action name="AdminRoot"
+				class="com.dimdim.conference.action.admin.AdminLoginAction">
+			<result name="login">/jsp/admin/AdminLogin.jsp</result>
+			<result name="input">/jsp/admin/AdminLogin.jsp</result>
+			<result name="error">/jsp/admin/AdminLogin.jsp</result>
+			<result name="success" type="redirect">/Admin.action</result>
+		</action>
+		
+		<action name="Admin"
+				class="com.dimdim.conference.action.admin.AdminAction">
+			<result name="logFiles">/jsp/admin/LogFilesList.jsp</result>
+			<result name="scheduledConferenceList">/jsp/admin/ScheduledConferenceList.jsp</result>
+			<result name="activeConferenceList">/jsp/admin/ActiveConferenceList.jsp</result>
+			<result name="activeUserSessions">/jsp/admin/ActiveUserSessions.jsp</result>
+			<result name="pendingUserRequests">/jsp/admin/PendingUserRequests.jsp</result>
+			<result name="cachedSessionStrings">/jsp/admin/CachedSessionStrings.jsp</result>
+			<result name="cachedGlobalStrings">/jsp/admin/CachedGlobalStrings.jsp</result>
+			<result name="localeManager">/jsp/admin/LocaleManager.jsp</result>
+			<result name="success">/jsp/admin/AdminRoot.jsp</result>
+		</action>
+		
+		<action name="BrowseLogFile"
+				class="com.dimdim.conference.action.admin.BrowseLogFileAction">
+			<result name="logFiles">/jsp/admin/LogFilesList.jsp</result>
+			<result name="success">/jsp/admin/LogFileBrowser.jsp</result>
+		</action>
+		
+	</package>
+</xwork>

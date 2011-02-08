@@ -1,0 +1,554 @@
+<html>
+<head>
+<title>Version: WowzaMediaServerPro-1.3.3</title>
+<style type="text/css">
+body { background: #ffffff; font-family: Verdana; font-size: 12px; text-align: left; }
+td { font-family: Verdana; font-size: 12px; text-align: left; }
+h1 { font-size: 15px; }
+h2 { font-size: 14px; }
+h3 { font-size: 12px; }
+a { color: blue; }
+a:hover { color: black; }
+table { border: 1px solid #ddd; }
+td { border: 1px solid #eee; }
+</style>
+</head>
+<body>
+<h1>Version: WowzaMediaServerPro-1.3.3 build5097</h1>
+
+<p>For the most up-to-date information, visit the <a target="_blank" href="http://www.wowzamedia.com/forums">Wowza Media System Forums</a>.</p>
+
+<h2>Release Notes</h2>
+<h3>Changes Since WowzaMediaServerPro-1.3.2</h3>
+
+<ul>
+<li>Moved <b>[install-dir]/examples/SampleContent</b> to <b>[install-dir]/content</b>
+</li>
+<li>Set <b>Streams/StorageDir</b> to <b>[install-dir]/content</b> in <b>[install-dir]/conf/Application.xml</b>
+</li>
+<li>Added <b>ModuleFLVPlayback</b> to <b>[install-dir]/conf/Application.xml</b>
+</li>
+<li>Fixed problem with <b>SecureToken</b> example and updated client side code to Flash CS3
+</li>
+<li>Modified <b>FastByteArrayStream</b> API (internal)
+</li>
+<li>Added HTTPProvider <b>com.wowza.wms.http.HTTPServerInfoXML</b> (experimental)
+</li>
+<li>Fixed unpause issue with enhanced seek
+</li>
+<li>Updated ping timeout code to consider any data from client as successful ping result
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.3.1</h3>
+
+<ul>
+<li>Improved overall performance
+</li>
+<li>Improved <b>video chat</b> and <b>video recording</b> performance
+</li>
+<li>Improved <b>seek</b> performance if flv indexed using <b>Captionate</b>
+</li>
+<li>Improved client keep alive validation code to more quickly drop dead client connections
+</li>
+<li>Improved <b>AllowDomains</b> to test allow domains domain/ip-addresses against client ip address
+</li>
+<li>Added <b>TextChat</b> example
+</li>
+<li>Added <b>Enhanced Seek</b> (to turn on edit <b>conf/Streams.xml</b> change <b>seekTarget</b> property to <b>enhanced</b>, 3 places)
+</li>
+<li>Added Application.xml configuration for <b>Live Stream Repeater</b>
+</li>
+<li>Added <b>ILogNotify</b> custom logging mechanism (enables custom log fields)
+</li>
+<li>Added <b>LogNotifyCalculateIncremental</b> increment log calculator
+</li>
+<li>Added Server level ThreadPool that can be shared among virtual host on a per virtual host basis
+</li>
+<li>Added context variable support to <b>Streams/StorageDir</b> and <b>SharedObject/StorageDir</b> settings
+<ul>
+	<li>${com.wowza.wms.AppHome} - Application home directory</li>
+	<li>${com.wowza.wms.ConfigHome} - Configuration home directory</li>
+	<li>${com.wowza.wms.context.VHost} - Virtual host name</li>
+	<li>${com.wowza.wms.context.Application} - Application name</li>
+	<li>${com.wowza.wms.context.ApplicationInstance} - Application instance name</li>
+</ul>
+</li>
+<li>Added following API calls:
+<ul>
+	<li>IApplication.getAppInstanceNames()</li>
+	<li>IVHost.getApplicationNames()</li>
+	<li>Object getModuleInstance(String name)</li>
+</ul>
+</li>
+<li>Added support for psuedo query parameters (rtmp://localhost/app/app-inst/param1=val1/param2=val2)
+</li>
+<li>Added debug logging to <b>HTTPProvider</b> interface
+</li>
+<li>Added configuration parameters <b>Application/PingTimeout</b> and <b>Application/ValidationFrequency</b>
+</li>
+<li>Added <b>Application</b> and <b>ApplicationInstance</b> level application timeout value
+</li>
+<li>Added support for <b>NetStream.publish("false")</b> and <b>NetStream.publish("null")</b> to unpublish a stream
+</li>
+<li>Enhanced <b>ModuleCore.getStreamLength</b> call to accept/return an array of streamNames/durations
+</li>
+<li>Enhanced <b>FLVMediaReader</b> to obtain duration from last packet if <b>onMetadata</b> packet is missing
+</li>
+<li>Fixed logging configuration (con/log4j.properties) parsing problem with boolean values
+</li>
+<li>Fixed <b>MP3</b> <b>sc-stream-bytes</b> logging bug
+</li>
+<li>Fixed problem with <b>ISharedObject.purge()</b>
+</li>
+<li>Fixed seek and unpause problem with <b>FLVPlayback</b> component
+</li>
+<li>Fixed recording reset issue on client reconnect
+</li>
+<li>Fixed ping issue with <b>Live Stream Repeater</b>
+</li>
+<li>Fixed date/time problem with AMF serialization
+</li>
+<li>Fixed problem with <b>live-record</b> stream type not resetting timecodes
+</li>
+<li>Fixed <b>ISharedObject.call()</b> and <b>IClient.call()</b> server to client message problem
+</li>
+<li>Fixed stream not found error message to return the correct status code (404 Not found)
+</li>
+<li>Fixed data only stream playback problem
+</li>
+<li>Removed FileIO thread pool configuration from VHost.xml (no longer used)
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.3.0</h3>
+
+<ul>
+<li>Fixed RTMPT bug introduced in Wowza Pro 1.3.0
+</li>
+<li>Updated and improved <b>User Guide</b>
+</li>
+<li>Added error message reporting to examples
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.2.0</h3>
+
+<ul>
+<li><b>Live Stream Repeater</b> is now ready for production (it is no longer in beta)
+</li>
+<li>Added centrally managed configuration (documentation available upon request)
+</li>
+<li>Added support for a <b>conf/log4j.properties</b> file per virtual host (virtual hosts can now fully be defined and deployed without restarting the server)
+</li>
+<li>Added more debug information to <b>MediaStreamLivePlay</b> class
+</li>
+<li>Added code to track packet loss due to packets being dropped in low bandwidth situation
+</li>
+<li>Added support for <b>playDuration</b> (NetStream.play(streamName, playStart, playDuration)) where <b>playDuration</b> can be -1 to play forever, 0 play one key frame, >0 play for set duration in seconds
+</li>
+<li>Added <b>IOPerformance</b> object to <b>JMX</b> interface at VHost, Application and ApplicationInstance levels
+</li>
+<li>Added <b>MediaCaster</b> object to <b>JMX</b> interface at VHost level
+</li>
+<li>Added method to shared object API:
+<ul>
+	<li>ISharedObject.getSlots();</li>
+</ul>
+</li>
+<li>Added method to FLVUtils to simplify FLV writing:
+<ul>
+	<li>FLVUtils.interleavePackets(List audioPackets, List videoPackets, List dataPackets, List audioTCs, List videoTCs, List dataTCs, long[] currentTCs);</li>
+	<li>FLVUtils.writePackets(OutputStream ds, List packetList, long tcOffset);</li>
+</ul>
+</li>
+<li>Added method to stream notification API (may effect custom modules):
+<ul>
+	<li>IMediaStreamActionNotify.onUnPublish(IMediaStream stream, String streamName, boolean isRecord, boolean isAppend);</li>
+</ul>
+</li>
+<li>Fixed <b>receiveAudio</b> problem which caused video to freeze for live streaming
+</li>
+<li>Fixed <b>receiveVideo</b> problem which caused video distortion
+</li>
+<li>Fixed application shutdown issue on first client connection
+</li>
+<li>Fixed audio/video synchronization issue with live stream repeater
+</li>
+<li>Fixed minor potential timecode issue with live streaming
+</li>
+<li>Fixed <b>IMediaStreamActionNotify</b> callbacks to more closely match logging events
+</li>
+<li>Fixed thread problem with server shutdown
+</li>
+<li>Fixed ISharedObject.getSlotNames() so that it only returns active slots
+</li>
+<li>Fixed potential character encoding issue with AMFDataItem (character encoding changed from UTF8 to UTF-8)
+</li>
+<li>Fixed incorrect path in <b>/Library/LaunchDaemons/com.wowza.WowzaMediaServerPro.plist</b> (OSX only)
+</li>
+<li>Fixed AMF index problem when more than 12 NetStream objects per NetConnection object
+</li>
+<li>Fixed video recording problem with silent sections of the video not being recorded correctly
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.1.2</h3>
+
+<ul>
+<li>Added new server-side API model to support non-static methods (module class is instantiated for each application instance) (See <b>User's Guide: Creating a Custom Module</b>)
+</li>
+<li>Added <b>SHOUTcast/Icecast</b> metadata support
+</li>
+<li>Added <b>SecureToken</b> example to combat against threat posed by <b>Replay Media Catcher</b> (See <b>User's Guide: Client Side Scripting: Content Protection</b>)
+</li>
+<li>Added new remote <b>JMX</b> interface, configuration in Server.xml (new <b>JMX</b> interface will work properly through a firewall) (See <b>User's Guide: Server Management Console and Monitoring</b>)
+</li>
+<li>Added ApplicationInstance/Module list to the <b>JMX</b> interface
+</li>
+<li>Added Client/IoSession object to the <b>JMX</b> interface
+</li>
+<li>Added AdminInterface/ObjectList setting to Server.xml to allow configuration of objects exposed through <b>JMX</b> interface
+</li>
+<li>Added wildcard support to <b>AllowDomains</b>
+</li>
+<li>Added fullscreen support to <b>FastPlayVideoStreaming</b>, <b>SimpleVideoStreaming</b> and <b>On2FlixLive</b> examples (also supports Flash player hardware scaling feature)
+</li>
+<li>Added faster concurrency locking mechanism to improve overall performance
+</li>
+<li>Added faster <b>OnDemand</b> seek algorithm (seek performance independent of media duration)
+</li>
+<li>Added new low bandwidth throttling algorithm to determine if a server side stream object is behind in delivering data to the client (<b>Live</b> and <b>OnDemand</b>)
+</li>
+<li>Added append functionality to <b>VideoRecording</b> example
+</li>
+<li>Added metdata support to <b>SHOUTcast</b> example
+</li>
+<li>Added improved checks to kill clients if bad RTMP data
+</li>
+<li>Added code to Linux, Solaris and Unix startup scripts to check for valid Java environment
+</li>
+<li>Added the following API calls:
+<ul>
+	<li>AMFDataArray.add(int index, AMFData data);</li>
+	<li>AMFDataArray.set(int index, AMFData data);</li>
+	<li>AMFDataList.add(int index, AMFData data);</li>
+	<li>AMFDataList.set(int index, AMFData data);</li>
+	<li>ModuleBase.getStream(IClient client, RequestFunction function);</li>
+	<li>IApplicationInstance.addModuleListener(IModuleNotify);</li>
+	<li>IApplicationInstance.removeModuleListener(IModuleNotify);</li>
+	<li>IApplicationInstance.getModuleList();</li>
+	<li>VHost.getScheduledWriteRequests();</li>
+	<li>VHost.getScheduledWriteBytes();</li>
+	<li>VHost.getScheduledWriteSessions();</li>
+	<li>VHost.getScheduledWriteMaxSessionBytes();</li>
+	<li>IHTTPResponse.setResponseCode(code);</li>
+</ul>
+</li>
+<li>Fixed live stream repeater problem with ClientWriteListener
+</li>
+<li>Fixed live stream repeater problem (ignoring disableLowBandwidthThrottling in Streams.xml)
+</li>
+<li>Fixed static flv playback bug where stop event was not generated on reset of playlist.
+</li>
+<li>Fixed persistent shared objects problem by rearranging when onAppStart called
+</li>
+<li>Fixed persistent shared object load bug
+</li>
+<li>Fixed non-persistent sharedObject flush bug
+</li>
+<li>Fixed long timecode bug (occurred when streaming live media for more than 4.6 hours)
+</li>
+<li>Fixed live streaming issue with live-record and metadata
+</li>
+<li>Fixed several object/memory leaks
+</li>
+<li>Fixed serveral live streaming issues with the streamName incorrectly being removed from the streamMap on live streaming restart
+</li>
+<li>Fixed <b>SHOUTcast</b> initial SYNC issue
+</li>
+<li>Fixed Linux, Solaris and Unix service startup/shutdown issue
+</li>
+<li>Fixed "Java Parameters" numbering issue in WowzaMediaServerPro-Service.conf
+</li>
+<li>Fixed bug in <b>SimpleVideoStreaming</b> example
+</li>
+<li>Fixed recording a second time on a stream timecode issue
+</li>
+<li>Fixed second connection metadata problem
+</li>
+<li>Fixed setClient called before onStreamCreate
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.1.1</h3>
+
+<ul>
+<li>Added live stream instanceOn feature
+</li>
+<li>Added IMediaStreamWriter examples to Javadocs
+</li>
+<li>Fixed Linux service shutdown problem when JMX interface turned on
+</li>
+<li>Fixed live stream repeater dependency on loadtool
+</li>
+<li>Fixed timecode issue with Flix Live 8.0.1.9
+</li>
+<li>Fixed issue with receiveAudio and receiveVideo calls not working with live streams
+</li>
+<li>Fixed logging issue with splitting logging based on virtual host id
+</li>
+<li>Fixed logging issue with virtual host entries not having the correct context
+</li>
+<li>Fixed logging issue with x-sname and x-ctx not logging the correct name if using playlists
+</li>
+<li>Fixed JConsole virtual host restart problem
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.1.0</h3>
+
+<ul>
+<li>Updated streaming examples to include stream name
+</li>
+<li>Fixed logging issues with client connection information
+</li>
+</ul>
+
+<h3>Changes Since WowzaMediaServerPro-1.0.0</h3>
+
+<ul>
+<li>Added <b>Live Stream Repeater</b> (beta)
+</li>
+<li>Added support for <b>SHOUTcast</b> re-streaming
+</li>
+<li>Added <b>live-lowlatency</b> and <b>live-record-lowlatency</b> stream types
+</li>
+<li>Added <b>AllowDomains</b> parameter to Application.xml to control connection
+security.
+</li>
+<li>Added rebind retry code
+</li>
+<li>Added new integration API: <b>IMediaWriter</b>. Users can define
+their own media writers for writing .flv files to disk.
+</li>
+<li>Added many performance improvements: video-on-demand, chat, live, recording
+</li>
+<li>Added more secure clientId and StreamId generation
+</li>
+<li>Added server side call ISharedObject.clear() and ISharedObject.purge(version)
+</li>
+<li>Added following methods to IClient API to control access to streams
+and sharedObjects
+<ul>
+    <li>public String getSharedObjectReadAccess()</li>
+    <li>public void setSharedObjectReadAccess(String sharedObjectReadAccess)</li>
+    <li>public String getSharedObjectWriteAccess()</li>
+    <li>public void setSharedObjectWriteAccess(String sharedObjectWriteAccess)</li>
+    <li>public String getStreamReadAccess()</li>
+    <li>public void setStreamReadAccess(String streamReadAccess)</li>
+    <li>public String getStreamWriteAccess()</li>
+    <li>public void setStreamWriteAccess(String streamWriteAccess)</li>
+</ul>
+</li>
+<li>Added support for RTMPT on the Mac Flash version 8.x
+</li>
+<li>Added HostPort/SocketConfiguration parameters to VHost.xml
+</li>
+<li>Added <b>RandomAccessReaders</b> plugin interface
+</li>
+<li>Fixed packet chunking bug when handler called from onConnect
+event method
+</li>
+<li>Fixed server lockup under heavy load
+</li>
+<li>Fixed <b>Too many files open</b> problem
+</li>
+<li>Fixed video recording metadata problems and removed zero sized
+audio packets so resulting files now work with flvtool2.
+</li>
+<li>Fixed client disconnect not closing streams properly
+</li>
+<li>Fixed ScheduledIO buffer size not being allocated in proper place
+</li>
+<li>Fixed client forced disconnect not flushing async commands properly
+</li>
+<li>Fixed live streaming bug that caused server lock up under
+certain publishing conditions
+</li>
+<li>Fixed timing of onMetaData event
+</li>
+<li>Fixed connection packet length issue that caused incoming connection
+requests to hang
+</li>
+<li>Fixed BWChecker latency issue
+</li>
+<li>Fixed live streaming and video recording audio/video sync
+issue
+</li>
+<li>Fixed problems with onStatus and onPlayStatus events and
+playlist
+</li>
+<li>Fixed problem with playlists and pause/seek command
+</li>
+<li>Fixed logging bug <b>Log file delimeter cannot be changed</b>
+</li>
+<li>Fixed logging bug <b>Log fields x-file-size and x-file-length
+are always zero</b>
+</li>
+<li>Changed event method processing. If multiple modules referenced in an Application.xml file
+define method events: <b>onAppStart</b>, <b>onAppStop</b>, <b>onConnect</b>,
+<b>onDisconnect</b>, <b>onConnectAccept</b>, <b>onConnectReject</b>,
+<b>onStreamCreate</b>, <b>onStreamDestroy</b>, <b>onCall</b>, all events
+defined will be called in the order they are defined.
+Previously only the last defined event method would be called.
+</ul>
+
+<h2>Comments or Issues:</h2>
+
+<h3>FLVPlayback and Flex Video components require custom module</h3>
+<p>The Flash FLVPlayback component and Flex video component require a server side module be included in your application's configuration to operate properly. Many open source media player components embed the FLVPlayback component. To get this component to work with the Wowza Pro server, follow the steps below to add the needed module definition to your application. For this example, I will configure an application named <b>mystreamingvideos</b> and will use a <b>.flv </b>file name of <b>mycoolvideo.flv</b>.
+
+<ol>
+<li>Create an application folder <b>[install-dir]/applications/mystreamingvideos</b>.
+</li>
+<li>Create a configuration folder <b>[install-dir]/conf/mystreamingvideos</b>.
+</li>
+<li>Copy <b>[install-dir]/conf/Application.xml</b> into the new configuration folder.
+</li>
+<li>Edit <b>[install-dir]/conf/mystreamingvideos/Application.xml</b> and add the following module definition to the end of the <b>&lt;Modules&gt;</b> list:
+<pre><code>
+&lt;Module&gt;
+	&lt;Name&gt;FLVPlayback&lt;/Name&gt;
+	&lt;Description&gt;FLVPlayback&lt;/Description&gt;
+	&lt;Class&gt;com.wowza.wms.module.ModuleFLVPlayback&lt;/Class&gt;
+&lt;/Module&gt;
+</code></pre>
+</li>
+<li>At this time you might also want to specify a folder path for <b>Streams/StorageDir</b>. If this value is set, the server will serve <b>.flv</b> files from the specified folder. If left unset, the server will serve <b>.flv </b>from the default folder: <nobr><b>[install-dir]/applications/mystreamingvideos/streams/_definst_</b></nobr>
+</li>
+<li>Copy the <b>mycoolvideo.flv </b> into the appropriate folder as specified in the previous step.
+</li>
+<li>In the Flash editor, create an instance of the FLVPlayback component on the stage, open the component inspector and change the contentPath to <b>rtmp://localhost/mystreamingvideos/mycoolvideo.flv</b>.
+</li>
+<li>Select <b>Control>Test Movie</b> from the Flash menus.
+</li>
+</ol>
+
+<h3>Connecting over RTMPT</h3>
+<p>The default Server.xml file is configured to listen on port 1935 only (the default rtmp port).  To connect to the server over rtmpt you can either uncomment the port 80 configuration section in the Server.xml file or connect over rtmpt using port 1935 (example: rtmpt://localhost:1935/applicationname).
+</p>
+
+<h3>Memory Settings</h3>
+<p>If you are running into OutOfMemory errors while running the server you may want to increase the maximum size of the Java heap. By default the Java maximum heap size is set at 768MB. Consult the <b>Runtime Configuration</b> section of the <b>Server Administration</b> chapter in the user guide for the location and names of the configuration file and settings.
+</p>
+
+<h3>Performance Tuning - Linux</h3>
+<p>Wowza Media Server Pro uses an asynchronous file io scheduling algorithm that smoothes out the file io performance. This systems works very well in tandem with the io scheduler (either the deadline or anticipatory <b>as</b> scheduling algorithm works well) that is part of the Linux kernel. By default many Linux distributions have the io scheduler turned off. To turn it on consult your Linux distributions documentation. For Red Hat the io scheduler can be turned on as part of the kernel parameters at startup. If you are using the grub boot loader, you can edit the <b>/boot/grub/grub.conf</b> file and add the <b>elevator=as</b> or <b>elevator=deadline</b> parameter to the kernel statement.
+</p>
+
+<h3>Windows Service</h3>
+<p>By default <b>Wowza Media Server Pro</b> Windows service is set to <b>Manual</b> startup. This is so it does not conflict with the version started from the command prompt. Consult the <b>Starting and Stopping the Server</b> section of the <b>Server Administration</b> chapter in the user guide for more information on how to change this to <b>Automatic</b> startup.
+</p>
+
+<h3>JMX and the Windows Service</h3>
+<p>When running Wowza Media Server Pro as a Windows service, the JMX interface will not be available unless the service is running as a named user.  To configure the service to run as a named user, go to <b>Settings>Control Panel>Administrative Tools>Services</b> and right click on the <b>Wowza Media Server Pro</b> service and select <b>Properties</b>.  Next, click on the <b>Log On</b> tab, change the <b>Log on as</b> radio to <b>This account</b> and enter a user name and password for a local user.
+
+<h3>OS X Service</h3>
+<p>By default the <b>com.wowza.WowzaMediaServerPro</b> OS X service is set to <b>Disabled</b> startup. This is so it does not conflict with the version started from the command prompt. To enable the launchd service to startup automatically when the machine is restarted issue the following command in a terminal window:
+</p>
+
+<p>sudo launchctl load -w /Library/LaunchDaemons/com.wowza.WowzaMediaServerPro.plist
+</p>
+
+<p>To disable:
+</p>
+
+<p>sudo launchctl unload -w /Library/LaunchDaemons/com.wowza.WowzaMediaServerPro.plist
+</p>
+
+<h3>Debugging</h3>
+<p>To turn on debug logging for the server, edit the conf/log4j.properties file and change the log level from INFO to DEBUG.
+</p>
+
+<h3>Error: <i>"Too many files open"</i></h3>
+<p>If you encounter the <b>Too many files open</b> error on Linux you may need to increase the number of simultaneous files that can be openeded. Please consult your Linux documentation on how to do this for your Linux distribution.
+</p>
+
+<p>For Red Hat add the following line to your <b>/etc/sysctl.conf</b>
+</p>
+
+<p>fs.file-max=300000
+</p>
+
+<p>You also may need to up the ulimit in the command shell that is being used to launch Wowza Media Server Pro. This needs to be done each time the server is invoked from a new command shell. The command to view the current limit is <b>ulimit -n</b>. To set the limit enter the command <b>ulimit -n 2048</b>.
+</p>
+
+<h3>Relocating Wowza Media Server Pro</h3>
+
+<p>The Mac OS X and Linux installers do not provide an option to choose the location of the installation of the base server files. For Mac OS X this location is <b>/Library/WowzaMediaServerPro-1.1.0</b> and for Linux it's <b>/usr/local/WowzaMediaServerPro-1.1.0</b>. All the server startup scripts locate the server files through a symbolic link named <b>/Library/WowzaMediaServerPro</b> (Mac OS X) and <b>/usr/local/WowzaMediaServerPro</b> (Linux). If you wish to relocate the base server files you can move them where you choose and update this link using the <b>ln -sf</b> command.
+</p>
+
+
+
+
+<h3>When I start Wowza Pro I get the error "java.lang.reflect.InvocationTargetException"</h3>
+
+<p>When I attempt to start Wowza Pro on Linux I get an error message that looks like this:
+</p>
+
+<pre><code>
+Error starting: java.lang.reflect.InvocationTargetException
+java.lang.reflect.InvocationTargetException
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Nativ e Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknow n Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Un known Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at com.wowza.wms.bootstrap.Bootstrap.startServer(Unkn own Source)
+at com.wowza.wms.bootstrap.Bootstrap.main(Unknown Source)
+Caused by: java.lang.InternalError: unable to get address of epoll functions, pre-2.6 kernel?
+at sun.nio.ch.EPollArrayWrapper.init(Native Method)
+at sun.nio.ch.EPollArrayWrapper.<clinit>(Unknown Source)
+at sun.nio.ch.EPollSelectorImpl.<init>(Unknown Source)
+at sun.nio.ch.EPollSelectorProvider.openSelector(Unkn own Source)
+at java.nio.channels.Selector.open(Unknown Source)
+at org.apache.mina.transport.socket.nio.SocketAccepto r.startupWorker(Unknown Source)
+at org.apache.mina.transport.socket.nio.SocketAccepto r.bind(Unknown Source)
+at com.wowza.wms.server.Server.startCommandInterface( Unknown Source)
+at com.wowza.wms.server.Server.start(Unknown Source)
+</code></pre>
+
+<p>This is a know issue with certain versions of the Linux kernel.
+</p>
+
+<p>To fix this problem, edit <b>/usr/local/WowzaMediaServerPro/bin/setenv.sh</b> and make the follow change:.
+</p>
+
+<pre><code>
+change this line from this:
+JAVA_OPTS="-Xmx768M"
+
+to this:
+JAVA_OPTS="-Xmx768M -Djava.nio.channels.spi.SelectorProvider=sun.nio.ch .PollSelectorProvider"
+</code></pre>
+
+
+<h3>Error: <i>"Address already in use"</i></h3>
+<p>This could be due to several issues
+</p>
+
+<ul>
+<li>If you currently have Flash Media Server running it will conflict with Wowza Media Server Pro. You must stop FMS before starting WMS.</li>
+<li>If after shutting down the server you try to restart the server and you get the error messages. There are two possible solutions:</li>
+<ul>
+<li>Edit Server.xml and change all your <b>HostPortList/HostPort/IpAddress</b> entries to the actual ip address of the machine (the default is <b>*</b>).
+<li>Wait 1-5 minutes to let the underlying TCP sub-system timeout. </li>
+</ul>
+</ul>
+
+<h3>applications/[application] Folder Required For Client Connection</h3>
+
+<p>The Wowza Pro server now requires that a folder with the same name as the application be presented in the <b>applications</b> folder, to enable client connections to that applications.  For example if the client connection url is <b>rtmp://localhost/myapplication</b>, then there must be a folder in the <b>applications</b> folder named <b>myapplication</b>.
+</p>
+</body>
+</html>

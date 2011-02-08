@@ -1,0 +1,21 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="whiteboard" extends="webwork-default" namespace="/html/whiteboard">
+    	
+		<global-results>
+			<result name="login">Whiteboard.jsp?cflag=${cflag}</result>
+			<result name="input">Whiteboard.jsp?cflag=${cflag}</result>
+			<result name="error">Whiteboard.jsp?cflag=${cflag}</result>
+			<result name="success">Whiteboard.jsp?cflag=${cflag}</result>
+		</global-results>
+		
+		<action name="GetWhiteboardModulePage"
+				class="com.dimdim.conference.action.whiteboard.ui.GetWhiteboardModulePageAction">
+		</action>
+		
+	</package>
+</xwork>

@@ -1,0 +1,37 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="envcheck" extends="webwork-default" namespace="/html/envcheck">
+    	
+		<global-results>
+			<result name="login">envcheck.jsp</result>
+			<result name="input">envcheck.jsp</result>
+			<result name="error">/jsp/common/StandAloneResponse.jsp</result>
+			<result name="success">envcheck.jsp</result>
+		</global-results>
+		
+		<action name="connect"
+				class="com.dimdim.conference.action.check.Connect">
+			<result name="success">envcheck.jsp?cflag=${cflag}&amp;uri=${uri}</result>
+		</action>
+		
+		<action name="envcheck"
+				class="com.dimdim.conference.action.check.EnvCheck">
+			<result name="success">envcheck.jsp?cflag=${cflag}</result>
+		</action>
+		
+		<action name="standaloneenvcheck"
+				class="com.dimdim.conference.action.check.StandAloneEnvCheck">
+			<result name="success">envcheck.jsp?cflag=${cflag}</result>
+		</action>
+		
+		<action name="publisherinstall"
+				class="com.dimdim.conference.action.check.PubInstall">
+			<result name="success">PublisherInstall.jsp?cflag=${cflag}</result>
+		</action>
+		
+	</package>
+</xwork>

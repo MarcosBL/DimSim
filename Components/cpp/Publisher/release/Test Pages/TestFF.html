@@ -1,0 +1,201 @@
+<HTML>
+<HEAD>
+<TITLE>Simple Plug-in Test</TITLE>
+<embed type="application/npdimdim4" width=1 height=1 hidden="true">
+<script language="javascript">
+var embed = document.embeds[0];
+    
+function windowsList()
+{
+ alert(embed.getProperty("name=\"windowList\""));
+}
+function startShare(form)
+{
+  var inputStr = "operation=screencast&reg=bharat&action=share&handle=" + form.handle.value;
+  var retval = embed.performAction(inputStr);
+
+  alert(retval);
+  if (retval == -1)
+  {
+	alert("Another meeting running. Please close that meeting and restart this meeting");
+  }
+  
+  // screencast result 0 - still trying to start sharing
+  // screencast result 1 - successfully started sharing
+  // screencast result 2- meeting stopped due to user action
+  // screencast result 3 - unable to connect to reflector
+  // screencast result 4 - shared window handle is not available (can come in the beginning or during a successful share also)
+}
+function stopShare()
+{
+    embed.performAction("operation=screencast&reg=bharat&action=stop");
+}
+function screencastResult()
+{
+ alert(embed.getProperty("name=\"screencastResult\""));
+}
+function startConversion(form)
+{
+  var inputStr = "operation=conversion&action=start&filePath=\"D:\\Dev\\DMS\\extras\\x-wc042500.pptx\"";
+  embed.performAction(inputStr);
+}
+function stopConversion()
+{
+    embed.performAction("operation=conversion&action=stop&docID=i1");
+}
+function conversionResult()
+{
+ alert(embed.getProperty("name=\"conversionResult\""));
+}
+function runPublisher()
+{
+	embed.performAction("operation=mint&action=run");
+}
+function exitPublisher()
+{
+	embed.performAction("operation=mint&action=exit");
+}
+function setPublisherData()
+{
+// Each property can either be set separately or in a single buffer
+// NOTE: you need to add that additional integer after the URL. that integer can be anything. 0 which is used here is just an example..basically an issue of creating the correct  method on my side.
+// once created, the activex control doesn't allow for modification. I will have to create a new activex control to fix this. so the method asks for a second variable of long type.
+//
+// Once we have the regular workflow working, we can create the new control very quickly.
+//
+// this method doesn't return any value
+ embed.setProperty("{dmsURL:\"http://localhost:81/uploadPPTXSlide?meetingID=b1&pptID=i1&pptName=name.ppt\"}");
+ embed.setProperty("{dcsURL:\"http://ip:port/dimdim/DMSPresentaion.action?pptName=<name>&pptID=<id>&meetingKey=<meetingID>\"}");
+ embed.setProperty("{screenURL:\"http://jp4.dimdim.com:8088/screenshare0/b1/s1/\"}");
+ 
+// embed.setProperty("{dmsURL:\"http://ip:port/uploadPPTXSlide?meetingID=<meetingID>&pptID=<id>&pptName=<name>\",dcsURL:\"http://ip:port/dimdim/DMSPresentaion.action?pptName=<name>&pptID=<id>&meetingKey=<meetingID>\",screenURL:\"http://ip:port/dimdimScreenShare/<confkey>/<streamname>/\"}", 0);
+}
+function getVersion()
+{
+    alert(embed.getVersion());
+}
+function setHighBWProfile()
+{
+	embed.setProperty("{BWProfile:\"0\"}");
+}
+function setMediumBWProfile()
+{
+	embed.setProperty("{BWProfile:\"1\"}");
+}
+function setLowBWProfile()
+{
+	embed.setProperty("{BWProfile:\"1\"}");
+}
+function checkDriver()
+{
+	alert(embed.performAction("operation=mint&action=checkDriver"));
+}
+function invokeDriverInstallation()
+{
+	embed.performAction("operation=mint&action=installDriver");
+}
+</script>
+</HEAD>
+<body>
+	
+  <form id="dimdim" action="">
+INSTRUCTIONS:
+<br />
+<br />
+1. First click on 'Set Publisher Data' before you proceed with either conversion or screencast
+<br />
+2. To share a desktop, just click on 'Start Share' and to stop the screencast, click on 'Stop Share'
+<br />
+3. To share a window handle, click on 'Get Window List'. Enter your choice of window handle in the text box and use 'Start Share' and 'Stop Share'
+<br />
+<br />
+NOTE: Screencasting seems to be having problems while running on remote desktops (especially on server editions of windows, where multiple sessions for the same desktop a<br />
+<br />
+<br />
+<br />
++*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+<br />
+<br />
+SET PUBLISHER DATA
+<br />
+<br />
+<input type="button" value="Set Publisher Data" onclick="setPublisherData();" />
+<br />
+<br />
+<br />
++*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+<br />
+<br />
+PUBLISHER VERSION AND SCREENCASTER PROFILES
+<br />
+<br />
+<input type="button" value="Get Publisher Version" onclick="getVersion();" />
+<br />
+<input type="button" value="Set High Bandwidth Profile" onclick="setHighBWProfile();" />
+<br />
+<input type="button" value="Set Medium Bandwidth Profile" onclick="setMediumBWProfile();" />
+<br />
+<input type="button" value="Set Low Bandwidth Profile" onclick="setLowBWProfile();" />
+<br />
+<br />
++*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+<br />
+<br />        
+SCREENCASTER
+<br />
+<br />
+        <input type="button" value="Get Window List" onclick="windowsList();" />
+        <br />
+        <br />
+        <label>
+            Window Handle</label>
+        <input type="text" name="handle" />
+        <br />
+		<br />
+        <input type="button" value="Start Share" onclick="startShare(this.form);" />
+        <br />
+		<br />
+        <input type="button" value="Stop Share" onclick="stopShare();" />
+        <br />
+		<br />
+        <input type="button" value="Get Screencast Result" onclick="screencastResult();" />
+<br />
+<br />
+<br />
++*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+<br />
+<br />
+CONVERTER
+<br />
+<br />
+        <input type="button" value="Start Conversion" onclick="startConversion();" />
+        <br />
+		<br />
+        <input type="button" value="Stop Conversion" onclick="stopConversion();" />
+        <br />
+		<br />
+        <input type="button" value="Get Conversion Result" onclick="conversionResult();" />
+<br />
+<br />
+<br />
++*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+<br />
+<br />
+MANAGEMENT INTERFACE
+<br />
+<br />
+		<input type="button" value="Run Publisher Component" onclick="runPublisher();" />
+		<br />
+		<br />
+		<input type="button" value="Exit Publisher Component" onclick="exitPublisher();" />
+		<br />
+		<br />
+		<input type="button" value="Check Mirror Driver" onclick="checkDriver();" />
+		<br />
+		<br />
+		<input type="button" value="Invoke Mirror Driver Installation" onclick="invokeDriverInstallation();" />
+    </form>
+</body>
+
+</BODY>
+</HTML>

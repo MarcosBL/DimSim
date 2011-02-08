@@ -1,0 +1,1789 @@
+# -----------------------------------------------------------------------------------------------------
+#	Dimdim Webmeeting Recording Script v 2.0
+#	Template Created by: Saurav Mohapatra (saurav@dimdim.com)
+# -----------------------------------------------------------------------------------------------------
+import string;
+import os.path;
+import subprocess;
+import sys;
+import time;
+import base64;
+import urllib;
+import datetime;
+import shutil;
+import traceback;
+
+# A class hold to hold the flags 
+class Flags:
+	def __init__(self):		
+		self.hasPPT = False;
+		self.hasAudio = False;
+		self.hasDTP = False;
+		self.hasChat = False;
+		self.hasFLV = False;
+		self.avOnly = False;
+		self.urls = [];
+	def addNotificationUrl(self, urlStr):
+		if urlStr and len(urlStr) > 0:
+			self.urls.append(urlStr);
+	def notifyUrls(self):
+		for urlStr in self.urls:
+			try:
+				sys.stderr.write("\t\t>>>url : "+str(urlStr)+ "...\n");
+				self.notifyUrl(urlStr);
+			except:
+				e = sys.exc_info();
+				warning("notifyUrl","failed to notify url : "+str(urlStr));
+				traceback.print_exception(e[0],e[1],e[2],3,sys.stderr);
+				
+	def notifyUrl(self, callbackUrl):
+		callbackUrl += "&hasChat="+str(self.hasChat);
+		callbackUrl += "&hasFLV="+str(self.hasFLV);
+		callbackUrl += "&avOnly="+str(self.avOnly);
+		verbose('notifyUrl', 'launching get call to : '+callbackUrl);
+		opener = urllib.FancyURLopener({});
+		f = opener.open(callbackUrl);
+		data = f.read();
+		verbose('notifyUrl', 'url call done. response : '+data);
+		
+# the global configuration class
+class Config:
+	def __init__(self, mbox, radDir):
+		self.mbox = mbox;
+		self.rad = radDir;
+		self.radCmd = os.path.join(radDir,"dimdimReflector");
+		self.ffmpegCmd = "ffmpeg";
+		self.soxCmd = "sox";
+		self.ID_SEPARATOR = "____";
+		self.enableEventDump = False;
+
+# the log flags
+
+LL_VERBOSE = 0;
+LL_DEBUG = 1;
+LL_INFO = 2;
+LL_NOTICE = 3;
+LL_WARN = 4;
+LL_ERROR = 5;
+LL_FATAL = 6;
+LL_SILENT = 7;
+
+#global vars
+g_logLevel = LL_NOTICE;	
+g_config = None;
+g_flags = None;
+g_log = sys.stderr;
+
+	# launch a process and get its return code
+def runCmd(args):
+	debug("tool","!**************  BEGIN TOOL  **************");
+	verbose("tool",str(args));
+	g_log.flush();
+	retCode = subprocess.call(args,0,None, None, g_log, g_log);
+	g_log.flush();
+	verbose("tool","return code : "+str(retCode));
+	debug("tool","!************** FINISH TOOL ***************");
+	return retCode;
+# log the error and exit
+def doErrorExit():
+	sys.stderr.write(" ***************  error exit ******************** \n");
+	sys.exit(-1);
+
+# debug exit 
+def doDebugExit():
+	sys.stderr.write(" ---------------- debug exit -------------------- \n");
+	sys.exit(0);
+
+# base 64 decoding
+def safeB64Decode(encText):
+	clearText = "(base64 decode failed)";
+	try:
+		clearText = base64.standard_b64decode(encText);
+	except TypeError:
+		warning('safeB64Decode','failed to decode text ['+encText+']');
+	return clearText;
+	
+# get the text for a log level
+def getLogLevelTag(level):
+	if level == LL_VERBOSE:
+		return "verbose";
+	elif level == LL_DEBUG:
+		return " debug ";
+	elif level == LL_INFO:
+		return "  info ";
+	elif level == LL_NOTICE:
+		return "notice ";
+	elif level == LL_WARN:
+		return "warning";
+	elif level == LL_ERROR:
+		return " error ";
+	elif level == LL_FATAL:
+		return " fatal ";
+	else:
+		return "";
+		
+# open the log file
+def openLog(fileName=None):
+	global g_log;
+	if fileName:
+		g_log = open(fileName,'w');
+		sys.stderr.write("Log File : "+str(fileName)+"\n");
+	if not g_log:
+		g_log = sys.stderr;
+		
+# check if the current level allows logging at supplied level
+def canLog(level):
+	return level < LL_SILENT and level >= g_logLevel;
+# log a message
+def logMessage(level, component, msg):
+	if canLog(level):
+		g_log.write("<"+getLogLevelTag(level)+"> - ("+str(component)+") - "+str(msg)+"\n");
+# log at level = verbose
+def verbose(component, msg):
+	logMessage(LL_VERBOSE, component, msg);
+# log at level = debug
+def debug(component, msg):
+	logMessage(LL_DEBUG, component, msg);
+# log at level = info
+def info(component, msg):
+	logMessage(LL_INFO, component, msg);
+# log at level = notice
+def notice(component, msg):
+	logMessage(LL_NOTICE, component, msg);
+# log at level = warning
+def warning(component, msg):
+	logMessage(LL_WARN, component, msg);
+# log at level = error
+def  error(component, msg):
+	logMessage(LL_ERROR, component, msg);
+# log at level = fatal and exit
+def fatal(component, msg):
+	logMessage(LL_FATAL, component, msg);
+	sys.stderr.write("xxxxxx Exiting with fatal error : "+str(msg)+"\n");
+	doErrorExit();
+
+# get time stamp as a string
+def getTimeStamp(tsMs=0):
+	if tsMs == 0:
+		n = datetime.datetime.now();
+		return str(n.year)+"-"+str(n.month)+"-"+str(n.day)+"-"+str(n.hour)+"-"+str(n.minute)+"-"+str(n.second)+"-"+str(n.microsecond);
+	else:
+		gt = time.localtime(tsMs/1000);
+		return time.strftime("%a %d %b %Y %I:%M:%S %p %Z",gt);
+	
+# print the usage
+def printUsage():
+	sys.stderr.write("usage: python recording.py <mbox-root> <rad-tools-dir> [no-fork-flag=false]\n");
+
+# add the value to a list if it doesn't exist
+def addUnique(listObj, valObj):
+	for lv in listObj:
+		if lv == valObj:
+			return;
+	listObj.append(valObj);
+	
+# parse the name value pairs in event data
+def parseNameValuePairs(data):
+	tbl = {};
+	if data:
+		for dataStr in data:
+			tokens = dataStr.partition('=');
+			verbose("parseNVP","input : ["+str(dataStr)+"]");
+			verbose("parseNVP", "output : ("+tokens[0]+")"+tokens[1]+"("+tokens[2]+")");
+			tbl[tokens[0]] = tokens[2];				
+	verbose('parseNVP',str(tbl));
+	return tbl;
+
+class MetaTag:
+	def __init__(self):
+		self.tagName = "";
+		self.timeStamp = 0;
+		self.entries = {};
+	def __str__(self):
+		return 'Meta Tag ('+self.tagName+') (ts='+str(self.timeStamp)+') '+str(self.entries);
+def loadMetaTags(flvName):
+	if os.path.exists(flvName):
+		metaFileName = flvName+".metadata";
+		args = [];
+		args.append (g_config.radCmd);
+		args.append ("dumpmetadata");
+		args.append(flvName);
+		runCmd(args);
+		return doMetaDump(metaFileName);
+	return None;
+def doMetaDump(metaFileName):
+	metaFile = open(metaFileName,"r");
+	if not metaFile:
+		error('metadata','could not open file '+str(metaFileName));
+		return None;
+	else:
+		verbose("metadata","parsing metadata file : "+str(metaFileName));
+		tags = [];
+		lastTag = None;
+		doEntries = False;
+		lines = metaFile.readlines();
+		for line in lines:
+			sline = line.strip();
+			if len(sline) > 0:
+				if(sline == '<METATAG>'):
+					lastTag = MetaTag();
+					doEntries = False;
+				elif(sline == '</METATAG>'):
+					tags.append(lastTag);
+					lastTag = None;
+					doEntries = False;
+				elif(sline == '<ENTRYLIST>'):
+					doEntries = True;
+				elif(sline == '</ENTRYLIST>'):
+					doEntries = False;
+				elif (sline.startswith('TagName=')):
+					lastTag.tagName = sline.partition('=')[2];
+				elif (sline.startswith('TagTimeStamp=')):
+					lastTag.timeStamp = long(sline.partition('=')[2]);
+				elif doEntries:
+					nvp = sline.partition('=');
+					if(nvp[0] == 'eventTimeStamp'):
+						vals = nvp[2].partition('.');	
+						val = long(vals[0]);
+						lastTag.entries[nvp[0]] = val;
+					else:
+						lastTag.entries[nvp[0]] = nvp[2];
+		info('metadata', 'found : '+str(len(tags))+' metadata tags!');
+		return tags; 
+def getFirstAudioTagOffset(flvName, flvOut=None):
+	if(not os.path.exists(flvName)):
+		return -1;
+	if not flvOut:
+		flvOut = flvName+".offset.txt";
+	args =[];
+	args.append(g_config.radCmd);
+	args.append("findoffset");
+	args.append(flvName);
+	args.append(flvOut);
+	runCmd(args);
+	if not os.path.exists(flvOut):
+		return -1;
+	else:
+		fp = open(flvOut);
+		lines = fp.readlines();
+		if not lines or len(lines) == 0:
+			return -1;
+		else:
+			faOffset = int(lines[0].strip());
+			sys.stderr.write("\t\t\t>>> First Audio Tag Offset : "+str(faOffset)+"\n");
+			return faOffset;
+def backsetFLV(flvName,flvOut=None):
+	if(not os.path.exists(flvName)):
+		return -1;
+	if not flvOut:
+		flvOut = flvName+".backset.flv";
+	args =[];
+	args.append(g_config.radCmd);
+	args.append("backset");
+	args.append(flvName);
+	args.append(flvOut);
+	runCmd(args);
+	if not os.path.exists(flvOut):
+		return None;
+	else:
+		return flvOut;
+# ----------------------------------------------------------------------------
+# 	Conference Classes
+# ----------------------------------------------------------------------------
+# ----------------------------------------------
+
+# this class represents a single conf event
+
+# ----------------------------------------------
+
+class ConfEvent:
+
+	def __init__(self):
+		self.type = "default";
+		self.subType = "default";
+		self.description = "a default event";
+		self.initiatedBy = "conf user 1";
+		self.timeStamp = 123456;
+		self.eventData = [];
+		self.dataTable = None;
+	def getData(self):
+		if self.dataTable == None:
+			self.dataTable = parseNameValuePairs(self.eventData);
+		return self.dataTable;
+
+# the various media types recorded
+class ChatMessage:
+	def __init__(self, msgTimeStamp, senderName, msgTxt):
+		self.timeStamp = msgTimeStamp;
+		self.sender = senderName;
+		self.chatText = msgTxt;
+		
+	def toHTML(self):
+		return '<span class="dimdimChatTimestamp">['+self.getFormattedTimestamp(self.timeStamp)+'] </span> <span class="dimdimChatSender">'+self.sender+' : </span><span class="dimdimChatText">'+self.chatText+'</span><div class="divider"></div>';
+		
+	def getFormattedTimestamp(self, tstamp):
+		gt = time.localtime(tstamp/1000);
+		return time.strftime("%a %d %b %Y %I:%M:%S %p %Z",gt);
+		
+# wrapper class to hold the output stuff
+class RADOutput:
+	def __init__(self):
+		self.chatMsgs = [];
+		self.avTracks = [];
+		self.dtpTracks = [];
+		self.pptTracks = [];
+		self.fillerTracks = [];
+		
+# wrapper class to hold input vars (temporary usage during processing)
+class RADInput:
+	def __init__(self):
+		self.avTracks = {};
+		self.dtpTrack = None;
+		self.pptTrack = None;
+		self.startCount = 0;
+		self.stopCount = 0;
+		
+TRACK_TYPE_NONE = "none";
+TRACK_TYPE_AV = "av";
+TRACK_TYPE_DTP = "dtp";
+TRACK_TYPE_PPT = "ppt";
+TRACK_TYPE_FILLER = "filler";
+
+#
+# a base class for all media tracks like a/v, ppt and dtp
+#
+class MediaTrack:
+	def __init__(self,  timeStamp, name, typeName):
+		self.name = name;
+		self.mediaType = typeName;
+		self.startTime = timeStamp;
+		self.endTime = timeStamp;
+		self.duration = 0;
+		self.offset = 0;
+	def isInRange(self, startTime, endTime):
+		b = startTime <= self.startTime and endTime > self.startTime;
+		if (b):
+			verbose("MediaTrack","**** {"+self.mediaType+"/"+self.name+"} :: Timestamp : "+str(self.startTime)+" IN RANGE ("+str(startTime)+","+str(endTime)+")");
+		else:
+			verbose("MediaTrack","xxxx {"+self.mediaType+"/"+self.name+"} :: Timestamp : "+str(self.startTime)+" NOT IN RANGE ("+str(startTime)+","+str(endTime)+")");
+		return b;
+	def setEndTime(self, timeStamp):
+		self.endTime = timeStamp;
+		self.duration = self.endTime - self.startTime;
+
+		
+# A/V segment when one or more streams were active
+class AVSegment:
+	tracks = None;
+	startTime = 0;
+	endTime = 0;
+	duration = 0;
+
+	def __init__(self, start, end):
+		self.tracks = [];
+		self.startTime = start;
+		self.endTime = end;
+		self.duration = end - start;
+	def __str__(self):
+		return "Segment ("+str(self.startTime)+"->"+str(self.endTime)+") (duration = "+str(self.duration)+" ms) tracks = "+str(len(self.tracks));
+#		
+# a media track subclass representing an A/V FLV
+#
+class AVTrack (MediaTrack):
+	def __init__(self, timeStamp, streamName, flvPath):
+		MediaTrack.__init__(self, timeStamp, streamName, TRACK_TYPE_AV);
+		self.startTimeAudio = timeStamp;
+		self.startTimeHTTP = timeStamp;
+		self.audioFlag = False;
+		self.videoFlag = False;
+		self.flvPath = flvPath; 
+		self.audioFile = flvPath;
+		self.firstVoice = True;
+		
+			
+	def getStreamName(self):
+		return self.name;		
+	def setAudioStart(self,timeStamp):
+		self.startTimeAudio = timeStamp;
+	def containsTime(self, ts):
+		return ts >= self.getAudioStart() and ts <= self.endTime;
+	def containsSegment(self, start, end):
+		return self.containsTime(start) and self.containsTime(end);
+	def containsRecWindow(self, start, end):
+		return start <= self.startTimeHTTP;
+	def getAudioStart(self):
+		return self.startTime;
+#
+#	a media track subclass to represent a DTP bin
+#
+class DTPTrack(MediaTrack):
+	def __init__(self, timeStamp, streamName, binPath):
+		MediaTrack.__init__(self, timeStamp, streamName, TRACK_TYPE_DTP);
+		self.binPath = binPath;
+	def getStreamName(self):
+		return self.name;
+#
+#	a powerpoint doc
+#
+class PPTTrack(MediaTrack):
+	def __init__(self, timeStamp, docId, slideCount, pdfPath, curSlide):
+		MediaTrack.__init__(self, timeStamp, docId, TRACK_TYPE_PPT);
+		self.slideCount = slideCount;
+		self.pdfPath = pdfPath;
+		self.slideEvents = [];
+		self.addSlideEvent(curSlide,timeStamp);
+	def addSlideEvent(self, slideIndex, timeStamp):
+		self.slideEvents.append((slideIndex,timeStamp - self.startTime));
+	def toSlideSequence(self):
+		slideSequence = "";
+		for se in self.slideEvents:
+			slideSequence += str(se[0]);
+			slideSequence += "=";
+			slideSequence += str(se[1]);
+			slideSequence += ";";
+			verbose("PPTTrack", 'slide sequence :'+slideSequence);
+		return slideSequence;
+	def getDocId(self):
+		return self.name;
+#
+# a class to represent the conference details
+#
+class ConfDetails:
+	
+	def __init__(self, dimdimIdStr, roomIdStr, sessionIdStr):
+		sep = g_config.ID_SEPARATOR;
+		if dimdimIdStr.find(sep) > 0:
+			ids = dimdimIdStr.split(sep);
+			self.installId = ids[0];
+			self.dimdimId = ids[1];
+		else:
+			self.installId = None;
+			self.dimdimId = dimdimIdStr;
+		self.roomId = roomIdStr;
+		self.sessionId = sessionIdStr;
+		self.confKey = "";
+		#	start time
+		self.confStartTime = 0;
+		#   conf duration
+		self.confDurationMs = 0;
+		#   this is the list of events
+		self.eventList = [];
+		self.recordingStart = 0;
+		self.recordingStop = 0;
+	def __str__(self):
+		return "installId="+self.installId+"/ dimdimId: "+self.dimdimId+" / room: "+self.roomId+" / session: "+self.sessionId+" / startTime: "+str(self.confStartTime);
+		
+	def getFFMPEGExe(self):
+		return g_config.ffmpegCmd;
+	def getSoXExe(self):
+		return g_config.soxCmd;
+		
+	def getMailboxRootDir(self):
+		return g_config.mbox;
+
+	def appendMailbox(self, root, mboxName):
+		dir1 = "";
+		dir1 += mboxName[0];
+		dir2 = "";
+		dir2 += mboxName[0];
+		dir2 += mboxName[1];
+		dir3 = "";
+		dir3 += mboxName[0];
+		dir3 += mboxName[1];
+		dir3 += mboxName[2];
+		return os.path.join(os.path.join(os.path.join(os.path.join(root,dir1),dir2),dir3),mboxName);
+
+	def getTreeDir(self, root, mboxName):
+		dir1 = "";
+		dir1 += mboxName[0];
+		dir2 = "";
+		dir2 += mboxName[0];
+		dir2 += mboxName[1];
+		dir3 = "";
+		dir3 += mboxName[0];
+		dir3 += mboxName[1];
+		dir3 += mboxName[2];
+		return os.path.join(os.path.join(os.path.join(root,dir1),dir2),dir3);
+		
+	def getMailboxRoot(self):
+		rootDir = self.getMailboxRootDir();
+		if self.installId and len(self.installId) > 0:
+			rootDir = os.path.join(rootDir, self.installId);
+		dir1 = self.appendMailbox(rootDir, self.dimdimId);
+		dir2 = os.path.join(dir1,self.roomId);
+		dir3 = os.path.join(dir2,self.sessionId);
+		return dir3;
+
+	def getInboxPath(self):
+		return os.path.join(self.getMailboxRoot(),"Inbox");
+		
+	def getAVPath(self):
+		return os.path.join(self.getInboxPath(),"AV");
+		
+	def getDTPPath(self):
+		return os.path.join(self.getInboxPath(),"DTP");
+		
+	def getPPTPath(self):
+		return os.path.join(self.getInboxPath(),"PPT");
+		
+	def getFinalFLVDirPath(self):
+		flvDirRoot = self.getFLVDirPath();
+		return self.getTreeDir(flvDirRoot, self.sessionId);
+		
+	def getFLVDirPath(self):
+		if self.installId and len(self.installId) > 0:
+			return os.path.join(os.path.join(self.getMailboxRootDir(),"flvFiles"),self.installId);
+		return os.path.join(self.getMailboxRootDir(),"flvFiles");
+		
+	def getFinalChatDirPath(self):
+		chatDirRoot = self.getChatDirPath();
+		return self.getTreeDir(chatDirRoot, self.sessionId);
+		
+	def getChatDirPath(self):
+		if self.installId and len(self.installId) > 0:
+			return os.path.join(os.path.join(self.getMailboxRootDir(),"chatFiles"),self.installId);
+		return os.path.join(self.getMailboxRootDir(),"chatFiles");
+		
+	def getOutboxPath(self):
+		return os.path.join(self.getMailboxRoot(),"Output");
+
+	def getTmpPath(self):
+		return os.path.join(self.getMailboxRoot(),"Temp");
+
+	def getFLVToolExeDir(self):
+		return g_config.rad;
+
+	def getFLVToolExe(self):
+		return os.path.join(self.getFLVToolExeDir(),"dimdimReflector");
+		
+	def hasInputAVFile(self, streamName):
+		return os.path.exists(os.path.join(self.getAVPath(),streamName+".flv"));
+	def hasInputDTPFile(self, streamName):
+		return os.path.exists(os.path.join(self.getDTPPath(),streamName+".bin"));
+	def hasInputPPTFile(self, docId):
+		return os.path.exists(os.path.join(self.getPPTPath(),docId+".pdf"));	
+		
+	def getInputAVFile(self, streamName):
+		return os.path.join(self.getAVPath(),streamName+".flv");
+	def getInputDTPFile(self, streamName):
+		return os.path.join(self.getDTPPath(),streamName+".bin");
+	def getInputPPTFile(self, docId):
+		return os.path.join(self.getPPTPath(),docId+".pdf");
+	
+	# create the RAD Archive
+	def createArchive(self):
+		global g_flags;
+		
+		verbose("createArchive","changing to rad tool dir : "+self.getFLVToolExeDir()+" ...");
+		#change to rad tool directory
+		os.chdir(self.getFLVToolExeDir());
+		
+		output = RADOutput();
+		input = RADInput();
+		
+		sys.stderr.write(" >>> processing events...\n");
+		output2 = self.processEvents(input, output);
+		# now process the output
+		if output2:
+			avCount = len(output2.avTracks);
+			pptCount = len(output2.pptTracks);
+			dtpCount = len(output2.dtpTracks);
+			debug("createArchive","ADJUSTED OUTPUT STATS => AV = "+str(avCount)+" / PPT = "+str(pptCount)+" / DTP = "+str(dtpCount));
+			
+			sys.stderr.write(" >>> generating chat log...\n");
+			if not self.generateChatLog(output2):
+				error("createArchive","could not create chat file for conference : "+str(self));
+				g_flags.hasChat = False;
+			else:
+				notice("createArchive",">>> CHAT FILE GENERATED!!!");
+				g_flags.hasChat = True;
+			
+			sys.stderr.write(" >>> generating flv :: (AV = "+str(avCount)+" / PPT = "+str(pptCount)+" / DTP = "+str(dtpCount)+") ...\n");
+			if not self.generateFLV(output2):
+				error("createArchive","could not create FLV for conference : "+str(self));
+				g_flags.hasFLV = False;
+			else:
+				notice("createArchive","FLV file generated!");
+				g_flags.hasFLV = True;
+			return True;
+		else:
+			error("createArchive", "failed to parse and process conference events for conference : "+str(self));
+			return False;
+				
+	# process a single event
+	def processEvents(self, input, output):
+		global g_config;
+		eventDump = None;
+		if g_flags.enableEventDump:
+			dumpFile = os.path.join(self.getOutboxPath(),"event-dump.html");
+			notice("processEvents","dumping event data to : "+dumpFile);
+			eventDump = open(dumpFile,"w");
+		if eventDump:
+			eventDump.write("<html><head><title>Event Dump</title></head>\n<body bgcolor=white text=black>\n");
+			eventDump.write("<table align=\"center\" width=\"860\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr valign=\"top\"><td valign=\"top\">\n");
+			eventDump.write("<h4>Event Dump<hr></h4>\n<p>");
+			eventDump.write("<div>Start Time : <b>"+getTimeStamp(self.confStartTime)+"</b></div>\n");
+			eventDump.write("<div>Install ID : <b>"+str(self.installId)+"</b></div>\n");
+			eventDump.write("<div>Dimdim ID : <b>"+str(self.dimdimId)+"</b></div>\n");
+			eventDump.write("<div>Room ID : <b>"+str(self.roomId)+"</b></div>\n");
+			eventDump.write("<div>Session ID : <b>"+str(self.sessionId)+"</b></div>\n");
+			eventDump.write("<div>Event Count : <b>"+str(len(self.eventList))+"</b></div>\n");
+			eventDump.write("</p>\n");
+			
+		try:
+			evIndex = 0;
+			for ev in self.eventList:
+				try:
+					self.processEvent(evIndex,ev,eventDump, input, output);
+				except:
+					e = sys.exc_info();
+					warning("processEvents","failed to process event : "+str(ev));
+					traceback.print_exception(e[0],e[1],e[2],3,sys.stderr);
+					return False;
+				evIndex = evIndex + 1;
+						
+		finally:
+			if eventDump:
+				eventDump.write("</td></tr></table></body>\n</html>\n");
+				eventDump.close();
+		
+		#apply recording window
+		output2 = self.applyRecordingWindow(output);		
+		return output2;
+	def processEvent(self, evIndex, ev, eventDump, input, output):
+		
+		verbose("processEvent","EVENT : "+str(ev.type)+" "+str(ev.subType)+" "+str(ev.timeStamp)+" "+str(ev.initiatedBy));
+		if eventDump:
+			
+			eventDump.write("<table width=860 valign=top>\n");
+			eventDump.write("<tr height=20><td colspan=2 bgcolor=#cfcfcf><b>Event #"+str(evIndex)+"</b></td></tr>\n");
+			eventDump.write("<tr height=10><td colspan=1 width=100 bgcolor=#efefef align=right><small>Type : </small></td><td colspan=1 align=left><small><b>"+str(ev.type)+"</b></small></td></tr>\n");
+			eventDump.write("<tr height=10><td colspan=1 width=100 bgcolor=#efefef align=right><small>Sub Type : </small></td><td colspan=1 align=left><small><b>"+str(ev.subType)+"</b></small></td></tr>\n");
+			eventDump.write("<tr height=10><td colspan=1 width=100 bgcolor=#efefef align=right><small>Timestamp : </small></td><td colspan=1 align=left><small><b>"+str(ev.timeStamp)+"</b></small></td></tr>\n");
+			eventDump.write("<tr height=10><td colspan=1 width=100 bgcolor=#efefef align=right><small>Initiated By : </small></td><td colspan=1 align=left><small><b>"+str(ev.initiatedBy)+"</b></small></td></tr>\n");
+			eventDump.write("<tr height=10><td colspan=2 bgcolor=#efefef><small>Event Data (Count = <b>"+str(len(ev.eventData))+"</b>) </small></td></tr>\n");
+			
+			for data in ev.eventData:
+				eventDump.write("<tr height=10><td colspan=2><small><b>"+data+"</b> </small></td></tr>\n");
+			eventDump.write("</table> <hr>\n");
+			
+		dataType = ev.type;
+		dataSubType = ev.subType;
+		if ( dataType == "av" ) :
+			if dataSubType == "stream.start":
+				self.processAVStart(ev, input, output);
+			elif dataSubType == "stream.voice":
+				self.processAVVoice(ev, input, output);
+			elif dataSubType == "stream.stop":
+				self.processAVStop(ev, input, output);
+			elif dataSubType == "stream.talkOn":
+				self.processAVMikeOn(ev,input,output);
+			elif dataSubType == "stream.talkOff":
+				self.processAVMikeOff(ev,input,output);
+			elif dataSubType == "stream.handsFreeOn":
+				self.processAVMikeOn(ev,input,output);
+			elif dataSubType == "stream.handsFreeOff":
+				self.processAVMikeOff(ev,input,output);
+		elif ( dataType == "dtp"):
+			if dataSubType == "stream.start":
+				self.processDTPStart(ev, input, output);
+			elif dataSubType == "stream.stop":
+				self.processDTPStop(ev, input, output);
+		elif ( dataType == "ppt"):
+			if dataSubType == "start":
+				self.processPPTStart(ev, input, output);
+			elif dataSubType == "slide":
+				self.processPPTSlide(ev, input, output);
+			elif dataSubType == "stop":
+				self.processPPTStop(ev, input, output);
+		elif ( dataType == "recording"):
+			if dataSubType == "recording.start":
+				self.processRecordingStart(ev, input, output);
+			elif dataSubType == "recording.stop":
+				self.processRecordingStop(ev, input, output);
+		elif ( dataType == "chat"):
+			if dataSubType == "chat.message":
+				self.processChatEvent(ev, output);
+		elif ( dataType == "roster"):
+			if (dataSubType == "roster.joined"):
+				debug("processEvent", " -- roster joined");
+			if (dataSubType == "roster.left"):
+				debug("processEvent", " -- roster left");
+		else:
+			warning("processEvent","Unknown event type : "+dataType);
+				
+	def handleMetadata(self, av, metaTags, input, output):
+		sys.stderr.write("\t\t>>> Stream: "+av.name+" / Meta Tags : "+str(len(metaTags))+"\n");
+		didFirstVoice = False;
+		for tag in metaTags:
+			tagTs = tag.entries.get("eventTimeStamp");
+			type = tag.entries.get("eventType");
+			subType = tag.entries.get("eventSubType");
+			title = tag.entries.get("title");
+			sys.stderr.write("\t\t\t"+str(tagTs)+' : '+tag.tagName+" -> "+str(tag.timeStamp)+" :: "+str(type)+"."+str(subType)+"\n");
+			if type == "av" and subType == "voice":
+				if not didFirstVoice:
+					didFirstVoice = True;
+					av.setAudioStart(tagTs);
+					sys.stderr.write('\t\t\t  ('+str(tag.timeStamp)+') ('+str(tagTs - av.startTime)+')first voice\n');
+			elif type == "av" and subType == "start":
+				av.startTime = tagTs;
+				av.setAudioStart(tagTs);
+				
+			
+			
+			
+	# A/V processing
+	def processAVStart(self,ev, input, output):
+		tbl = ev.getData();
+		streamName = tbl.get("streamName");
+		audioFlag = tbl.get("audio");
+		videoFlag = tbl.get("video");
+		
+		timeStamp = ev.timeStamp;
+		if not streamName:
+			warning("processAV", "stream name not found! skipping "+str(ev));
+			return False;
+		flvName = self.getInputAVFile(streamName);
+		if not os.path.exists (flvName):
+			warning("processAV", "skipping a/v stream "+streamName+". could not find the flv file ["+flvName+"]");
+			return False;
+			
+		avTrack = AVTrack(timeStamp, streamName, flvName);
+		verbose('av',"loading metadata from : "+flvName);
+		metaTags = loadMetaTags(flvName);
+		if not metaTags:
+			fatal('processAV','could not load metadata tags from '+flvName);
+			doErrorExit();
+		else:
+				
+			self.handleMetadata(avTrack,metaTags, input, output);
+		if audioFlag and audioFlag == "true":
+			avTrack.audioFlag = True;
+		if videoFlag and videoFlag == "true":
+			avTrack.videoFlag = True;
+		input.avTracks[streamName] =  avTrack;
+		debug("processAV", ">> A/V Track added for stream : "+streamName);
+		return True;
+		
+	def processAVStop(self,ev, input, output):
+		tbl = ev.getData();
+		streamName = tbl.get("streamName");
+		timeStamp = ev.timeStamp;
+		if not streamName:
+			warning("processAV", "stream name not found! skipping "+str(ev));
+			return False;
+		avTrack = input.avTracks.get(streamName);
+		if not avTrack:
+			verbose("processAV", "stream id : "+streamName+" has been skipped");
+			return False;
+		avTrack.setEndTime(timeStamp);
+		output.avTracks.append(avTrack);
+		input.avTracks.pop(streamName);
+		return True;
+		
+	def processAVMikeOn(self,ev, input, output):
+		tbl = ev.getData();
+		streamName = tbl.get("streamName");
+		timeStamp = ev.timeStamp;
+		if not streamName:
+			warning("processAV", "stream name not found! skipping "+str(ev));
+			return False;
+		avTrack = input.avTracks.get(streamName);
+		if not avTrack:
+			verbose("processAV", "stream id : "+streamName+" has been skipped");
+			return False;
+		else:
+			avTrack.addPushToTalkStart(timeStamp);
+		return True;
+		
+	def processAVMikeOff(self,ev, input, output):
+		tbl = ev.getData();
+		streamName = tbl.get("streamName");
+		timeStamp = ev.timeStamp;
+		if not streamName:
+			warning("processAV", "stream name not found! skipping "+str(ev));
+			return False;
+		avTrack = input.avTracks.get(streamName);
+		if not avTrack:
+			verbose("processAV", "stream id : "+streamName+" has been skipped");
+			return False;
+		else:
+			avTrack.addPushToTalkEnd(timeStamp);
+		return True;
+		
+	def processAVVoice(self, ev, input, output):
+		tbl = ev.getData();
+		streamName = tbl.get("streamName");
+		timeStamp = ev.timeStamp;
+		if not streamName:
+			warning("processAV", "stream name not found! skipping "+str(ev));
+			return False;
+		avTrack = input.avTracks.get(streamName);
+		if not avTrack:
+			verbose("processAV", "stream id : "+streamName+" has been skipped");
+			return False;
+		else:
+			debug("processAV", "Setting audio start time for "+streamName+" to "+str(timeStamp));
+			avTrack.setAudioStart(timeStamp);
+		return True;
+		
+	# PPT processing	
+	def processPPTStart(self, ev, input, output):
+		tbl = ev.getData();
+		timeStamp = ev.timeStamp;
+		docId = tbl.get("presentationId");
+		if not docId:
+			warning("processPPT","ppt doc id not found! skipping "+str(ev));
+			return False;
+		slideCount = tbl.get("numberOfSlides","0");
+		pdfFile = self.getInputPPTFile(docId);
+		if not os.path.exists(pdfFile):
+			warning("processPPT", "skipped PPT with doc id "+docId+" as pdf file "+pdfFile+" could not be found!");
+			return False;
+		slideIndex = tbl.get("slideIndex");
+		input.pptTrack = PPTTrack(timeStamp, docId, slideCount, pdfFile, slideIndex);
+		output.pptTracks.append(input.pptTrack);
+		verbose("processPPT","Added PPT with doc Id : "+docId);
+		return True;
+		
+	def processPPTStop(self, ev, input, output):
+		if not input.pptTrack:
+			warning("processPPT", "no active ppt being processed. skipping "+str(ev));
+			return False;
+		pptTrack = input.pptTrack;
+		tbl = ev.getData();
+		timeStamp = ev.timeStamp;
+		pptTrack.setEndTime(timeStamp);
+		input.pptTrack = None;
+		return True;
+		
+	def processPPTSlide(self, ev, input, output):
+		if not input.pptTrack:
+			warning("processPPT", "no active ppt being processed. skipping "+str(ev));
+			return False;
+		pptTrack = input.pptTrack;
+		tbl = ev.getData();
+		timeStamp = ev.timeStamp;
+		slideIndex = tbl.get("slideIndex");
+		pptTrack.addSlideEvent(slideIndex, timeStamp);
+		return True;
+		
+	#DTP processing
+	def processDTPStart(self, ev, input, output):
+		tbl = ev.getData();
+		timeStamp = ev.timeStamp;
+		streamName = tbl.get("streamName");
+		if not streamName:
+			warning("processDTP", "could not find stream name. skipping "+str(ev));
+			return False;
+		binFile = self.getInputDTPFile(streamName);
+		if not os.path.exists(binFile):
+			warning("processDTP","skipping dtp stream "+streamName+" as dump file "+binFile+" could not be found!");
+			return False;
+		input.dtpTrack = DTPTrack(timeStamp, streamName, binFile);
+		output.dtpTracks.append(input.dtpTrack);
+		return True;
+		
+	def processDTPStop(self, ev, input, output):
+		if not input.dtpTrack:
+			warning("processDTP", "no active dtp being shared. skipping "+str(ev));
+			return False;
+		dtpTrack = input.dtpTrack;
+		timeStamp = ev.timeStamp;
+		dtpTrack.setEndTime(timeStamp);
+		input.dtpTrack = None;
+		
+	# Recording start/stop processing
+	def processRecordingStart(self, ev, input, output):
+		input.startCount = input.startCount+1;
+		notice("processEvent", str(ev.timeStamp)+" -> RECORDING START ("+str(input.startCount)+")");
+		self.recordingStartTime = ev.timeStamp;
+		self.recordingStart = self.recordingStartTime;
+		if not (input.stopCount < input.startCount) :
+			fatal("processEvent","encountered out of turn recording start. (start count = "+str(input.startCount)+") (stop count = "+str(input.stopCount)+")");
+			
+	def processRecordingStop(self, ev, input, output):
+		input.stopCount = input.stopCount+1;
+		notice("processEvent", str(ev.timeStamp)+" -> RECORDING STOP ("+str(input.stopCount)+")");
+		self.recordingStopTime = ev.timeStamp;
+		if not (input.stopCount == input.startCount) :
+			fatal("processEvent","encountered out of turn recording stop. (start count = "+str(input.startCount)+") (stop count = "+str(input.stopCount)+")");
+	
+	# Chat processing
+	def 	processChatEvent(self, ev, output):
+		tbl = ev.getData();
+		msg = tbl.get('messageText');
+		if msg == None:
+			msg = "";
+		chatMsg = ChatMessage(ev.timeStamp, safeB64Decode(ev.initiatedBy), safeB64Decode(msg));
+		output.chatMsgs.append(chatMsg);
+		
+	def generateChatLog(self, output):
+		verbose("generateChatLog", "Generating chat log with "+str(len(output.chatMsgs))+" msgs");
+		chatDir = self.getFinalChatDirPath();
+		if not os.path.exists(chatDir):
+			os.makedirs(chatDir);
+		
+		if not os.path.exists(chatDir):
+			error("generateChatLog","failed to locate chat directory : "+chatDir);
+			return False;
+			
+		chatFile = os.path.join(chatDir,self.sessionId+".html");
+		filePtr = file(chatFile,"w");
+		
+		if not filePtr:
+			error("generateChatLog","failed to generate chat log file : "+chatFile);
+			return False;
+
+		lines = [];
+
+		lines.append("<html><head><title>chat transcript</title>");
+		html1 = """
+		<style>
+		body
+		{
+			bgcolor: #ffffff;
+			color: #1e1e1e;
+			font-size:12px;
+			line-height:15px;
+		}
+		.dimdimChatTimestamp
+		{
+			color: #990000;
+			font-family: Tahoma, Garamond, Helvetica;
+			font-size: 10px;
+		}
+		.dimdimChatSender
+		{
+			color: #333399;
+			font-family: Tahoma, Garamond, Helvetica;
+			font-weight: bold;
+		}
+
+		.dimdimChatreceiver
+		{
+			color: #666666;
+			font-family: Tahoma, Garamond, Helvetica;
+			font-weight: bold;
+		}
+		.dimdimChatText_sender
+		{
+			color: #000000;
+			font-family: Tahoma, Garamond, Helvetica;
+			font-weight: normal;
+		/*	font-style: italic; */
+		}
+
+		.dimdimChatText_receiver
+		{
+			color: #3e3e3e;
+			font-family: Tahoma, Garamond, Helvetica;
+			font-weight: normal;
+		/*	font-style: italic; */
+		}
+
+		.divider
+		{
+			height:1px;
+			font-size:1px;
+			background-color:#666666;
+			margin:5px 0px 5px 0px;
+		}
+
+		#chat
+		{
+			width:100%;
+		}
+		</style>
+		""";
+		lines.append(html1);
+		lines.append("</head><body>");
+		lines.append('<div class="chat">');
+		chatCount = 0;
+		chatTracks = output.chatMsgs;
+		for track in chatTracks:
+			chatCount = chatCount + 1;
+			lines.append(track.toHTML());
+		if chatCount == 0:
+			lines.append("<b>No chat messages.</b>");
+		lines.append("</div></body></html>");
+		filePtr.writelines(lines);
+		filePtr.close();
+		notice("generateChatLog",">>>> Chat Log generated at : "+chatFile);
+		return True;
+		
+	def generateFLV(self, output):
+		global g_flags;
+		avCount = len(output.avTracks);
+		pptCount = len(output.pptTracks);
+		dtpCount = len(output.dtpTracks);
+		debug("generateFLV","AV = "+str(avCount)+" / PPT = "+str(pptCount)+" / DTP = "+str(dtpCount));
+		if avCount > 0:
+			g_flags.hasAudio = True;
+			g_flags.hasFLV = True;
+		if pptCount == 0 and dtpCount == 0:
+			if avCount == 0:
+				g_flags.hasFLV = False;
+				warning("generateFLV","recording window has no valid media tracks");
+			else:
+				info("generateFLV","A/V Monologue detected!");
+				g_flags.avOnly = True;
+				g_flags.hasFLV = True;
+		else:
+			g_flags.hasFLV = True;
+			g_flags.avOnly = False;
+			if avCount == 0:
+				g_flags.hasAudio = False;
+			else:
+				g_flags.hasAudio = True;
+		debug("generateFLV","Output Flags -- [ hasFLV="+str(g_flags.hasFLV)+" ] [ hasAudio="+str(g_flags.hasAudio)+" ] [ audioOnly="+str(g_flags.avOnly)+"]");
+		
+		audioTable = {};
+		videoTable = {};
+		sys.stderr.write(">>> separating audio and video...\n");
+		# separate audio and video
+		self.separateAudioVideo(output.avTracks,audioTable, videoTable);
+		verbose("generateFLV","Audio Streams : "+str(audioTable));
+		verbose("generateFLV","Video Streams : "+str(videoTable));
+		
+		# calculate first video offset
+		leaderLen = 0;
+		if not g_flags.avOnly:
+			testTimeStamp = 0;
+			if (dtpCount > 0):
+				dtp = output.dtpTracks[0];
+				testTimeStamp = dtp.startTime;
+			if (pptCount > 0):
+				ppt = output.pptTracks[0];
+				if(testTimeStamp == 0):
+					testTimeStamp = ppt.startTime;
+				elif testTimeStamp > ppt.startTime:
+					testTimeStamp = ppt.startTime;
+			verbose("generateFLV", "First Video Starts at "+str(testTimeStamp));
+			if (testTimeStamp > 0):
+				leaderLen = testTimeStamp - self.recordingStartTime;
+				debug("generateFLV","Leader FLV Length : "+str(leaderLen)+" ms!");
+			else:
+				debug("generateFLV","Leader FLV is ZERO length");
+		
+		
+		leaderFLV = None;
+		audioFLV = None;
+		videoFLV = None;
+		pptFLV = None;
+		dtpFLV = None;
+		mergedFLV = None;
+		finalFLV = None;
+		if g_flags.hasAudio:
+			sys.stderr.write(">>> generating audio FLV...\n");
+			audioFLV = self.generateAudioFLV(output.avTracks, audioTable);
+			notice('genFLV','All Audio Mixed To : '+str(audioFLV));
+			g_flags.hasFLV=True;
+			
+		if g_flags.avOnly:
+			sys.stderr.write(">>> generating video FLV...\n");
+			videoFLV = self.generateVideoFLV(output.avTracks, videoTable);
+			if not audioFLV  and not videoFLV:
+				error("generateFLV","Failed to generate Audio and Video FLV files");
+				g_flags.hasFLV = False;
+				return None;
+			elif audioFLV and not videoFLV:
+				mergedFLV = audioFLV;
+			elif videoFLV and not audioFLV:
+				mergedFLV = videoFLV;
+			elif videoFLV and audioFLV:
+				mergedFLV = os.path.join(self.getTmpPath(),"conf-nometa.flv");
+				mergeResult = self.mergeFLVTo(videoFLV, audioFLV,mergedFLV);
+				if not mergeResult or not os.path.exists(mergedFLV):
+					error("generateFLV","Failed to merge audio and video tracks");
+					g_flags.hasFLV = False;
+					mergedFLV = None;
+		else:
+			
+			flvList = [];
+			if leaderLen > 0:
+				
+				sys.stderr.write(">>> generating leader FLV...\n");
+				leaderFLV = self.generateLeaderFLV(leaderLen);
+				if leaderFLV and os.path.exists(leaderFLV):
+					flvList.append(leaderFLV);	
+			if dtpCount > 0:
+				
+				sys.stderr.write(">>> generating DTP FLV...\n");
+				dtpFLV = self.generateDTPFLV(output.dtpTracks);
+				if dtpFLV and os.path.exists(dtpFLV):
+					flvList.append(dtpFLV);
+			if pptCount > 0:
+				
+				sys.stderr.write(">>> generating PPT FLV...\n");
+				pptFLV = self.generatePPTFLV(output.pptTracks);
+				if pptFLV and os.path.exists(pptFLV):
+					flvList.append(pptFLV);
+			
+			videoFLV = os.path.join(self.getTmpPath(),"conf-video.flv");
+			mergeResult = self.mergeFLVList(flvList,videoFLV);
+			if not mergeResult or not os.path.exists(videoFLV):
+				error("generateFLV","Failed to merge the video media into single FLV");
+				videoFLV = None;
+			
+			# merge the audio video components
+			if not audioFLV  and not videoFLV:
+				error("generateFLV","Failed to generate Audio and Video FLV files");
+				g_flags.hasFLV = False;
+				return None;
+			elif audioFLV and not videoFLV:
+				mergedFLV = audioFLV;
+			elif videoFLV and not audioFLV:
+				mergedFLV = videoFLV;
+			elif videoFLV and audioFLV:
+				mergedFLV = os.path.join(self.getTmpPath(),"conf-nometa.flv");
+				mergeResult = self.mergeFLVTo(videoFLV, audioFLV,mergedFLV);
+				if not mergeResult or not os.path.exists(mergedFLV):
+					error("generateFLV","Failed to merge audio and video tracks");
+					g_flags.hasFLV = False;
+					mergedFLV = None;
+		if mergedFLV and os.path.exists(mergedFLV):
+			flvDir = self.getFinalFLVDirPath();
+			if not os.path.exists(flvDir):
+				os.makedirs(flvDir);
+			finalFLV = os.path.join(flvDir,self.sessionId+".flv");
+			verbose("generateFLV","Trying to generate final FLV : "+finalFLV);
+			finalResult = self.addMetadata(mergedFLV, finalFLV);
+			if not finalResult or not os.path.exists(finalFLV):
+				error("generateFLV", "Failed to apply metadata to conference flv");
+				finalFLV = None;
+			else:
+				notice("generateFLV",">>>>> CONFERENCE FLV GENERATED : "+finalFLV);
+				
+		return finalFLV;
+	
+	# adjust the tracks that fall within the recording window
+	def applyRecordingWindow(self, outputRaw):
+		outputRet = RADOutput();
+		
+		avCount = len(outputRaw.avTracks);
+		pptCount = len(outputRaw.pptTracks);
+		dtpCount = len(outputRaw.dtpTracks);
+		debug("createArchive","RAW OUTPUT STATS => AV = "+str(avCount)+" / PPT = "+str(pptCount)+" / DTP = "+str(dtpCount));
+		notice("applyWindow","Applying Recording Window ("+str(self.recordingStartTime)+" <-> "+str(self.recordingStopTime)+")");
+		#copy all the chat messages
+		for chat in outputRaw.chatMsgs:
+			outputRet.chatMsgs.append(chat);
+		
+		#copy all the a/v tracks that match recording window
+		for av in outputRaw.avTracks:
+			verbose("applyWindow", "av track : "+av.name);
+			if av.containsRecWindow(self.recordingStartTime, self.recordingStopTime):
+				if self.recordingStartTime > av.getAudioStart():
+					self.recordingStartTime = av.getAudioStart();
+					notice("applyWindow","Recording Start Updated to : "+str(self.recordingStartTime));
+				outputRet.avTracks.append(av);
+		# update the timestamps
+		for av in outputRet.avTracks:
+				av.offset = av.getAudioStart() - self.recordingStartTime;
+		
+		#copy all the ppt tracks that match recording window
+		for ppt in outputRaw.pptTracks:
+			verbose("applyWindow", "ppt track : "+ppt.name);
+			if ppt.isInRange(self.recordingStartTime, self.recordingStopTime):
+				ppt.offset = ppt.startTime- self.recordingStartTime;
+				outputRet.pptTracks.append(ppt);
+				
+		#copy all the dtp tracks that match recording window
+		for dtp in outputRaw.dtpTracks:
+			if dtp.isInRange(self.recordingStartTime, self.recordingStopTime):
+				dtp.offset = dtp.startTime - self.recordingStartTime;
+				outputRet.dtpTracks.append(dtp);
+				
+		return outputRet;
+	# take all the tracks in the a/v streams directory and separate them into
+	# audio and video streams.
+	def separateAudioVideo(self, avTracks, audioTable, videoTable):
+		for av in avTracks:
+			
+			inputFLV = av.flvPath;
+			streamName = av.name;
+			outputs = self.splitAVFile(inputFLV);
+			if outputs:
+				audioFLV = outputs[0];
+				videoFLV = outputs[1];
+				if av.audioFlag:			
+					audioTable[streamName] = audioFLV;
+					# now do the backset magic
+					firstAudioOffset = getFirstAudioTagOffset(audioFLV);
+					sys.stderr.write(">>>> Stream Name : "+streamName+" / First audio tag offset : "+str(firstAudioOffset)+"\n");
+					
+				if av.videoFlag:
+					videoTable[streamName] = videoFLV;
+					
+	# mix and merge all audio tracks into a single FLV
+	def generateAudioFLV(self, avTracks, audioTable):
+		debug("av","generating Audio FLV from "+str(len(avTracks))+" Tracks!");
+		lastFLV = None;
+		tmpFLV = None;
+		
+		# calculate segments
+		segments = self.calculateSegments(avTracks);
+		
+		if segments and len(segments) > 0:
+			verbose('av','segment count : '+str(len(segments)));
+			segIndex = 0;
+			# for each segment generate seg flv
+			for seg in segments:
+				segIndex = segIndex + 1;
+				verbose('av',' processing segment #'+str(segIndex)+': '+str(seg));
+				# generate segment FLV
+				segFLV = self.getSegmentFLV(seg);
+				if segFLV and os.path.exists(segFLV):
+					if os.path.exists(segFLV):
+						if not lastFLV:
+							lastFLV = segFLV;
+						else:
+							tmpFLV = os.path.join(self.getTmpPath(),"segment-"+str(segIndex)+".flv");
+							if self.mergeFLVTo(lastFLV, segFLV,tmpFLV):
+								lastFLV = tmpFLV;
+				else:
+					warning('av','Failed to generate segment#'+str(segIndex)+' FLV');
+		else:
+			warning('av','found no segments for audio file generation');
+			lastFLV = None;
+		
+		info('av','Final Audio FLV for all segments written to : '+str(lastFLV));
+		finalFLV = os.path.join(self.getTmpPath(),'all-audio.flv');
+		
+		if not lastFLV:
+			error('av','Final audio flv could not be produced');
+			return None;
+		shutil.copyfile(lastFLV,finalFLV);
+		# return final FLV	
+		if os.path.exists(finalFLV):
+			return finalFLV;
+		else:
+			return None;
+	def calculateSegments(self, avTracks):
+		segments = [];
+		timeStamps = [];
+		for st in avTracks:
+			verbose('segments','Track : '+st.name+' ('+str(st.startTime)+'-'+str(st.getAudioStart())+'-'+str(st.endTime)+') - FLV : '+st.audioFile);
+			addUnique(timeStamps, st.getAudioStart());
+			addUnique(timeStamps,st.endTime);
+		timeStamps.sort();
+		verbose('segments','(subtrack) Sorted Segment Timestamps : '+str(timeStamps));
+		#segInfo.write("-- timestamps : "+str(timeStamps)+"\n");
+		oldTs = None;
+		for ts in timeStamps:
+			if not oldTs:
+				oldTs = ts;
+			else:
+				seg = AVSegment(oldTs, ts);
+				for tck in avTracks:
+					if tck.containsSegment(oldTs, ts):
+						seg.tracks.append(tck);
+				oldTs = ts;
+				if len(seg.tracks) > 0:
+					segments.append(seg);
+		return segments;
+	def getSegmentFLV(self, seg):
+		verbose('getSegFLV','\t $$$$$ Generating segment FLV for '+str(seg));
+		verbose('getSegFLV','\t segment   start : '+str(seg.startTime));
+		verbose('getSegFLV','\t recording start : '+str(self.recordingStartTime));
+		segOffset = seg.startTime - self.recordingStartTime;
+		verbose('getSegFLV','\t segment offset : '+str(segOffset));
+		segFLVRoot = os.path.join(self.getTmpPath(),'segment-'+str(seg.startTime)+'-'+str(seg.endTime));
+		segFLVNoOffset = segFLVRoot + "-final-no_offset.flv";
+		segFLV = segFLVRoot + "-final.flv";
+		segWAV = segFLVRoot+"-final.wav";
+		# if a segment has only one track
+		# we don't need to mix it
+		# just extract the flv data for the segment
+		# offset it and voila!
+		if(len(seg.tracks) == 1):
+			track = seg.tracks[0];
+			flvFile = track.audioFile;
+			flvName = segFLVRoot +"-tmp.flv";
+			flvStart = seg.startTime - track.getAudioStart();
+			flvEnd = seg.endTime - track.getAudioStart();
+			verbose('getSegFLV','>>> extracting from '+flvFile+' ('+str(flvStart)+'-'+str(flvEnd)+') to '+flvName+'...');
+			if self.extractFLV(flvFile, flvStart, flvEnd, flvName):
+				self.offsetFLV(flvName, segOffset, segFLV);
+			if os.path.exists(segFLV):
+				return segFLV;
+			else:
+				return None;
+				
+		#process multiple tracks
+		#extract each track
+		#convert to wav
+		#mix the waves
+		#convert wav to flv
+		#offset the flv
+		tmpFLV = None;
+		lastFLV = None;
+		flvIndex = 0;
+		wavFiles = [];
+		
+		for track in seg.tracks:
+			
+			flvIndex = flvIndex + 1;
+			flvFile = track.audioFile;
+			flvName = segFLVRoot+"-tmp-"+str(flvIndex)+".flv";
+			flvStart = seg.startTime - track.getAudioStart();
+			flvEnd = seg.endTime - track.getAudioStart();
+			verbose('getSegFLV','>>> flv track #'+str(flvIndex)+' -> extract : '+flvFile+' ('+str(flvStart)+'-'+str(flvEnd)+') to '+flvName+'...');
+			if self.extractFLV(flvFile, flvStart, flvEnd, flvName):
+				wavFile = flvName +".wav";
+				if self.flv2wav(flvName, wavFile):
+					wavFiles.append(wavFile);
+		verbose('getSegFLV',"\tInput Track Count : "+str(len(seg.tracks)));
+		debug('getSegFLV', "\tIntermediate WAV Count : "+str( len(wavFiles)));
+		if self.mixWaves(wavFiles, segWAV):
+			if self.wav2flv(segWAV,segFLVNoOffset):
+				verbose('getSegFLV','Produced Seg FLV (No Offset) :'+segFLVNoOffset);
+				if self.offsetFLV(segFLVNoOffset, segOffset, segFLV):
+					info('getSegFLV','\t #### '+str(seg)+' Mixed To : '+segFLV);
+					return segFLV;
+				else:
+					error('getSegFLV',str(seg)+' FLV could not be produced! offset failed ('+str(segOffset)+')');
+		else:
+			warning('getSegFLV','Segment '+str(seg)+' mixing failed');
+		return None;
+	
+			
+	# mix and merge all video tracks from all A/V tracks
+	def generateVideoFLV(self, avTracks, videoTable):
+		debug("av","generating Video FLV from "+str(len(avTracks))+" Tracks!");
+		lastFLV = None;
+		tmpFLV = None;
+		trackIndex = 0;
+		
+		for av in avTracks:
+			trackIndex = trackIndex+1;
+			verbose('av','AV Track #'+str(trackIndex)+' (stream='+av.name+') (flv:'+av.flvPath+')');
+			if av.videoFlag:
+				inputFLV = videoTable.get(av.name);
+				if inputFLV:
+						#process the video file
+						tmpFLV = inputFLV+"-offset.flv";
+						avOffset = 0;
+						if av.startTime > self.recordingStart:
+							avOffset = av.startTime - self.recordingStart;
+						sys.stderr.write(">>> VFLV : "+inputFLV +" \n AV Start : "+str(av.startTime)+" \n Rec Start : " +str(self.recordingStart)+"\n Offset : "+str(avOffset)+"\n");
+						if self.offsetFLV(inputFLV,avOffset,tmpFLV):
+							if not lastFLV:
+								lastFLV = tmpFLV;
+							else:
+								lastFLV = self.mergeFLV(lastFLV,tmpFLV);
+				else:
+					warning('av','did not find separated video flv for '+av.name);
+			else:
+				warning('av','No video track detected for stream : '+av.name);	
+			
+		if lastFLV and os.path.exists(lastFLV):
+			return lastFLV;
+		else:
+			return None;
+
+
+	# convert and merge all ppt tracks into one FLV
+	def generatePPTFLV(self, pptTracks):
+		debug("info","generating PPT FLV from "+str(len(pptTracks))+" Tracks!");
+		lastFLV = None;
+		tmpFLV = None;
+		trackIndex = 0;
+		for ppt in pptTracks:
+			trackIndex = trackIndex+1;
+			verbose('ppt', 'PPT Track '+str(trackIndex)+' (doc id : '+str(ppt.getDocId())+') (starttime : '+str(ppt.startTime)+')');
+			pdfFile = ppt.pdfPath;
+			pptDir = self.getPPTPath();
+			verbose('ppt','\tPDF Path : '+pdfFile);
+			verbose('ppt','\tOffset (ms) : '+str(ppt.offset));
+			pptFLV = self.createPPTFLV(ppt.offset, ppt.getDocId(), pptDir, ppt.slideCount, ppt.toSlideSequence(),ppt.duration);
+			if os.path.exists(pptFLV):
+				if not lastFLV:
+					lastFLV = pptFLV;
+				else:
+					tmpFLV = self.mergeFLV(lastFLV, pptFLV);
+					if not tmpFLV:
+						lastFLV = tmpFLV;
+		if lastFLV and os.path.exists(lastFLV):
+			return lastFLV;
+		else:
+			return None;
+
+	# convert and merge all DTP tracks into one FLV
+	def generateDTPFLV(self, dtpTracks):
+		debug("info","generating DTP FLV from "+str(len(dtpTracks))+" Tracks!");
+		lastDTPFile= None;
+		trackIndex = 0;
+		for dtp in dtpTracks:
+			trackIndex = trackIndex+1;
+			verbose('dtp','DTP Track #'+str(trackIndex)+' (stream='+dtp.name+')');
+			streamName = dtp.name;
+			binFile = dtp.binPath;
+			
+			dtpFlv = os.path.join(self.getOutboxPath(),(streamName+".flv"));
+			dtpOffsetFLV = dtpFlv+"-offset.flv";
+			
+			if os.path.exists(binFile):
+				self.dtp2flv(binFile, streamName,dtp.duration, self.getMailboxRootDir());
+				if os.path.exists(dtpFlv):
+					self.offsetFLV(dtpFlv,dtp.startTime - self.recordingStart, dtpOffsetFLV);
+					if os.path.exists(dtpOffsetFLV):
+						if not lastDTPFile:
+							lastDTPFile = dtpOffsetFLV;
+						else:
+							lastDTPFile = self.mergeFLV(lastDTPFile, dtpOffsetFLV);
+			
+			
+		if lastDTPFile and os.path.exists(lastDTPFile):
+			return lastDTPFile;
+		else:
+			return None;
+
+	# create and merge all filler  tracks into one FLV
+	# a filler is basically when the collaboration workspace
+	# is not showing either ppt or pdf
+	def generateFillerFLV(self, fillerTracks):
+		return None;
+
+	# generate the leader FLV if ppt or pdf flv starts a bit
+	# after recording.start
+	def generateLeaderFLV(self, flvLenMs, flvOut=None, flvOffset=0):
+		verbose('leaderFLV', "Creating default video of duration "+str(flvLenMs)+"ms with root offset : "+str(flvOffset)+" ms");
+		outFile = flvOut;
+		if not outFile:
+			outFile = os.path.join(self.getTmpPath(),"default-video.flv");
+		
+		cmdName = "default";
+		args = [];
+		args.append(self.getFLVToolExe()),
+		args.append(cmdName);
+		args.append(str(flvLenMs));
+		args.append(outFile);
+		self.launchTool(args);
+		if os.path.exists(outFile):
+			return outFile;
+		else:
+			return None;
+	# -----------------------------------------------------------------
+	#	RAD Tool wrapper methods
+	# -----------------------------------------------------------------
+	def createPPTFLV(self, startOffset, docId, pptDir, slideCount, slideSequence,duration):
+		verbose("createPPTFLV", 'creating a ppt FLV for : '+docId);
+		verbose("createPPTFLV", 'start offset (ms) :'+str(startOffset));
+		verbose("createPPTFLV",'slide count : '+str(slideCount));
+		outputDir = self.getTmpPath();
+		self.getPPTSlideImages(docId,"bmp",pptDir,outputDir);
+		pptFlv = os.path.join(self.getTmpPath(),docId+".flv");
+		pdfFile = self.getInputPPTFile(docId);
+		if os.path.exists(pdfFile):
+			self.ppt2flv(docId, outputDir, "bmp",slideCount, slideSequence,pptFlv, duration, self.getMailboxRootDir());
+		else:
+			warning("createPPTFLV","could not find pdf file ["+pdfFile+"] for doc id ("+docId+")");
+			return None;
+			
+		finalFlv = os.path.join(self.getTmpPath(),docId+"-"+getTimeStamp()+"-offset.flv");
+		if os.path.exists(pptFlv):
+			self.offsetFLV(pptFlv,startOffset,finalFlv);
+		else:
+			return None;
+			
+		debug("createPPTFLV",'output the ppt flv to : '+finalFlv+' offset (ms) : '+str(startOffset));
+		if os.path.exists(finalFlv):
+			return finalFlv;
+		else:
+			return None;
+
+	def getPPTSlideImages(self, docId, slideSuffix, pptDir, outputDir):
+
+		verbose("ppt2bmp", 'converting ppt to pdf ...');
+		pdfFile = self.getInputPPTFile(docId);
+		imgFile = os.path.join(outputDir,docId+"."+slideSuffix);
+		args = [];
+		args.append("convert");
+		args.append("-scale");
+		args.append("640X480");
+		args.append(pdfFile);
+		args.append(imgFile);
+		self.launchTool(args);
+		debug("ppt2bmp", 'converted ppt to bmp and dumped to directory : '+outputDir);
+
+	def ppt2flv(self, docId, slideDir, slideSuffix, slideCount, slideSequence, outfile,duration,mboxRootDir):
+
+		verbose("ppt2flv", 'converting ppt slides to flv : '+docId);
+		cmdName = 'ppt2flv';
+		args = [];
+		args.append(self.getFLVToolExe());
+		args.append(cmdName);
+		args.append(docId);
+		args.append(slideDir);
+		args.append(slideSuffix);
+		args.append(str(slideCount));
+		args.append(slideSequence);
+		args.append(outfile);
+		args.append("640");
+		args.append("480");
+		args.append(str(duration));
+		args.append(mboxRootDir);
+		self.launchTool(args);
+		if os.path.exists(outfile):
+			return outfile;
+		else:
+			return None;
+
+	def dtp2flv(self, binFile, dtpStreamName, duration, mboxRootDir):
+
+		verbose("dtp2flv", 'converting dtp dump : '+binFile);
+		cmdName = 'dtp2flv';
+		args = [];
+		args.append(self.getFLVToolExe());
+		args.append(cmdName);
+		args.append(binFile);
+		args.append(self.confKey);
+		args.append(dtpStreamName);
+		args.append("640");
+		args.append("480");
+		args.append(str(duration));
+		args.append(mboxRootDir);
+		self.launchTool(args);
+		outFile = os.path.join(self.getOutboxPath(),dtpStreamName+".flv");
+		if os.path.exists(outFile):
+			return outFile;
+		else:
+			return None;
+
+	def splitAVFile(self, avFileName):
+
+		verbose('splitFLV', "Splitting av file : "+avFileName);
+		outFile1 = avFileName +".audio.flv";
+		outFile2 = avFileName +".video.flv";
+		cmdName = "split";
+		args = [];
+		args.append(self.getFLVToolExe()),
+		args.append(cmdName);
+		args.append(avFileName);
+		self.launchTool(args);
+		if os.path.exists(outFile1) and os.path.exists(outFile2):
+			return [outFile1,outFile2];
+		else:
+			return None;
+
+	def offsetFLV(self, flv, offsetMs, flvOut):
+
+		verbose('offsetFLV', "offsetting flv file "+flv+" by "+str(offsetMs)+" ms");
+		cmdName = "offset";
+		args = [];
+		args.append(self.getFLVToolExe()),
+		args.append(cmdName);
+		args.append(flv);
+		args.append(str(offsetMs));
+		args.append(flvOut);
+		self.launchTool(args);
+		if os.path.exists(flvOut):
+			return flvOut;
+		else:
+			return None;
+
+	def mergeFLV(self, flv1, flv2):
+
+		verbose('mergeFLV', "Merging "+flv1+" and "+flv2);
+		flvOut = flv1 + "-merged.flv";
+		if self.mergeFLVTo(flv1,flv2,flvOut):
+			return flvOut;
+		else:
+			return None;
+
+
+	def addMetadata(self, flv, flvOut):
+
+		verbose('addMetadata', "Adding metadata to : "+flv+" and writing : "+flvOut);
+		cmdName = "addmetadata";
+		args = [];
+		args.append(self.getFLVToolExe()),
+		args.append(cmdName);
+		args.append(flv);
+		args.append(flvOut);
+		self.launchTool(args);
+		if flvOut and os.path.exists(flvOut):
+			return flvOut;
+		else:
+			return None;
+		
+	# merge two flv's into a third flv at flvOut
+	def mergeFLVTo(self, flv1, flv2, flvOut):
+		verbose("mergeFLV", "Merging "+flv1+" and "+flv2+" to "+flvOut);
+		cmdName = "merge";
+		args = [];
+		args.append(self.getFLVToolExe()),
+		args.append(cmdName);
+		args.append(flv1);
+		args.append(flv2);
+		args.append(flvOut);
+		self.launchTool(args);
+		if flvOut and os.path.exists(flvOut):
+			return flvOut;
+		else:
+			return None;
+    
+    
+	# merge a list of FLV's to flvOut
+	def mergeFLVList(self, flvs, flvOut):
+		if len(flvs) == 1:
+			verbose("mergeFLVList","Single flv -> "+str(flvs[0])+ " to "+str(flvOut));
+			shutil.copyfile(flvs[0],flvOut);
+		elif len(flvs) == 2:
+			return self.mergeFLVTo(flvs[0], flvs[1], flvOut);
+		else:
+			tmpFLV=None;
+			flvIndex = 0;
+			
+			for flv in flvs:
+				flvIndex = flvIndex+1;
+				if not tmpFLV:
+					tmpFLV = flv;
+				else:
+					tmpFLV2 = flvOut +".merged."+str(flvIndex)+".flv";
+					result = self.mergeFLVTo(tmpFLV, flv, tmpFLV2);
+					if result:
+						tmpFLV = tmpFLV2;
+						tmpFLV2 = None;
+			if tmpFLV and os.path.exists(tmpFLV):
+				shutil.copyfile(tmpFLV,flvOut);
+		if flvOut and os.path.exists(flvOut):
+			return flvOut;
+		else:
+			return None;
+	
+	
+	def extractFLV(self, flvIn, start, end, flvOut):
+		args = [];
+		cmdName = "extract";
+		args.append(self.getFLVToolExe());
+		args.append(cmdName);
+		args.append(flvIn);
+		args.append(str(start));
+		args.append(str(end));
+		args.append(flvOut);
+		self.launchTool(args);
+		return os.path.exists(flvOut);
+	
+	def flv2wav(self, flvFile, wavFile):
+		args = [];
+		args.append(self.getFFMPEGExe());
+		args.append('-i');
+		args.append(flvFile);
+		args.append('-ar');
+                args.append('44100');
+                args.append('-ab');
+                args.append('64');
+                args.append('-ac');
+                args.append('1');
+		args.append(wavFile);
+		
+		#sys.stderr.write('flv2wav '+str(args)+"\n");
+		self.launchTool(args);
+		return os.path.exists(wavFile);
+		
+	def wav2flv(self, wavFile, flvFile):
+		args = [];
+    		args.append(self.getFFMPEGExe());
+    		args.append ('-i');
+    		args.append (wavFile);
+    		args.append('-ar');
+    		args.append('44100');
+    		args.append('-ab');
+    		args.append('64');
+    		args.append('-ac');
+    		args.append('1');
+		args.append (flvFile);
+		self.launchTool(args);
+		return os.path.exists(flvFile);
+    
+	def mixWaves(self, wavFiles, mixedWavFile):
+		if not wavFiles or len(wavFiles) == 0:
+			return False;
+		elif len(wavFiles) == 1:
+			shutil.copyfile(wavFiles[0], mixedWavFile);
+		else:
+			args = [];
+			args.append(self.getSoXExe());
+			args.append("-m");
+			for wavFile in wavFiles:
+				args.append(wavFile);
+			args.append(mixedWavFile);
+			#print str(args);
+			self.launchTool(args);
+
+		return os.path.exists(mixedWavFile);
+
+	# launch a process and get its return code
+	def launchTool(self, args):
+		return runCmd(args);	
+		
+	def delTmpDirContents(self):
+		# Delete everything reachable from the directory named in 'top',
+		# assuming there are no symbolic links.
+		# CAUTION:  This is dangerous!  For example, if top == '/', it
+		# could delete all your disk files.
+		top = self.getTmpPath();
+		for root, dirs, files in os.walk(top, topdown=False):
+		    for name in files:
+		        os.remove(os.path.join(root, name))
+		    for name in dirs:
+		        os.rmdir(os.path.join(root, name))
+
+
+		
+def main():
+	global g_config;
+	global g_logLevel;
+	global g_flags;
+	
+	g_flags = Flags();
+	g_flags.enableEventDump = True;
+	g_logLevel = LL_INFO;
+	logFileName = os.path.join(os.path.dirname(os.path.abspath(__file__)),"recording.log");
+	
+	if len(sys.argv) < 3:
+		printUsage();
+		doErrorExit();
+	else:
+		g_config = Config(sys.argv[1], sys.argv[2]);
+		sys.stderr.write("Opening log file : "+logFileName+"\n");
+		openLog(logFileName);
+		if not os.path.exists(g_config.mbox):
+			fatal("main","invalid mailbox root specified : "+g_config.mbox);
+		if not os.path.exists(g_config.rad):
+			fatal("main","invalid rad tools dir specified : "+g_config.rad);
+		else:
+			notice("main","mbox root : "+g_config.mbox);
+			notice("main","rad tools dir : "+g_config.rad);
+		if len(sys.argv) == 3:
+			pid = os.fork();
+			if pid == 0:
+				sys.exit();
+			else:
+				notice("main",'spawned background process : '+str(pid));
+				
+	# start the rad processing here
+	# -------------------------------------------------------------------------------------------------------------------
+	# BEGIN CONF DETAILS BLOCK
+	# -------------------------------------------------------------------------------------------------------------------
+
+	# this is the basic conference data
+	dimdimId = "QUALIFIED_DIMDIM_ID";
+	roomId = "_default";
+	sessionId = "MEETING_ID";
+	confDetails = ConfDetails(dimdimId, roomId, sessionId);
+	# ----------------------------------------------
+	#   insert additional conf vars here
+	# ----------------------------------------------
+	confDetails.confKey = "DIMDIM_ID";
+	confDetails.confStartTime = START_TIME; # conf start time in UTC ms
+	# -------------------------------------------------------------------------------------------------------------------
+	# 	END CONF DETAILS BLOCK
+	# -------------------------------------------------------------------------------------------------------------------
+	# -------------------------------------------------------------------------------------------------
+	# ----------------------------- EVENT LIST BEGINS----------------------------------
+	# --------------------------------------------------------------------------------------------------

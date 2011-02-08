@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+		http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+		version="2.4">
+
+    <display-name>Conference Console</display-name>
+
+    <filter>
+        <filter-name>webwork</filter-name>
+        <filter-class>com.opensymphony.webwork.dispatcher.FilterDispatcher</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>webwork</filter-name>
+        <url-pattern>/*</url-pattern>
+		<exclude-pattern>*GetEvents</exclude-pattern> 
+    </filter-mapping>
+
+ <filter>
+   <filter-name>GWTCacheFilter</filter-name>
+   <filter-class>asquare.gwt.tk.server.GWTCacheFilter</filter-class>
+   <description>Enforces proper caching of GWT script files</description>
+ </filter>
+ 
+ <filter-mapping>
+   <filter-name>GWTCacheFilter</filter-name>
+   <url-pattern>*.html</url-pattern>
+ </filter-mapping>
+  
+ 
+     <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>com.dimdim.conference.application.handler.ConferenceHttpSessionListener</listener-class>
+    </listener>
+
+    <!-- START SNIPPET: compatibility
+    <servlet>
+        <servlet-name>JspSupportServlet</servlet-name>
+        <servlet-class>com.opensymphony.webwork.views.JspSupportServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>com.opensymphony.webwork.dispatcher.ServletDispatcher</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.action</url-pattern>
+    </servlet-mapping>
+    END SNIPPET: compatibility -->
+
+	<servlet>
+		<servlet-name>GetEvents</servlet-name>
+		<servlet-class>com.dimdim.conference.action.ajax.GetEventsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetEvents</servlet-name>
+		<url-pattern>/GetEvents</url-pattern>
+	</servlet-mapping>
+    <servlet>
+        <servlet-name>DimdimInitServlet</servlet-name>
+        <servlet-class>com.dimdim.conference.application.core.DimdimInitServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+	<!-- The Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>home.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

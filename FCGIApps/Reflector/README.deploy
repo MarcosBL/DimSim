@@ -1,0 +1,37 @@
+dimdim reflector 32 bit binary pack
+drop date: 12 Mar 2008 1122 Eastern Time
+------------------------------------------
+
+no environment setting needed.
+
+only prerequisite is an nginx distribution (e.g. at /usr/local/nginx). The FCGI and corona libs are bundled with the distro and shell scripts use relative path to look them up.
+
+stop nginx if running and the reflector (Earlier install)
+
+untar this tarball. It shall create a directory called Reflector/
+
+copy Reflector/etc/scripts/nginx.conf and Reflector/etc/scripts/fastcgi_params to NGINX conf/ directory
+
+move contents of etc/htdocs/ to NGINX html/ directory.
+
+restart nginx
+
+from the Reflector directory use ./reflector_start.sh to start the reflector processes and watcher
+
+./reflector_check.sh to check the process status
+
+./reflector_stop.sh stops the processes and cleans up pid files
+
+FIXES / NEW FEATURES
+---------------------
+
+all external lib dependencies moved inside the directory
+spawn fcgi pre built 32 bit version bundled
+shell scripts cleaned up to use relative path for libs
+reflector serves the swf viewer html from template files
+
+
+TODO
+----------
+rc.d / init.d integration is under progress and should be available next drop
+

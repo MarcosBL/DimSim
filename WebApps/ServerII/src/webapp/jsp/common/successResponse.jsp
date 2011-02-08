@@ -1,0 +1,1 @@
+<% response.addHeader("Cache-Control","no-cache, nostore, must-revalidate"); %><%@ taglib prefix="ww" uri="/webwork" %><ww:property escape="false" value="resultEvent.jsonBuffer"/>

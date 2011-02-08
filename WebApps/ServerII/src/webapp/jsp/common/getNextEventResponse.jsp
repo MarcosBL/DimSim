@@ -1,0 +1,1 @@
+<%@ page import="java.util.Date" %><% response.addHeader("Cache-Control","no-cache, no-store, must-revalidate"); response.addDateHeader("Last-Modified", (new Date()).getTime()); %><%@ taglib prefix="ww" uri="/webwork" %><%@ taglib prefix="dm" uri="com.dimdim.conferenceConsole.tags" %><dm:SetSessionLocale/><ww:property escape="false" value="jsonBuffer"/>

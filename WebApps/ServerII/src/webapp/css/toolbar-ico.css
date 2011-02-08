@@ -1,0 +1,145 @@
+.header-toolbar-sub-rt li.media a {                /* icon for media */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-media.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.media a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-media-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.doc a {                /* icon for doc */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-doc.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.doc a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-doc-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.ppt a {                /* icon for ppt */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 72px;
+	background: url(../images/ico-app-pres.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.ppt a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 72px;
+	background: url(../images/ico-app-pres-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.xls a {                /* icon for xls */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-ssheet.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.xls a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-ssheet-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.pdf a {                /* icon for pdf */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-pdf.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.pdf a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-app-pdf-ro.gif) no-repeat;
+}
+
+.header-toolbar-sub-rt li.desk a {                /* icon for desk */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-int-desk.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.desk a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-int-desk-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.pic a {                /* icon for pic */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-int-pic.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.pic a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-int-pic-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.chat a {                /* icon for chat */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-int-chat.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.chat a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 50px;
+	background: url(../images/ico-int-chat-ro.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.draw a {                /* icon for draw */
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 82px;
+	background: url(../images/ico-int-draw.gif) no-repeat;
+}
+.header-toolbar-sub-rt li.draw a:hover {
+	color: #d1dbe6;
+	text-decoration: none;
+	display: block;
+	height: 60px;
+	width: 82px;
+	background: url(../images/ico-int-draw-ro.gif) no-repeat;
+}

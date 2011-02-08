@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>Synchrolive Main</title>
+		<script type="text/javascript" src="DIMDIMSL_SCRIPTSERVER_URLjquery-1.2.6.min.js"></script>
+        <script type="text/javascript" src="DIMDIMSL_SCRIPTSERVER_URLjson.js"></script>
+        <script type="text/javascript" src="DIMDIMSL_SCRIPTSERVER_URLjquery.dropshadow.js"></script>
+		<script type="text/javascript">
+        
+            var dimdimsl_bIsManagedContent = true;
+            
+            var dimdimsl_attributes =
+            {
+                serverAddress   :   "",
+                
+                dimdimID        :   "",
+                roomID          :   "",
+                sessionID       :   "",
+                
+                resourceID      :   "",
+                pageNum         :   "",
+                
+                resourceType    :   ""
+            };
+            
+            var dimdimsl_scrollEvent =
+            {
+                horPos : 0,
+                verPos : 0
+            };
+            
+            var dimdimsl_mouseEvent =
+            {
+                horPos : 0,
+                verPos : 0
+            };
+            
+            var dimdimsl_lockEvent =
+            {
+                locked : false
+            };
+        
+            var dimdimsl_events =
+            {
+                scroll  : dimdimsl_scrollEvent,
+                mouse   : dimdimsl_mouseEvent,
+                lock    : dimdimsl_lockEvent
+            };
+            
+            var dimdimsl_page =
+            {
+                url     : "",
+                events  : dimdimsl_events
+            };            
+            var dimdimsl_cacheAdvisory =
+            {
+                fixPNG:function(element, path)
+                {
+                    if (jQuery.browser.msie)
+                    {
+                        element.css("background-image","none");
+                        element.css("background-color","transparent");
+                        element.css("filter","progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path+"', sizingMethod='crop')");
+                    }    
+                },
+                syncToAttendeeContext:function()
+                {
+                    var queryURL = dimdimsl_attributes.serverAddress + '/cobrowsing/syncToAttendeeContext';
+                    var queryParams =
+                    {
+                        'dimdimID'  : dimdimsl_attributes.dimdimID,
+                        'roomID'    : dimdimsl_attributes.roomID,
+                        'sessionID' : dimdimsl_attributes.sessionID,
+                        'returnType': 'json',
+                        'cflag'     : Math.random()
+                    };
+                    
+                    jQuery.getJSON(queryURL, queryParams, function(data, textStatus)
+                    {
+                        if (data && data.result)
+                        {
+                            dimdimsl_cacheAdvisory.manageDivs(false);
+                            var resourceLocation = data.resourceType + '/' + data.resourceID;
+                            var contentLocation = resourceLocation + '/' + data.pageNum + '/attendee/content.html?cflag='+Math.random();
+                            dimdimsl_bIsManagedContent = true;
+                            jQuery("#dimdimsl_contentIFrame").attr("src", contentLocation);
+                        }
+                    });
+                },
+                handleContentLoaded:function()
+                {
+                    if (dimdimsl_bIsManagedContent == false)
+                    {
+                        dimdimsl_cacheAdvisory.manageDivs(false);
+                        
+                        var resourceLocation = dimdimsl_attributes.resourceType + '/' + dimdimsl_attributes.resourceID;
+                        var contentLocation = resourceLocation + '/' + dimdimsl_attributes.pageNum + '/attendee/content.html';
+                        jQuery("#dimdimsl_contentIFrame").attr("src", contentLocation);
+
+                        dimdimsl_bIsManagedContent = true;
+                    }
+                    else
+                    {
+                        dimdimsl_cacheAdvisory.manageDivs(true);
+                        dimdimsl_bIsManagedContent = false;    
+                    }
+                },
+                manageDivs:function(bShowContent)
+                {
+                    try
+                    {
+                        if (dimdimsl_events.lock && dimdimsl_events.lock.locked)
+                        {
+                            bShowContent = false;
+                        }
+                        var cobWaitDiv = document.getElementById('dimdimsl_waitDiv');
+                        if (bShowContent == true)
+                        {
+                            jQuery("#dimdimsl_statusButton").css({background: "url(DIMDIMSL_SCRIPTSERVER_URLmark_done.gif) no-repeat"});
+                            cobWaitDiv.style.visibility = 'hidden';                                            
+                        }
+                        else
+                        {
+                            if (dimdimsl_events.lock.locked)
+                            {
+                                jQuery("#dimdimsl_statusButton").css({background: "url(DIMDIMSL_SCRIPTSERVER_URLmark_done.gif) no-repeat"});
+                            }
+                            else
+                            {
+                                jQuery("#dimdimsl_statusButton").css({background: "url(DIMDIMSL_SCRIPTSERVER_URLajax-loader.gif) no-repeat"});    
+                            }
+                            
+                            cobWaitDiv.style.visibility = 'visible';
+                        }
+                    }
+                    catch(e){}
+                }
+            };
+            
+            jQuery(document).ready(function()
+            {
+                if (!jQuery.browser.msie)
+                {
+                    jQuery("#dimdimsl_toolbarDiv").dropShadow({left:-3, top:1, blur:1});
+                }
+                            
+                jQuery("#dimdimsl_syncButton").click(function()
+                {
+                    dimdimsl_cacheAdvisory.manageDivs(false);
+                    dimdimsl_cacheAdvisory.syncToAttendeeContext();
+                });
+            });
+            
+            jQuery(window).resize(function()
+            {
+                try
+                {
+                    jQuery("#dimdimsl_toolbarDiv").removeShadow();
+                }
+                catch(e){}
+                jQuery("#dimdimsl_toolbarDiv").dropShadow({left:-3, top:1, blur:1});
+            });
+            
+            function responseSink(dataBuffer)
+            {
+                dataBuffer = unescape(dataBuffer);
+                data = jQuery.parseJSON(dataBuffer);
+                
+                if (data.type == "ready")
+                {
+                    dimdimsl_cacheAdvisory.manageDivs(true);
+                }
+                
+                if (data.type == "ready")
+                {
+                    dimdimsl_attributes = data.buffer;
+                }
+                else if (data.type == "lock")
+                {
+                    dimdimsl_page.events.lock = jQuery.parseJSON(data.buffer);
+                    if (dimdimsl_events.lock && dimdimsl_events.lock.locked)
+                    {
+                        dimdimsl_cacheAdvisory.manageDivs(false);
+                    }
+                    else
+                    {
+                        dimdimsl_cacheAdvisory.manageDivs(true);
+                    }
+                }
+                else if (data.type == "url")
+                {
+                    dimdimsl_page.url = unescape(data.buffer);
+                    
+                    jQuery("#dimdimsl_statusDiv").attr("title", dimdimsl_page.url);
+                    var currentURL = dimdimsl_page.url;
+                    if (currentURL.length > 80)
+                    {
+                        currentURL = currentURL.substring(0, 80) + "...";
+                    }
+                    jQuery("#dimdimsl_statusDiv").html(currentURL);
+                }
+                else if (data.type == "navigate")
+                {
+                    dimdimsl_bIsManagedContent = true;
+                    dimdimsl_cacheAdvisory.manageDivs(false);
+                    jQuery("#dimdimsl_contentIFrame").attr("src", unescape(data.buffer));
+                }
+                else{}
+            }
+						
+		</script>
+		
+		<style type="text/css">
+			*
+            {
+                padding:0;
+                margin:0;
+            }
+            html, body
+            {
+                height:100%;
+                width:100%;
+            }
+            .dimdimsl_waitDiv
+            {
+                background-color: white;
+                position:absolute;
+                top:40px;
+                left:0px;
+                width:100%;
+                height:90%;
+                cursor: not-allowed;
+                opacity: 0.6;
+                filter:alpha(opacity=60);
+                z-index: 2;
+            }
+            .dimdimsl_toolbarDiv
+            {
+                background: rgb(195, 217, 255);
+                position:absolute;
+                top:0px;
+                left:0px;
+                width:100%;
+                height:27px;
+                z-index:12;
+            }
+            .dimdimsl_syncButton
+            {
+                position:absolute;
+                top:4px;
+                left:5px;
+                width:20px;
+                height:20px;
+                border:0;
+                margin:0;
+                outline: none;
+                cursor: pointer;
+                background: url(DIMDIMSL_SCRIPTSERVER_URLsync.png) no-repeat;
+                z-index:12;
+            }
+            * html .dimdimsl_syncButton
+            {
+                background-image:none;
+                background-color: transparent;
+                filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='DIMDIMSL_SCRIPTSERVER_URLsync.png', sizingMethod='crop');
+            }
+            .dimdimsl_statusDiv
+            {
+                position:absolute;
+                top:4px;
+                left:30px;
+                width:70%;
+                margin:0;
+                outline: none;
+                font-family : sans-serif;
+                z-index:12;
+                font-size: 12px;
+                cursor: default;
+            }
+            .dimdimsl_statusButton
+            {
+                position:absolute;
+                top:3px;
+                right:30px;
+                width:20px;
+                height:20px;
+                border:0;
+                margin:0;
+                outline: none;
+                cursor: pointer;
+                background : url("DIMDIMSL_SCRIPTSERVER_URLajax-loader.gif") no-repeat;
+            }
+            .dimdimsl_contentDiv
+            {
+                position:absolute;
+                top:40px;
+                left:0px;
+                width: 100%;
+                height: 90%;
+                z-index:1;
+            }
+
+		</style>
+	</head>
+	<body>
+		<div id="dimdimsl_toolbarDiv" class="dimdimsl_toolbarDiv">
+            <button id="dimdimsl_syncButton" class="dimdimsl_syncButton" title="Synchronize"></button>
+            <div id="dimdimsl_statusDiv" class="dimdimsl_statusDiv" title="Synchrolive">Loading...</div>
+            <button name="dimdimsl_statusButton" class="dimdimsl_statusButton" id="dimdimsl_statusButton" disabled="disabled"></button>
+        </div>
+        <div id="dimdimsl_waitDiv" class="dimdimsl_waitDiv"></div>
+		 <div class="dimdimsl_contentDiv" id="dimdimsl_contentDiv">
+			<iframe id="dimdimsl_contentIFrame" src="DIMDIMSL_COB_CONTENT_SRC" onload="dimdimsl_cacheAdvisory.handleContentLoaded()" width="100%" height="100%" frameborder="0">
+			</iframe>
+		</div>
+	</body>
+</html>

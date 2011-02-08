@@ -1,0 +1,444 @@
+@charset "utf-8";
+/* CSS Document */
+
+BODY {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	HEIGHT: 100%;
+	background-color: #ffffff;
+	font-family: Arial;
+	font-size: 12px;
+	color:#424242;
+}
+
+
+body a:link{
+color:#436AB8; text-decoration:none;
+}
+body a:visited{
+color:#436AB8; text-decoration:none;
+}
+body a:hover{
+color:#436AB8; text-decoration:underline;
+}
+body a:active{
+color:#436AB8; text-decoration:none;
+}
+
+
+.Hide { display:none; }
+.Show { display:block; }	
+	
+
+/**********************  styles of signin page   *****************/
+
+
+
+#container_login
+{
+	width: 1004px;
+	margin: 0 auto;
+	background-color:#FFFFFF;
+}
+
+
+#logo_top
+{
+	background-image:url(images/dimdim-logo.png);
+	background-repeat:no-repeat;
+	width:194px;
+	height:107px;
+	margin-left:30px;
+}
+
+#left_part
+{
+	background-color:#FFFFFF;
+	width:518px;
+	float:left;
+}
+
+#blue_bar
+{
+	background-color:#1b48a8;
+	height:199px;
+	margin-bottom:5px;
+}
+
+#image_people
+{
+	background-image:url(images/signinpage_image.png);
+	background-repeat:no-repeat;
+	width:518px;
+	height:155px;
+}
+
+.gold_strip
+{
+	 background-color:#e9c63c;
+	 height:11px;
+ }
+ 
+#center_part
+{
+	width:327px;
+	float:left;
+}
+
+*html #center_part
+{
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+
+
+#tabs_pod_top
+{
+	background-image:url(images/tabs_pod_top.png);
+	background-repeat:no-repeat;
+	width:327px;
+	height:16px;
+}
+
+* html #tabs_pod_top
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/tabs_pod_top.png", sizingMethod="crop");
+}
+
+#tabs_pod_bottom
+{
+	background-image:url(images/tabs_pod_bottom.png);
+	background-repeat:no-repeat;
+	width:327px;
+	height:16px;
+}
+
+* html #tabs_pod_bottom
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/tabs_pod_bottom.png", sizingMethod="crop");
+}
+
+
+#tabs_pod_middle
+{
+	background-image:url(images/tabs_pod_middle.png);
+	background-repeat:repeat-y;
+	width:327px;
+	height:365px;
+	font-weight:bold;
+	color:#6d6e71;
+}
+
+
+#right_part
+{
+	width:159px;
+	margin-left:845px;
+}
+
+*html #right_part
+{
+	width:155px;
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+
+#green_bar
+{
+	background-color:#689a14;
+	height:355px;
+	margin-bottom:5px;
+}
+
+#bottom_white
+{
+	background-color:#FFFFFF;
+	height:100px;
+}
+
+.host_join_bg
+{
+	background-image:url(images/host_join_bg.png);
+	background-repeat:repeat-x;
+	width:320px;
+	height:370px;
+	margin-left:3px;
+	overflow:hidden;
+}
+
+/*.host_join_bg div
+{
+	padding:10px;
+}
+*/
+#tabs_pod_top_curves
+{
+	background-image:url(images/tabs_pod_top_curves.png);
+	background-repeat:no-repeat;
+	width:328px;
+	height:8px;
+}
+
+*html #tabs_pod_top_curves
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/tabs_pod_top_curves.png", sizingMethod="crop");
+}
+
+.host_join_panel
+{
+	width:327px;
+	height:410px;
+	position:absolute;
+	z-index:2;
+	margin-left:0px;
+	margin-top:-50px;	
+}
+
+.gwt-TabBar
+{
+	font:Arial;
+	font-size:16px;	
+}
+.gwt-TabBar .mul_bg
+{
+	background-image:url(images/tab_inactive_bg.png);
+	  background-repeat:repeat-x;
+		margin-top:9px;
+
+}
+
+.gwt-TabBar .mul_bg1
+{
+	
+  background:url(images/tab_left_inactive.png) bottom left;
+	background-repeat:no-repeat;
+}
+
+.gwt-TabBar .mul_bg2
+{
+	  background:url(images/tab_right_inactive.png) bottom right;
+	background-repeat:no-repeat;
+	height:34px;
+	padding:0px 7px 0px 7px;
+	  
+}
+
+.gwt-TabBar .mul_bg2 div
+{
+	padding:10px 5px 5px 5px;
+	text-align:center;
+	cursor:pointer;
+	font-size:13px;
+	font-weight:bold;
+	color:#58595b;
+}
+
+.gwt-TabBarItem-selected 
+{
+	font:Arial;
+	font-size:16px;	
+}
+
+.gwt-TabBarItem-selected .mul_bg
+{
+
+	background:url(images/tab_bg.png);
+	background-repeat:repeat-x;
+	
+}
+
+.gwt-TabBarItem-selected .mul_bg1
+{
+	background:url(images/tab_left.png) top left;
+	background-repeat:no-repeat;
+}
+
+.gwt-TabBarItem-selected .mul_bg2
+{
+	background:url(images/tab_right.png) top right;
+	background-repeat:no-repeat;
+	height:43px;
+	padding:0px 7px 0px 7px;
+}
+
+.gwt-TabBarItem-selected .mul_bg2 div
+{
+	padding:10px 5px 5px 5px;
+	text-align:center;
+	cursor:pointer;
+}
+
+.TextBox_format {
+	font-size:12px;
+	font-family:Arial;
+	color:#000;
+	font-weight:normal;
+	text-align:left;
+}
+
+#startmeeting
+{
+	width: 100px;
+	height: 35px;
+	cursor: pointer;
+	background-image:url(images/start_btn.png);
+	background-repeat:no-repeat;
+	margin-left:110px;
+}
+
+* html #startmeeting
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/start_btn.png', sizingMethod='crop');
+}
+
+#joinmeeting
+{
+	 width: 100px;
+	 height: 35px;
+	 cursor: pointer;
+	 background-image:url(images/join_btn.png);
+	 background-repeat:no-repeat;
+	 margin-left:70px;
+}
+
+* html #joinmeeting
+{
+	 margin-left:0px;
+	 background-image:none;
+	 background-color: transparent;
+	 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/join_btn.png', sizingMethod='crop');
+}
+
+
+#join_status_pod
+{
+	 width: 258px;
+	 height: 160px;
+	 background-image:url(images/join_status_pod.png);
+	 background-repeat:no-repeat;
+	 margin-left:25px;
+	 text-align:center;
+}
+
+.btns_bg
+{
+	background-image:url(images/signin_btns_bg.png);
+	background-repeat:repeat-x;
+	height:183px;
+	width:320px;
+	margin-left:4px;
+}
+
+
+#startmeeting_btn
+{
+	 width: 216px;
+	 height: 50px;
+	 cursor: pointer;
+	 background-image:url(images/startmeeting1.png);
+	 background-repeat:no-repeat;
+	 margin-left:52px;
+}
+
+* html #startmeeting_btn
+{
+	 background-image:none;
+	 background-color: transparent;
+	 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/startmeeting1.png', sizingMethod='crop');
+}
+
+#joinmeeting_btn
+{
+	 width: 216px;
+	 height: 50px;
+	 cursor: pointer;
+	 background-image:url(images/joinmeeting1.png);
+	 background-repeat:no-repeat;
+	 margin-left:52px;
+}
+
+* html #joinmeeting_btn
+{
+	 background-image:none;
+	 background-color: transparent;
+	 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/joinmeeting1.png', sizingMethod='crop');
+}
+
+.red_font
+{
+color:#FF0000;
+}
+
+.blue_font
+{
+color:#1b4b7c;
+}
+
+#webmeeting_txt
+{
+	padding:2px;
+	font-size:31px;
+	color:#e9c847;
+}
+
+#date_time_txt
+{
+	padding:2px;
+	font-size:19px;
+	color:#FFFFFF;
+}
+
+.advanced_label
+{
+	font-size:9px;
+	color:#a7a9ac;	
+}
+
+.button-option-enable
+{
+	background-image:url(images/button-option-enable.png);
+	background-repeat: no-repeat;
+	width:47px;
+	height:16px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+	padding:2px 0px 0px 7px;
+	cursor:pointer;
+}
+
+*html .button-option-enable
+{
+	width:54px;
+}
+
+.button-option-disable
+{
+	background-image:url(images/button-option-disable.png);
+	background-repeat: no-repeat;
+	width:24px;
+	height:16px;
+	color:#666666;
+	font-size:11px;
+	font-weight:bold;
+	padding:2px 0px 0px 30px;
+	cursor:pointer;
+}
+
+*html .button-option-disable
+{
+	width:54px;
+}

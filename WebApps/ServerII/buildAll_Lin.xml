@@ -1,0 +1,180 @@
+<project name="dimdim" default="help" basedir=".">
+	<property file="build.properties" />
+
+	<target name="help">
+	  <echo>
+            o To build the dimdim webapp, simply run:
+
+                 ant build
+
+        </echo>
+	</target>
+
+	<path id="cp">
+		<fileset dir="../../ThirdPartyPackages/ApacheCommon">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/GWT144">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/HTTPClient">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/Javamail">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/Webworks">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/Streaming">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="../../ThirdPartyPackages/ServerCommon">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<macrodef name="compile">
+		<attribute name="srcdir" />
+		<attribute name="destdir" />
+		<attribute name="classpath" default="" />
+		<attribute name="classpathref" default="cp" />
+		<attribute name="excludes" default="" />
+		<attribute name="source" default="1.4" />
+		<attribute name="target" default="1.4" />
+		<sequential>
+			<mkdir dir="@{destdir}" />
+			<javac srcdir="@{srcdir}" destdir="@{destdir}" classpath="@{classpath}" classpathref="@{classpathref}" debug="on" source="@{source}" target="@{target}" />
+			<copy filtering="no" todir="@{destdir}">
+				<fileset dir="@{srcdir}">
+					<include name="**/*.properties" />
+				</fileset>
+			</copy>
+			<copy filtering="no" todir="@{destdir}">
+				<fileset dir="@{srcdir}/../bin">
+					<include name="**/*-validation.xml" />
+				</fileset>
+			</copy>
+		</sequential>
+	</macrodef>
+
+	<target name="build">
+		<!-- prepare -->
+		<property name="baseServerCommonDir" value="../ServerCommon"/>
+		<property name="baseUICommonDir" value="../UICommon"/>
+		<property name="baseStreamingServerAdapterDir" value="../StreamingServerAdapter"/>
+		<property name="baseEnterpriseStreamingServerAdapterDir" value="../EnterpriseStreamingServerAdapter"/>
+		<property name="baseConsoleDir" value="../ConsoleII"/>
+		
+		<!-- Start Compiling ServerCommon Files -->		
+		<exec dir="${baseServerCommonDir}" executable="bash">
+			<arg line="ant build"/>
+		</exec> 
+		<!-- End Compiling ServerCommon Files -->
+		
+		<!-- Start Compiling UICommon Files -->		
+		<exec dir="${baseUICommonDir}" executable="bash">
+			<arg line="ant build"/>
+		</exec> 
+		<!-- End Compiling UICommon Files -->
+		
+		<!-- Start Compiling StreamingServerAdapter Files -->		
+		<exec dir="${baseStreamingServerAdapterDir}" executable="bash">
+			<arg line="ant build"/>
+		</exec> 
+		<!-- End Compiling StreamingServerAdapter Files -->
+		
+		<!-- Start Compiling EnterpriseStreamingServerAdapter Files -->		
+		<exec dir="${baseEnterpriseStreamingServerAdapterDir}" executable="bash">
+			<arg line="ant build"/>
+		</exec> 
+		<!-- End Compiling EnterpriseStreamingServerAdapter Files -->
+		
+		<!-- Start Compiling Console Files -->		
+		<exec dir="${baseConsoleDir}" executable="bash">
+			<arg line="compile-all-pages.sh"/>
+		</exec> 
+		<!-- End Compiling Console Files -->
+		
+		<delete dir="${basedir}/tmp" />
+		<mkdir dir="${basedir}/tmp" />
+		<mkdir dir="${basedir}/dist" />
+
+		<!-- copy over the webapp -->
+		<copy todir="${basedir}/tmp">
+			<fileset dir="${basedir}/src/webapp" />
+		</copy>
+
+		<!-- compile the sources -->
+		
+		<mkdir dir="${basedir}/tmp/WEB-INF/classes" />
+		<compile srcdir="${basedir}/src" destdir="${basedir}/tmp/WEB-INF/classes" />
+		<!--
+		<copy todir="${basedir}/tmp/html/console">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.console.Console">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${basedir}/tmp/html/ppt">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.ppt.PPTModule">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${basedir}/tmp/html/whiteboard">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.whiteboard.Whiteboard">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		-->
+		<copy todir="${basedir}/tmp/html/popout">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.workspacepopout.WorkspacePopout">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<!--<copy todir="${basedir}/tmp/html/signin">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.signin.SignIn">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>-->
+		<copy todir="${basedir}/tmp/html/envcheck">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.envcheck.EnvCheck">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${basedir}/tmp/html/layout2">
+			<fileset dir="@{srcdir}/../../ConsoleII/www/com.dimdim.conference.ui.layout2.Layout2">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<!-- copy the plugins to jetty -->
+		<copy todir="${basedir}/tmp/jsp/activex">
+			<fileset dir="../../Product/Build/Screencaster">
+			</fileset>
+		</copy>
+		<!-- war up the app -->
+		<war file="${basedir}/dist/dimdim.war" webxml="tmp/WEB-INF/web.xml">
+			<zipfileset dir="tmp" prefix="" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/ApacheCommon" prefix="WEB-INF/lib" includes="*.jar" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/HTTPClient" prefix="WEB-INF/lib" includes="*.jar" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/Javamail" prefix="WEB-INF/lib" includes="*.jar" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/Webworks" prefix="WEB-INF/lib" includes="*.jar" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/Streaming" prefix="WEB-INF/lib" includes="*.jar" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/ServerCommon" prefix="WEB-INF/lib" includes="*.jar" />
+			<zipfileset dir="${basedir}/../../ThirdPartyPackages/EnterpriseStreaming" prefix="WEB-INF/lib" includes="*.jar" />
+		</war>
+		
+		<!-- copy the new webapp to tomcat home
+		<copy todir="${tomcat_home}/webapps">
+			<fileset dir="${basedir}/dist" />
+		</copy>-->
+		
+		<!-- copy the new webapp to tomcat home
+		<copy todir="${tomcat_home}/webapps/dimdim">
+			<fileset dir="${basedir}/tmp" />
+		</copy>-->
+
+
+	</target>
+
+</project>

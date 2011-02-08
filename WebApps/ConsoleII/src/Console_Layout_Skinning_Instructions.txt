@@ -1,0 +1,99 @@
+
+################## Main Console and Workspace Popout pages
+
+X.	To change the logo
+
+	Replace the images/dimdim_logo.png file with the appropriate new file in all directories
+	under dimdim/html directory.
+	
+	Original Logo size: 138 x 58
+	XOP case - Logo size: 138 x 43 in order to accomodate without stretching:
+	
+	Style console-logo-image in css/style.css change:
+	
+	padding: 5px;	to:
+	
+	padding-top: 12px;
+	padding-right: 5px;
+	padding-bottom: 12px;
+	padding-left: 5px;
+	
+	Seach and replace '58' to '43' in all *.html and *.js files in the html/layout directory.
+	
+X.	To reduce the font size of the phone info labels:
+
+	Add following lines to css/style.css
+	
+	#meetingid {	font-size: 12px; }
+	#dailinfo {	font-size: 12px; }
+	#confid {	font-size: 12px; }
+	
+
+X.  To remove the icons on the left top corners of each boxes:
+
+	Remove following divs from NewConsole.jsp and WorkspacePopout.jsp
+	
+	items_icon
+	participants_icon
+	displaying_icon 
+	chat_icon
+
+X.	Change the color of the borders
+
+	NewConsole.jsp - search and replace: #C3D9FF with new code ( XOP: #0054A5, (RBG: 0,84,165), (HSV: 209.5, 100, 64.7) )
+	css/style.css - search and replace: #C3D9FF with new code ( XOP: #0054A5, (RBG: 0,84,165), (HSV: 209.5, 100, 64.7) )
+	images/
+		Get copies of following images in the same color:
+		leftpods_top.png
+		leftpods_middle.png
+		leftpods_bottom.png
+		bottom_lefcorner.png
+		bottom_rightcorner.png
+		chatpod_top.png
+		chatpods_bottom.png
+		top_leftt_corner.png
+		top_right_corner.png
+		top_tile.png
+		
+X.	Change the color of the text in the headings:
+
+	Add or change color:(color code)	line to following styles	(XOP: white)
+	css/style.css
+		#show_items
+		#participants
+		#chat_pod_header
+		#now_sharing
+		#res_showing
+		.console-workspace-top-link
+
+X.	Change the hover style of the left pod buttons:
+
+	Get different copies of following images:
+	
+		images/leftpod_btns.png
+		images/leftpod_btns_hover.png
+		
+X.	Change the hover style of the items and participant entries:
+
+	Get different copy of following image
+	
+		images/hover_bg.png
+		
+X.	To change the background of the participant entries
+
+	Change the background-color property of following styles in css/style.css
+	
+	host-list-entry-panel-background - XOP: FDB813
+	active-presenter-list-entry-panel-background - XOP: FDB813
+	self-list-entry-panel-background - XOP: 
+	user-list-entry-panel-background - XOP: 
+	
+X.	Change the button background:
+
+	images:
+		Get copies of following images in the appropriate color:
+		
+		btn-bgr-tile.png
+		
+
+	

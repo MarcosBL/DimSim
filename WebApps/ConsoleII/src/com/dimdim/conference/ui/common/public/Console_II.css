@@ -1,0 +1,640 @@
+body
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	margin: 2px;
+	padding: 1px;
+	background-image: url(images/background.gif);
+	background-repeat: repeat-x, repeat-y;
+}
+
+div
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+a
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	text-align: left;
+	vertical-align: middle;
+	color: darkblue;
+}
+
+a:visited
+{	
+	color: darkblue; 
+}
+
+.gwt-DialogBox {
+	border: 2px solid #AAAAAA;
+	background-color: white;
+}
+
+.gwt-DialogBox .Caption
+{
+	background-color: rgb(195, 217, 255);
+	padding: 4px;
+	padding-bottom: 4px;
+	font-weight: bold;
+	cursor: default;
+}
+
+.gwt-MenuBar
+{
+	background-color: #C3D9FF;
+	cursor: default;
+}
+
+.gwt-MenuItem
+{
+	font-size: 80%;
+	margin: 1px;
+	cursor: default;
+}
+
+.gwt-MenuItem-selected
+{
+	background-color: #E8EEF7;
+}
+
+.gwt-Tree
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.gwt-Tree .gwt-TreeItem
+{
+	font-size: 80%;
+	cursor: default;
+}
+
+.gwt-Tree .gwt-TreeItem-selected
+{
+	background-color: #C3D9FF;
+}
+
+.gwt-StackPanel
+{
+	background-color: white;
+	border: 1px solid #AAAAAA;
+	width: 15em;
+}
+
+.gwt-StackPanel .gwt-StackPanelItem {
+	background-image: url(gray_gradient.gif);
+	background-repeat: repeat-x;
+	background-color: #EEEEEE;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.gwt-StackPanel .gwt-StackPanelItem-selected
+{
+}
+
+.gwt-Button
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	background-color: #C3D9FF;
+	border: 1px solid #AAAAAA;
+}
+
+.gwt-TabPanel {
+	margin: 5px;
+}
+
+.gwt-TabPanelBottom {
+  border-right: 1px solid #87B3FF;
+  border-bottom: 1px solid #87B3FF;
+  border-left: 1px solid #87B3FF;
+}
+
+.gwt-TabBar {
+  font-size: smaller;
+}
+
+.gwt-TabBar .gwt-TabBarFirst {
+  font-color: #E8EEF7;
+  border-bottom: 1px solid #87B3FF;
+}
+
+.gwt-TabBar .gwt-TabBarRest {
+  border-bottom: 1px solid #87B3FF;
+}
+
+.gwt-TabBar .gwt-TabBarItem {
+  border-bottom: 1px solid #87B3FF;
+  padding-top: 2px;
+  padding-right: 7px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.gwt-TabBar .gwt-TabBarItem-selected {
+  font-weight: bold;
+  background-color: #E8EEF7;
+  border-top: 1px solid #87B3FF;
+  border-left: 1px solid #87B3FF;
+  border-right: 1px solid #87B3FF;
+  border-bottom: 1px solid #E8EEF7;
+  padding-top: 2px;
+  padding-right: 7px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  cursor: default;
+}
+
+/************* *********************/
+
+.console-top-panel
+{
+  color: black;
+}
+
+.console-top-links-panel
+{
+}
+
+.console-top-links-line
+{
+}
+
+.rp
+{
+  background-color: #C3D9FF;
+}
+
+.console-top-panel-link
+{
+	text-align: center;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.console-top-panel-seperator
+{
+	margin: 2px;
+	vertical-align: middle;
+	font-size: 11px;
+}
+
+.console-sub-tab-link
+{
+	text-align: center;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.console-sub-tab-seperator
+{
+	margin: 2px;
+	vertical-align: middle;
+	font-size: 11px;
+}
+
+.console-label
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.console-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.send-invite-button
+{
+	width: 100px;
+	text-align: center;
+}
+
+.dm-popup-panel-text
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 14px;
+	margin: 5px;
+}
+
+.dm-popup-panel-label
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 14px;
+	margin: 5px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.dm-popup-close-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+  width: 70px;
+  text-align: center;
+}
+
+.console-page
+{
+}
+
+.console-middle-panel
+{
+	margin-top: 31px;
+}
+
+.console-logo-image
+{
+	width: 138px;
+	height: 58px;
+}
+
+.console-middle-left-panel
+{
+	margin-top: 10px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+}
+
+.console-middle-left-panel-float
+{
+	font-size: 4px;
+}
+
+.console-middle-left-panel .heading
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: small;
+}
+
+.console-applist-even-row
+{
+	font-size: 14px;
+	background-color: #ffffff;
+	height: 30px;
+	padding: 2px;
+	margin: 2px;
+}
+
+.console-applist-odd-row
+{
+	font-size: 14px;
+	background-color: #ffffff;
+	height: 30px;
+	padding: 2px;
+	margin: 2px;
+}
+
+.console-applist-header-row
+{
+	background-color: #efefef;
+}
+
+.console-apptable
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #b5b5b5;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.console-share-action
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-decoration: underline;
+	color: darkblue;
+	cursor: pointer;
+}
+
+.console-collab-area
+{
+	width: 740px;
+	height: 700px;
+	background-color: #C3D9FF;
+}
+
+.console-resourcePlayer
+{
+	background-color: #FFFFFF;
+}
+
+.console-resourcePlayer-fullwidth
+{
+	width: 720px;
+	height: 690px;
+	background-color: #FFFFFF;
+}
+
+.console-collab-chat-header
+{
+	width: 250px;
+	height: 20px;
+	background-color: #C3D9FF;
+}
+
+.console-collab-header-fullwidth
+{
+	width: 740px;
+	height: 20px;
+	background-color: #C3D9FF;
+}
+.console-collab-header
+{
+	background-color: #C3D9FF;
+}
+
+.console-collab-header-links
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  	font-size: 11px;
+  	background-color: #C3D9FF;
+  	margin-top: 3px;
+  	margin-bottom: 3px;
+  	margin-right: 10px;
+	margin-left: 10px;
+  	text-align: right;
+  	text-decoration: underline;
+}
+
+.console-left-area
+{
+	width: 100px;
+	margin-top: 10px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+}
+
+/************** Invitation Panel */
+
+.dm-send-invitation-panel
+{
+	margin-left: 4px;
+	width: 236px;
+}
+
+.dm-send-invitation-panel-link
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+.dm-users-list
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+.dm-users-list-visible
+{
+	background: white;
+	background-color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.dm-users-list-footer
+{
+	background-color: #C3D9FF;
+	width: 242px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.dm-users-list-link
+{
+	text-align: center;
+	vertical-align: bottom;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.dm-users-list-label
+{
+	text-align: left;
+	vertical-align: middle;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	cursor: default;
+	cursor: pointer;
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 3px;
+	margin-left: 2px;
+	color: darkblue;
+	text-decoration: underline;
+}
+
+.dm-user-panel
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  cursor: hand;
+}
+
+.dm-user-panel-search
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  padding: 1px;
+  margin-bottom: 4px;
+  cursor: default;
+	width: 130px;
+}
+
+.dm-user-role-image
+{
+  margin-left: 6px;
+  margin-right: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.dm-popup-header-label
+{
+  width: 120px;
+}
+
+.dm-user-name
+{
+}
+
+.dm-user-panel-selected
+{
+  background-color: #E8EEF7;
+  cursor: hand;
+  cursor: pointer;
+}
+
+.dm-user-panel-unselected
+{
+}
+
+.dm-user-info-popup
+{
+	border: 2px solid #AAAAAA;
+	width: 200px;
+	width: 30px;
+  background-color: #E8EEF7;
+}
+
+.dm-user-info-header
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+  border-bottom: 1px solid #AAAAAA;
+}
+
+.dm-local-user-entry-panel
+{
+	vertical-align: middle;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  cursor: hand;
+  width: 140px;
+	background-color: #E8EEF7;
+}
+
+
+/***************************** STYLES FOR THE TK DROP DOWNS ***********************/
+
+/* -------------------------------------------------------------------------- */
+
+.tk-DropDownPanel
+{
+  border-top: solid 2px  rgb(195, 217, 255);
+  border-right: solid 4px  rgb(195, 217, 255);
+  border-bottom: solid 2px  rgb(195, 217, 255);
+  border-left: solid 4px  rgb(195, 217, 255);
+  margin: 0px;
+  padding: 0px;
+}
+
+.tk-DropDownPanel .tk-DropDownPanel-open 
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.tk-DropDownPanel .tk-DropDownPanel-closed 
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.tk-DropDownPanel-open .tk-DropDownPanelHeader {
+  background-image: url(images/opentriangle.gif);
+}
+
+.tk-DropDownPanel-closed .tk-DropDownPanelHeader {
+  background-image: url(images/triangle.gif);
+}
+
+.tk-DropDownPanelHeader {
+  text-align: center;
+  font-size: smaller;
+  font-weight: bold;
+  background-color: rgb(195, 217, 255);
+  cursor: pointer;
+  text-align: left;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-top: 0px;
+  padding-left: 16px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  white-space: nowrap;
+  width: 240px;
+}
+
+.tk-DropDownPanelSafariHeader {
+  text-align: center;
+  font-size: smaller;
+  font-weight: bold;
+  background-color: rgb(195, 217, 255);
+  cursor: pointer;
+  text-align: left;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-top: 0px;
+  padding-left: 16px;
+  padding-right: 32px;
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+.tk-DropDownPanelContent {
+  background: white;
+  text-align: center;
+  background: #E8EEF7;
+  background-color: #E8EEF7;
+  padding: 0px;
+}
+
+.tk-SimpleHyperLink {
+	margin: 2px;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	text-align: left;
+	vertical-align: middle;
+	color: darkblue;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+	padding: 2px;
+}
+
+.tk-DropDownPanelHeader-Label
+{
+	width: 150px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+

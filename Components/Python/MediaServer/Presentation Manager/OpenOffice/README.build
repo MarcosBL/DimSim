@@ -1,0 +1,39 @@
+VERSION	:  	4.1
+AUTHOR	:	Bharat Varma N.
+
+SUPPORTED SYSTEMS
+-----------------
+
+1. The presentation manager has been currently tuned to work with CentOS 5.x. 
+2. However, there is no technical limitation to run the presentation manager on any UNIX / Windows based systems. 
+3. Reasonable knowledge of Python is enough to get this running on any system where Open Office is installed. 
+4. Open Office and the pyuno bridge are the only primary requirements for the presentation manager and everything else is platform independant code.
+
+DEPENDENCIES
+------------
+1. Latest stable Open Office version with 'pyuno' installed
+2. Latest stable version of Python which can play well with pyuno of Open Office. 
+	i.e. In a Python shell, type 'import uno' (without the quotes)
+	The module uno needs to be imported without any errors.
+3. Latest versions of CherryPy and Flup installed on the version of Python you wish to use to run the Presentation Manager.
+	In certain systems, it is possible to have multiple version of Python installed. 'import cherrypy' and 'import flup' (without the quotes) in a Python
+	shell should load the CherryPy and Flup modules without any errors.
+4. Install latest PyCurl package for the version of Python you wish to use to run the Presentation Manager. 'import pycurl' (without the quotes) in a Python shell
+	should load the PyCurl module without any errors.
+5a. Presentation manager is intended to run behind an nginx server as a FastCGI process. FastCGI was chosen because at the time of writing this document
+	nginx doesn't officially support SCGI. If you prefer to use SCGI, minimal changes under interface.py will suffice. Please refer to Flup documentation for this.
+5b. If you are running on Linux, spawn-fcgi should be used.
+5c. If you are running on Windows and are facing a problem with running the presentation manager as a FastCGI process, you can use SCGI as mentioned in 5a and run it
+	behind lighttd or other webserver of your choice. Obviously, you can also choose to run presentation manager as SCGI process in linux too.
+5d. Useful scripts for starting and stopping the presentation manager are available with this codebase.
+6a. SWFTools. Available for download at http://swftools.org. If you are running presentation manager in Linux, you would need to compile the source. Binary builds are
+	available for Windows.
+6b. Make sure softlinks for all the executables in this package are available in /usr/bin (in case they are not created by the build process of swftools itself)
+6c. Take a sample pdf and run the following command on the shell -
+	$pdf2swf sample.pdf
+	Take a note of the output that is shown in the shell. In the first few lines, you would notice the fonts path which the pdf2swf tries to pick up.
+	The line would be similar (or probably the same) to this -
+	NOTICE  Adding /usr/local/share/swftools/fonts to font directories
+	
+	Place the fonts folder in the SWFTools pack in this path ('/usr/local/share/swftools/fonts' in this case) to finish setting up the SWFTools. 
+	

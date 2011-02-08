@@ -1,0 +1,108 @@
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=Windows-1252">
+</head>
+<body>
+<pre>
+<table width=100% bgcolor=#CFCFE5><tr> <td> <font face=arial size=+3>
+Build Log
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>
+<h3>------- Build started: Project: xDimdimControl_40, Configuration: Release|Win32 -------
+</h3>
+</pre></table><table width=100% bgcolor=#DFDFE5><tr><td><font face=arial size=+2>
+Command Lines
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\RSP000128.rsp" with contents
+[
+/O2 /I "..\toolkit" /D "WIN32" /D "_WINDOWS" /D "NDEBUG" /D "_USRDLL" /D "_ATL_ATTRIBUTES" /D "_WINDLL" /D "_ATL_STATIC_REGISTRY" /D "_UNICODE" /D "UNICODE" /FD /EHsc /MD /GS /Fo"Release/" /Fd"Release/vc70.pdb" /W3 /c /Wp64 /Zi /TP
+\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\toolkit\MirageManager.cpp
+]
+Creating command line "cl.exe @c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\RSP000128.rsp /nologo"
+Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\RSP000129.rsp" with contents
+[
+/OUT:"..\release\xDimdimControl_40.dll" /INCREMENTAL:NO /NOLOGO /DLL /IDLOUT:"_xDimdimControl_40.idl" /DEBUG /PDB:"Release/xDimdimControl_40.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /IMPLIB:"Release/xDimdimControl_40.lib" /MACHINE:X86 winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib
+.\Release\stdafx.obj
+.\Release\xDimdimControl_40.obj
+.\Release\xpublisher.obj
+.\Release\Lock.obj
+.\Release\MirageManager.obj
+.\Release\OSEvent.obj
+.\Release\ProfileManager.obj
+.\Release\publisherio.obj
+.\Release\Registry.obj
+.\Release\ScopedLock.obj
+.\Release\stdafx1.obj
+.\Release\Translator.obj
+.\Release\Win32Helper.obj
+.\Release\xproperty.obj
+.\Release\xDimdimControl_40.res
+]
+Creating command line "link.exe @c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\RSP000129.rsp"
+Creating temporary file "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\BAT00012A.bat" with contents
+[
+@echo off
+regsvr32 /s /c "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\release\xDimdimControl_40.dll"
+if errorlevel 1 goto VCReportError
+goto VCEnd
+:VCReportError
+echo Project : error PRJ0019: A tool returned an error code from "Performing registration"
+exit 1
+:VCEnd
+]
+Creating command line "c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\BAT00012A.bat"
+</pre></table><table width=100% bgcolor=#DFDFE5><tr><td><font face=arial size=+2>
+Output Window
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>Compiling...
+MirageManager.cpp
+Linking...
+   Creating library Release/xDimdimControl_40.lib and object Release/xDimdimControl_40.exp
+Microsoft (R) 32b/64b MIDL Compiler Version 6.00.0361 
+Copyright (c) Microsoft Corporation 1991-2002. All rights reserved.
+Processing .\_xDimdimControl_40.idl
+_xDimdimControl_40.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\prsht.idl
+prsht.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\wtypes.idl
+wtypes.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\basetsd.h
+basetsd.h
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\guiddef.h
+guiddef.h
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\mshtml.idl
+mshtml.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\ocidl.idl
+ocidl.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\oleidl.idl
+oleidl.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\objidl.idl
+objidl.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\unknwn.idl
+unknwn.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\oaidl.idl
+oaidl.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\servprov.idl
+servprov.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\urlmon.idl
+urlmon.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\msxml.idl
+msxml.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\dimm.idl
+dimm.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\mshtmhst.idl
+mshtmhst.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\docobj.idl
+docobj.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\exdisp.idl
+exdisp.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\objsafe.idl
+objsafe.idl
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\oaidl.acf
+oaidl.acf
+Processing C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\include\ocidl.acf
+ocidl.acf
+Performing registration
+</pre></table><table width=100% bgcolor=#DFDFE5><tr><td><font face=arial size=+2>
+Results
+</font></table><table width=* cellspacing=0 cellpadding=0><tr><td width=0 bgcolor=#EDEDF5>&nbsp;</td><td width=0 bgcolor=#FFFFFF>&nbsp;</td><td width=*><pre>
+Build log was saved at "file://c:\Source\DimDimCodeBase\v4.1\Components\cpp\Publisher\xDimdimControl_40\Release\BuildLog.htm"
+xDimdimControl_40 - 0 error(s), 0 warning(s)</pre></table><table   width=100% height=20 bgcolor=#CFCFE5><tr><td><font face=arial size=+2>
+</font></table></body></html>

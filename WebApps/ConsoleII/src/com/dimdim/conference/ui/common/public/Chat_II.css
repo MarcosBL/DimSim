@@ -1,0 +1,203 @@
+/****************************** Chat Popup Styles *****************************/
+
+.dm-chat-popup {
+	background-color: White;
+	border: 1px solid #AAAAAA;
+	padding: 0px;
+	width: 250px;
+}
+
+.discussion-chat-top-padding
+{
+	padding-top: 4px;
+}
+
+.dm-chat-message-scroller {
+	background-color: gray;
+}
+
+.dm-seperator-line {
+	background-image: url(images/placeholder.gif);
+	background-repeat: repeat-x;
+}
+
+.dm-popup-footer {
+	border-top: 1px solid #AAAAAA;
+}
+
+.dm-popup-header {
+	border-bottom: 1px solid #AAAAAA;
+}
+
+.dm-chat-text-area
+{
+	border: 1px solid blue;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin: 6px;
+	overflow: auto;
+	width: 230px;
+}
+
+.dm-chat-message-area-pane
+{
+}
+
+.dm-chat-message-area
+{
+	background-color: white;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+}
+
+.chat-message
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 11px;
+	margin-left: 4px;
+	margin-bottom: 2px;
+	vertical-align: middle;
+}
+
+.chat-image
+{
+	vertical-align:text-bottom
+}
+
+.chat-instruction-panel
+{
+	border-top: 1px solid #AAAAAA;
+}
+
+.chat-instruction
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 9px;
+	margin-left: 10px;
+	color: #AAAAAA;
+}
+
+.chat-emoticon
+{
+	vertical-align: middle;
+	horizontal-align: middle;
+}
+.chat-emoticon-cell
+{
+	border: 1px solid white;
+}
+
+.chat-emoticon-cell-highlight
+{
+	border: 1px solid #AAAAAA;
+}
+
+.chat-emoticon-popup
+{
+	border: 2px solid #AAAAAA;
+	padding: 0px;
+	background: white;
+	background-color: white;
+	width: 75px;
+	height: 75px;
+}
+
+.chat-text-area
+{
+	overflow:auto;
+}
+.chat-emoticon-lable
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 9px;
+	margin-right: 10px;
+	color: BLUE;
+	cursor: pointer;
+}
+
+.chat-message-first-line
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.chat-message-line
+{
+	margin-left: 15px;
+	margin-bottom: 2px;
+}
+
+.host-chat-message
+{
+	color: red;
+}
+
+.remote-chat-message
+{
+	color: blue;
+}
+
+.chat-header-message-unread
+{
+	background-color: #FF8A00;
+  font-weight: bold;
+}
+
+.chat-header-buttons-panel
+{
+}
+
+.chat-header-button
+{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.flash-container {
+}
+
+.flash-content {
+}
+
+.minimize-chat-popup
+{
+	background-image: url("images/minimize.png");
+	background-color: transparent;
+}
+
+* html .minimize-chat-popup
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/minimize.png", sizingMethod="crop");
+}
+
+.maximize-chat-popup
+{
+	background-image: url("images/maximize.png");
+	background-color: transparent;
+}
+
+* html .maximize-chat-popup
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/maximize.png", sizingMethod="crop");
+}
+
+.close-chat-popup
+{
+	background-image: url("images/close.png");
+	background-color: transparent;
+}
+
+* html .close-chat-popup
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/close.png", sizingMethod="crop");
+}
+
+.blink-chat-popup
+{
+}

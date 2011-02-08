@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="gwt2swf" default="dist" basedir=".">
+	<!-- public properties-->
+	<property file="build.properties" />
+	<property name="src.dir" value="src" />
+	<property name="bin.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+	<property name="test.dir" value="test" />
+	<property name="javadocs.dir" value="docs/api" />
+	<property name="dist.dir" value="dist" />
+
+	<property name="memory.size" value="128m" />
+	<property name="output.dir" value="www" />
+
+	<property name="project.name" value="gwt2swf" />
+	<property name="jar.filename" value="${project.name}.jar" />
+
+	<property name="entry.point" value="GWTFlash" />
+	<property name="package.name" value="pl.rmalinowski.gwt2swf" />
+	<property name="domain.name"  value="http://localhost/~rmalinowski/gwt2swf"/>
+
+	<property name="http.deploy.path"   value="deploy" />
+
+	<property name="style.type" value="PRETTY" />
+
+	<!-- private propeties-->
+
+	<condition property="is.unix">
+		<os family="unix" />
+	</condition>
+
+	<condition property="is.windows">
+		<os family="windows" />
+	</condition>
+
+	<!-- private -->
+	<target name="set-up"
+	        depends="set-up-unix,set-up-windows"
+	        description="access:private">
+		<path id="project.class.path">
+			<pathelement location="${src.dir}" />
+			<pathelement location="${bin.dir}" />
+			<pathelement path="${junit.jar.path}" />
+			<pathelement path="${gwt.user.jar.path}" />
+			<pathelement path="${gwt.dev.jar.path}" />
+		</path>
+	</target>
+
+	<!-- private -->
+	<target name="set-up-windows" if="is.windows" description="access:private">
+		<property name="gwt.user.jar.path" value="${gwt.user.jar.path}" />
+		<property name="gwt.dev.jar.path" value="${gwt.dev.jar.path}" />
+	</target>
+
+	<!-- private -->
+	<target name="set-up-unix" if="is.unix" description="access:private">
+		<property name="junit.jar.path" value="${junit.jar.path}" />
+		<property name="gwt.user.jar.path" value="${gwt.user.jar.path}" />
+		<property name="gwt.dev.jar.path" value="${gwt.dev.jar.path}" />
+	</target>
+
+	<!-- private -->
+	<target name="compile-gwt" depends="set-up" description="access:private">
+		<description>Compile source using GWTCompiler</description>
+		<java classname="com.google.gwt.dev.GWTCompiler"
+		      fork="true"
+		      dir="${basedir}"
+		      maxmemory="${memory.size}"
+		      classpathref="project.class.path">
+			<arg value="-out" />
+			<arg value="${output.dir}" />
+
+			<arg value="-style" />
+			<arg value="${style.type}" />
+
+			<arg value="${package.name}.${entry.point}" />
+		</java>
+	</target>
+
+	<!-- private -->
+	<target name="shell-gwt" depends="set-up">
+		<description>Open module in hosted mode using GWTShell</description>
+		<java classname="com.google.gwt.dev.GWTShell"
+		      fork="true"
+		      dir="${basedir}"
+		      maxmemory="${memory.size}"
+		      classpathref="project.class.path">
+			<arg value="-noserver" />
+			<arg value="-out" />
+			<arg value="${output.dir}" />
+			<arg value="${domain.name}/${package.name}.${entry.point}/${entry.point}.html"
+			/>
+		</java>
+	</target>
+
+
+	<!-- public -->
+	<target name="clean" description="delete all generated files">
+		<delete quiet="true" file="MANIFEST.MF" />
+
+		<delete includeemptydirs="true">
+			<fileset dir="${bin.dir}" includes="**/*" />
+		</delete>
+<!--		<delete includeemptydirs="true">
+			<fileset dir="${javadocs.dir}" includes="**/*" />
+		</delete> -->
+		<delete includeemptydirs="true">
+			<fileset dir="${dist.dir}" includes="**/*" />
+		</delete>
+
+
+		<delete quiet="true">
+			<fileset dir=".">
+				<include name="${project.name}*.zip" />
+			</fileset>
+		</delete>
+
+	</target>
+
+	<target name="compile" description="compile project" depends="set-up">
+		<mkdir dir="${bin.dir}" />
+		<!-- <javac srcdir="${src.dir}:${test.dir}" -->
+		<javac srcdir="${src.dir}:${test.dir}" deprecation="yes"
+		       destdir="${bin.dir}"
+		       target="1.6"
+		       source="1.6">
+			<compilerarg value="-Xlint"/>
+			<classpath refid="project.class.path" />
+			<exclude name="pl/rmalinowski/gwt2swf/client/GWTFlash.java" />
+			<exclude name="pl/rmalinowski/gwt2swf/client/GWTFlash2.java" />
+		</javac>
+	</target>
+
+	<target name="jar" description="JARs project" depends="compile">
+		<property name="version.number" value="0.4.0" />
+		<buildnumber />
+		<tstamp>
+			<format property="build.date" pattern="yyyy-MM-dd HH:mm:ss" />
+			<format property="build.date.filename" pattern="yyyyMMddHHmm" />
+		</tstamp>
+
+		<manifest file="MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<!-- 
+				<attribute name="Main-Class" value="${main.class}" /> 
+				<attribute name="Class-Path"
+				           value="" />
+			-->
+			<attribute name="Implementation-Version"
+			           value="${version.number}-b${build.number}" />
+			<attribute name="Built-Date" value="${build.date}" />
+		</manifest>
+
+		<!-- basedir="${bin.dir}"
+					     includes="**/*.class" -->
+		<jar destfile="${jar.filename}" manifest="MANIFEST.MF">
+			<fileset dir="bin">
+				<include name="**/*.class" />
+				<exclude name="GWTFlash.class" />
+				<exclude name="GWTFlash2.class" />
+			</fileset>
+
+			<fileset dir="src">
+				<include name="**/*.java" />
+				<exclude name="GWTFlash.java" />
+				<exclude name="GWTFlash2.java" />
+
+			</fileset>
+			<fileset dir="src">
+				<include name="**/swfobject_source.js" />
+				<include name="**/GWT2SWF.gwt.xml" />
+			</fileset>
+		</jar>
+	</target>
+
+
+
+	<target name="javadoc-windows"
+	        description="generate javadocs"
+	        if="is.windows">
+<!--		
+		<mkdir dir="${javadocs.dir}" />
+		<javadoc sourcepath="${src.dir}"
+		         destdir="${javadocs.dir}"
+		         access="private"
+		         author="true"
+		         doctitle="GWT2SWF"
+		         windowtitle="GWT2SWF"
+		         nodeprecated="false"
+		         nodeprecatedlist="false"
+		         noindex="false"
+		         nonavbar="false"
+		         notree="false"
+		         packagenames="pl.rmalinowski.gwt2swf.*"
+		         source="1.4"
+		         splitindex="true"
+		         use="true"
+		         version="true"
+		         executable="C:\Program Files\Java\jdk1.6.0\bin\javadoc.exe"/>
+-->
+	</target>
+
+	<target name="javadoc-linux" description="generate javadocs" if="is.unix">
+		<mkdir dir="${javadocs.dir}" />
+		<javadoc sourcepath="${src.dir}"
+		         destdir="${javadocs.dir}"
+		         access="private"
+		         author="true"
+		         doctitle="GWT2SWF"
+		         windowtitle="GWT2SWF"
+		         nodeprecated="false"
+		         nodeprecatedlist="false"
+		         noindex="false"
+		         nonavbar="false"
+		         notree="false"
+		         packagenames="pl.rmalinowski.gwt2swf.*"
+		         source="1.4"
+		         splitindex="true"
+		         use="true"
+		         version="true"
+		         defaultexcludes="true"
+			excludepackagenames="pl.rmalinowski.gwt2swf.client"
+		/>
+	</target>
+
+	<target name="javadoc" depends="javadoc-linux, javadoc-windows" />
+
+	<target name="deploy" depends="compile-gwt">
+
+		<delete includeemptydirs="true">
+			<fileset dir="${http.deploy.path}" includes="**/*" />
+		</delete>
+		<copy todir="${http.deploy.path}">
+			<fileset dir="www/${package.name}.${entry.point}" />
+		</copy>
+
+	</target>
+
+
+	<target name="dist"
+	        description="generate distribution"
+	        depends="clean, jar, javadoc">
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}/src" />
+		<mkdir dir="${dist.dir}/bin" />
+		<mkdir dir="${dist.dir}/docs/api" />
+
+		<copy tofile="${dist.dir}/build.xml" file="build.xml" />
+
+		<copy tofile="${dist.dir}/changelog.txt" file="changelog.txt" />
+
+		<copy tofile="${dist.dir}/${jar.filename}" file="${jar.filename}" />
+
+		<copy todir="${dist.dir}/src">
+			<fileset dir="${src.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.dir}/bin">
+			<fileset dir="${bin.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.dir}/${test.dir}">
+			<fileset dir="${test.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+
+
+		<copy todir="${dist.dir}/docs/api">
+			<fileset dir="${javadocs.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+
+		<zip destfile="${project.name}-ver${version.number}-${build.date.filename}.zip"
+		     basedir="${dist.dir}"/>
+
+	</target>
+
+
+</project>

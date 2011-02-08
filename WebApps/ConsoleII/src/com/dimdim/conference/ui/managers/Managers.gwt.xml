@@ -1,0 +1,4 @@
+<module>
+	<inherits name='com.dimdim.conference.ui.user.User'/>
+	<inherits name='com.dimdim.conference.ui.resources.Resources'/>
+</module>

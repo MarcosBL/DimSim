@@ -1,0 +1,7 @@
+<module>
+	<inherits name='com.dimdim.conference.ui.publisher.Publisher'/>
+	<inherits name='com.dimdim.conference.ui.managers.Managers'/>
+	<inherits name='com.dimdim.conference.ui.dialogues.Dialogues'/>
+	<inherits name='com.dimdim.conference.ui.sharing.Sharing'/>
+</module>
+

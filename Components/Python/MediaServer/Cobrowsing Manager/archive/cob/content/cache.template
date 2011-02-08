@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<title>Co-Browsing Main</title>
+		<script language="javascript" type="text/javascript" src="DIMDIMSL_SERVER_ADDRESScontent/cobjs/prototype-1.6.0.2.js"></script>
+		<script language="javascript">
+		
+			var dimdimsl_MeetingID			= 'DIMDIMSL_MEETING_ID';
+			var dimdimsl_RoomID				= 'DIMDIMSL_ROOM_ID';
+			var dimdimsl_SessionID			= 'DIMDIMSL_SESSION_ID';
+			var dimdimsl_ResourceID			= 'DIMDIMSL_RESOURCE_ID';
+			var dimdimsl_ServerAddress		= 'DIMDIMSL_SERVER_ADDRESS';
+			var dimdimsl_TopWindowAddress	= 'DIMDIMSL_TOPWINDOW_ADDRESS';
+		
+			var dimdimsl_ContinueDetect = true;
+			
+			function dimdimsl_SyncWithMediaServer() 
+			{
+				var rand_no = Math.random();
+				var url = dimdimsl_ServerAddress+'cobrowsing/syncToURLResource';
+				url = url+'?meetingID='+dimdimsl_MeetingID;
+				url = url+'&roomID='+dimdimsl_RoomID;
+				url = url+'&sessionID='+dimdimsl_SessionID;
+				url = url+'&resourceID='+dimdimsl_ResourceID;
+				url = url+'&cflag='+rand_no;
+				url = url+'&responseType=json';
+				
+				try
+				{
+					 new Ajax.Request(url, 
+							{
+								method: 'get',
+								onComplete: dimdimsl_SetContent
+							}
+					);
+				}
+				catch(e)
+				{
+					alert(e);
+				}
+			}
+
+			function dimdimsl_SetContent(transport) 
+			{				
+				if (200 == transport.status) 
+				{
+					try
+					{
+						window.onbeforeload = null;
+						var jsonResponse = transport.responseText.evalJSON();
+						locationStr = dimdimsl_ServerAddress + 'content/' + jsonResponse.meetingID + '/' + jsonResponse.resourceType + '/' + jsonResponse.resourceID + '/' + jsonResponse.sequenceNo + '/presenter/cache.html';
+						document.location = locationStr;
+					}
+					catch(e)
+					{
+						alert(e);
+					}
+				}
+			}
+		
+			function dimdimsl_GetContentURL()
+			{
+			    var contentFrame = document.getElementById('content');
+			    var  url = "";
+			    
+				try
+			    {
+					if (contentFrame.contentWindow)
+					{
+				        if (contentFrame.contentWindow.dimdimsl_GetCurrentLocation)
+				        {
+				            url = contentFrame.contentWindow.dimdimsl_GetCurrentLocation();
+				        }
+					}
+					else
+					{
+						if (contentFrame.dimdimsl_GetCurrentLocation)
+				        {
+				            url = contentFrame.dimdimsl_GetCurrentLocation();
+				        }
+					}
+			    }
+			    catch(e)
+			    {
+			        url = "";
+			    }
+			  
+				return url;
+			}
+						
+			function dimdimsl_ManageDivs(bShowContentFrame)
+			{
+				try
+				{
+					if (bShowContentFrame == true)
+					{
+						var cobWaitDiv = document.getElementById('dimdimsl_COBWaitDiv');
+						cobWaitDiv.style.visibility = 'hidden';
+						
+						var cobDiv = document.getElementById('dimdimsl_COBContent');
+						cobDiv.style.visibility = 'visible';
+					}
+					else
+					{
+						var cobWaitDiv = document.getElementById('dimdimsl_COBWaitDiv');
+						cobWaitDiv.style.visibility = 'visible';
+						
+						var cobDiv = document.getElementById('dimdimsl_COBContent');
+						cobDiv.style.visibility = 'hidden';
+					}
+				}
+				catch(e)
+				{
+					alert(e);
+				}
+			}
+			
+			
+			function dimdimsl_SetupContentURL()
+			{
+				if (dimdimsl_TopWindowAddress.length <= 26)
+				{
+					// dont' do anything.. didn't get set
+					return;
+				}
+				var contentFrame = document.getElementById('content');
+			    var  url = "";
+			    
+				try
+			    {					
+					if (contentFrame.contentWindow)
+					{
+				        if (contentFrame.contentWindow.dimdimsl_GetCurrentURL)
+				        {
+				            url = contentFrame.contentWindow.dimdimsl_GetCurrentURL();
+				        }
+					}
+					else
+					{
+						if (contentFrame.dimdimsl_GetCurrentURL)
+				        {
+				            url = contentFrame.dimdimsl_GetCurrentURL();
+				        }
+					}
+			    }
+			    catch(e)
+			    {
+			        url = "";
+			    }
+				
+				if (url.length > 0)
+				{
+					serverWindow = window.parent;
+					serverWindow.location = dimdimsl_TopWindowAddress + '#' + url;
+				}
+			}
+	
+			function dimdimsl_DetectScope()
+			{
+				if (dimdimsl_ContinueDetect == false)
+				{
+					return;
+				}
+				var frameUrl = dimdimsl_GetContentURL();
+				if (frameUrl == "")
+				{
+					dimdimsl_ManageDivs(false);
+					dimdimsl_SyncWithMediaServer();
+					dimdimsl_ContinueDetect = false;
+					return;
+				}
+				
+				setTimeout("dimdimsl_DetectScope()", 5000);
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			
+                    .dimdimsl_COBWaitDiv
+                    {
+                            background-color: white;
+                            position:absolute;
+                            width:100%;
+                            height:75%;
+                            z-index:9;
+                            cursor: not-allowed;
+                            opacity: 0.8;
+                            filter:alpha(opacity=80);
+                            
+                            
+                            text-align: center;
+                            position:absolute;
+                            font-size: 80%;
+                            letter-spacing:1px;	
+                            
+                            color: black;
+                            padding-top: 25%;
+                    }
+                    * html .dimdimsl_COBWaitDiv
+                    {
+                            height:100%;
+                    }
+                    
+                    #dimdimsl_COBWaitIMGDiv
+                    {
+                            background: url(../../../../../cobwait.gif) no-repeat center;
+                            margin:0 auto;
+                            width:54px;
+                            height:55px;
+                    }
+		    
+
+		</style>
+	</head>
+	<body>
+		<div id="dimdimsl_COBWaitDiv" class="dimdimsl_COBWaitDiv">
+			<h3>Synchronizing. Please wait...</h3>
+			<div id="dimdimsl_COBWaitIMGDiv">
+			</div>
+		</div>
+		 <div id="dimdimsl_COBContent" style="visibility:visible">
+			<iframe id="content" onload="dimdimsl_SetupContentURL();dimdimsl_DetectScope();dimdimsl_ManageDivs(true)" src="DIMDIMSL_COB_CACHE_SRC" width="100%" height="100%" frameborder="0">
+			</iframe>
+		</div>
+	</body>
+</html>

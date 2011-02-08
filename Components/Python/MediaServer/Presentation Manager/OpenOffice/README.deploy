@@ -1,0 +1,9 @@
+VERSION	:  	4.1
+AUTHOR	:	Bharat Varma N.
+
+1. Presentation Manager is tuned to run behind an nginx server as a FastCGI process with a reverse-proxy configuration.
+2. The nginx configuration file will be made available as part of a separate package along with the complete Dimdim codebase.
+3. Sample lighttpd configuration files are included with the presentation manager. However, they are written for a setup where presentation manager runs as an SCGI 
+	process.
+4. Once all the paths are setup under osconfig.py and ldms.conf, all required softlinks for swftools and other dependancies created, use start_pmgr.sh and stop_pmgr.sh
+	to start and stop the presentation manager.

@@ -1,0 +1,1 @@
+var _sl = ["jquery-1.2.6.min.js", "json2.js", "presenter.js"];var _dl = document.location.href.toLowerCase();var _da = _dl.split("/");var _sa = _da[0] + "//" + _da[2];for (var i = 0; i < _sl.length; i++){document.write('<scr' + 'ipt type="text/javascript" src="'+_sa+'/content/cobjs/' + _sl[i] + '"><\/script>');}

@@ -1,0 +1,33 @@
+This is a list of the console modules and their heirarchy						
+						
+	inherits ->					
+						
+json		gwt.user	gwt.i18n	gwt.JSON		
+						
+ui.common		gwt.user	gwt.i18n	gwt.JSON		
+						
+model		ui.common		json		
+						
+conf.common		model	widgetLibrary		tk	boukamp
+						
+popout		model				
+						
+user		conf.common				
+						
+resources		conf.common		publisher		
+						
+managers		user	resources			
+						
+dialogs		user	resources			
+						
+envcheck		json	widgetLibrary		tk	boukamp
+						
+signin		json	widgetLibrary		tk	boukamp
+						
+publisher		conf.common				
+						
+sharing		conf.common		gwt2swf		
+						
+layout			manaers	dialogs	sharing	
+						
+workspacepopout			popout	managers	dialogs	sharing

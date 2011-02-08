@@ -1,0 +1,185 @@
+/*    Tabs   */
+
+.tab-bar
+{
+	background-color: #ECE9D8;
+	vertical-align: middle;
+}
+
+.dm-tab-content {
+  border-top: 5px solid #C3D9FF;
+  border-right: 10px solid #C3D9FF;
+  border-bottom: 7px solid #C3D9FF;
+  border-left: 10px solid #C3D9FF;
+  background-color: #E8EEF7;
+}
+
+.dm-tab-info {
+  background-color: #C3D9FF;
+  padding: 10px 10px 2px 10px;
+}
+
+.dm-tab-link
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	text-align: left;
+	vertical-align: middle;
+	color: darkblue;
+}
+
+.dm-tab-bar {
+  margin-left: 8px;
+  margin-right: 8px;
+  font-size: smaller;
+  height: 20px;
+}
+
+.dm-tab-bar .dm-tab {
+  padding: .4em;
+  margin-left: 4px;
+  margin-right: 4px;
+	vertical-align: middle;
+	text-align: center;
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	color: darkblue;
+  font-size: 11px;
+  width: 120px;
+}
+
+.dm-sub-tab-bar {
+  background: #C3D9FF;
+  background-color: #C3D9FF;
+  padding: 0px 0px 6px 2px;
+}
+
+.dm-tab-bar .dm-tab-selected {
+  background-color: #C3D9FF;
+  font-weight: bold;
+}
+
+.dm-tab-bar .dm-tab-selected .rp {
+  background-color: #C3D9FF;
+}
+
+.dm-tab-bar .dm-tab-unselected {
+  background-color: #E8EEF7;
+}
+
+.dm-tab-bar .dm-tab-unselected .rp {
+  background-color: #E8EEF7;
+}
+
+.dm-tab-label-image-pair
+{
+	padding: 0px;
+}
+
+.hide-discuss-panel-button
+{
+}
+
+.ppt-broadcaster-frame
+{
+	frameborder:"0";
+	border:0px;
+}
+
+.hide-discuss-panel
+{
+	background-image: url("images/close.png");
+	background-color: transparent;
+}
+
+* html .hide-discuss-panel
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/close.png", sizingMethod="crop");
+}
+
+.flash-container {
+  z-index: 0;
+}
+
+.flash-content {
+  z-index: 0;
+}
+
+.resource-share-movie-top-margin
+{
+	margin-top: 4px;
+}
+
+.movie-scroller
+{
+	background: white;
+	background-color: white;
+	overflow: auto;
+}
+
+.left-group-content-panel
+{
+	background: white;
+	background-color: white;
+}
+
+.tab-content-panel
+{
+	background: white;
+	background-color: white;
+}
+
+.av-conference-panel
+{
+	background: white;
+	background-color: white;
+}
+
+.av-controls-panel
+{
+	border-top: 1px solid #AAAAAA;
+	border-bottom: 1px solid #AAAAAA;
+	border-left: 1px solid #AAAAAA;
+}
+
+.av-user-control
+{
+	margin: 5px;
+}
+
+.discuss-comment-margin-presenter
+{
+	margin-left: 120px;
+}
+
+.discuss-comment-margin
+{
+	margin-left: 180px;
+}
+
+.running-clock
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: smaller;
+	margin-left: 38px;
+	margin-right: 30px;
+	height: 20px;
+	vertical-align: middle;
+	text-align: right;
+	color: darkblue;
+	font-size: 11px;
+}
+
+.ppt-share-control-label
+{
+	font-weight: bold;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.ppt-share-control-box
+{
+	margin-left: 10px;
+}
+
+

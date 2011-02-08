@@ -1,0 +1,58 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+	
+	<package name="test" extends="webwork-default">
+	
+		<global-results>
+			<result name="login">/jsp/test/CommonTestResponsePage.jsp</result>
+			<result name="input">/jsp/test/CommonTestResponsePage.jsp</result>
+			<result name="error">/jsp/test/CommonTestResponsePage.jsp</result>
+			<result name="success">/jsp/test/CommonTestResponsePage.jsp</result>
+		</global-results>
+		
+		<action name="testhome"
+				class="com.dimdim.test.action.TestHomeAction">
+			<result name="login">/jsp/test/TestHomePage.jsp</result>
+			<result name="input">/jsp/test/TestHomePage.jsp</result>
+			<result name="error">/jsp/test/TestHomePage.jsp</result>
+			<result name="success">/jsp/test/TestHomePage.jsp</result>
+		</action>
+		
+		<action name="testform"
+				class="com.dimdim.test.action.TestFormAction">
+		</action>
+		
+		<action name="testconnect"
+				class="com.dimdim.test.action.TestConnectAction">
+		</action>
+		
+		<action name="start"
+				class="com.dimdim.test.action.StartMeetingTestAction">
+		</action>
+		
+		<action name="join"
+				class="com.dimdim.test.action.JoinMeetingTestAction">
+		</action>
+		
+		<action name="getconsolepage"
+				class="com.dimdim.test.action.TestGetConsolePageAction">
+		</action>
+		
+		<action name="getdata"
+				class="com.dimdim.test.action.TestGetDataAction">
+		</action>
+		
+		<action name="consoleloaded"
+				class="com.dimdim.test.action.TestConsoleLoadedAction">
+		</action>
+		
+		<action name="getevents"
+				class="com.dimdim.test.action.TestGetEventsAction">
+		</action>
+		
+	</package>
+</xwork>
+

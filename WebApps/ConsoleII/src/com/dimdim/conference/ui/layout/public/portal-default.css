@@ -1,0 +1,1479 @@
+/*** Old textbox background color - 	#a6c1dc;  old blue: 07519a ***/
+/***************** HTML default styles which must be overridden ****************/
+
+body
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	}
+
+div
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+a
+{
+	vertical-align: middle;
+}
+
+a:visited
+{	
+}
+
+a:hover
+{
+	color: #990000;
+}
+
+button
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+/****************** Dimdim styles  ******************************/
+
+.default-root-page
+{
+	background-image: url(images/pagebg.gif);
+	background-repeat: repeat-x;
+}
+
+.default-loading-message-label
+{
+	font-family: Lucinda Grande, Verdana, Trebuchet MS, Arial, sans-serif, Tahoma;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.default-loading-message-panel
+{
+	background-image: url(images/pagebg.gif);
+	background-repeat: repeat-x;
+	height: 100%;
+	width: 100%;
+}
+
+.default-waiting-spinner
+{
+	margin: 10px;
+}
+
+.default-common-frame
+{
+	frameborder:"0";
+	frameborder:"NO";
+	border:0px;
+}
+
+.default-portal-page
+{
+}
+
+.default-top-panel
+{
+}
+
+.default-body-panel
+{
+}
+.default-body-panel-background_middle
+{
+	background-image:url(images/default/body-panel-background.png);	
+	background-repeat:repeat-x;
+}
+.default-body-panel-background
+{
+	background-image:url(images/default/body-panel-bg.png);
+	background-repeat:no-repeat;
+	background-color: #f7f7f7;
+	color: #d4d4d4;
+	border: 0px;
+	line-height: 10px;
+}
+
+.default-body-panel-background_bottom
+{
+	background-color: #ebebeb;
+	color: #d4d4d4;
+	border: 0px;
+	line-height: 10px;
+}
+
+.default-tabs-container-panel-background
+{
+	color: white;
+	border: 0px;
+}
+
+.default-bottom-panel
+{
+	background-color: #ebebeb;
+	height: 25px;
+	color: white;
+}
+
+.default-bottom-panel-text
+{
+	color: white;
+}
+
+.default-bottom-margin-panel
+{
+	background-color: #6d839a;
+	color:#999999;
+	height: 9px;
+	line-height: 9px;
+}
+
+.default-widget
+{
+	background-image: url(images/default/widget-background.png);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}
+
+.default-widget1
+{
+	background-color:#FFFFFF;
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}
+
+.default-widget-short
+{
+	background-image: url(images/default/widget-background-125.png);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}
+
+.default-portal-panel-left-side
+{
+	background-image: url(images/default/panel-left-side.png);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+
+* html .default-portal-panel-left-side
+{
+	background-image: none;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/panel-left-side.png", sizingMethod="crop");
+}
+
+.default-portal-panel-right-side
+{
+	background-image: url(images/default/panel-right-side.png);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+
+* html .default-portal-panel-right-side
+{
+	background-image: none;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/panel-right-side.png", sizingMethod="crop");
+}
+
+.default-portal-round-corner-panel
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.default-portal-panel-column
+{
+
+}
+
+.default-portal-tab-content
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.default-portal-panel-header-label-panel
+{
+	background-image: url(images/default/header-tile.png);
+	background-repeat: repeat-x;
+	height: 31px;
+	line-height: 25px;
+}
+
+.default-portal-panel-header-label
+{
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 12px;
+	color: #333333;
+}
+
+.default-green-button
+{
+	height: 40px;
+	width: 150px;
+	line-height: 40px;
+	vertical-align: middle;
+	text-align: center;
+	font-family: Lucinda Grande, Verdana, Trebuchet MS, Arial, sans-serif, Tahoma;
+	font-size: 14px;
+	background-image: url(images/default/green-btn-tile.png);
+	background-repeat: repeat-x;
+	color: white;
+	cursor: default;
+	cursor: pointer;
+	font-weight: 120%;
+}
+
+.default-red-button
+{
+	height: 40px;
+	width: 150px;
+	line-height: 40px;
+	vertical-align: middle;
+	text-align: center;
+	font-family: Lucinda Grande, Verdana, Trebuchet MS, Arial, sans-serif, Tahoma;
+	font-size: 14px;
+	background-image: url(images/default/red-btn-tile.png);
+	background-repeat: repeat-x;
+	color: white;
+	cursor: default;
+	cursor: pointer;
+	font-weight: 120%;
+}
+
+.default-big-button-panel
+{
+	margin-top: 5px;
+	margin-botom: 5px;
+}
+
+/**
+ *	As far as possible this is the only style that should contain the font-family.
+ */
+
+.default-common-text
+{
+	font-family: Lucinda Grande, Verdana, Trebuchet MS, Arial, sans-serif, Tahoma;
+	font-size: 10px;
+}
+
+.default-common-anchor
+{
+	color: #07519a;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+}
+
+.default-common-anchor-hover
+{
+	color: #990000;
+}
+
+.default-common-anchor-cursor
+{
+	cursor: default;
+	cursor: pointer;
+}
+
+
+
+/** Common form styles **/
+
+.default-common-form
+{
+	background-color: #E8EEF7;
+}
+
+.default-common-form-header
+{
+	font-size: 12px;
+	font-weight: bold;
+	/*color: white; */
+	margin: 5px;
+	vertical-align: middle;
+}
+
+.default-common-form-field
+{
+	text-align: center;
+	vertical-align: middle;
+	margin: 5px;
+}
+
+.default-common-form-field-suffix
+{
+	margin-left: 2px;
+	margin-right: 3px;
+}
+
+.default-common-form-label
+{
+	font-weight: bold;
+	width: 120px;
+	margin-right: 5px;
+	text-align: right;
+}
+
+.default-common-submit-button
+{
+	width: 60px;
+	height: 20px;
+	line-height: 18px;
+	text-align: center;
+	vertical-align: middle;
+	background-image: url(images/default/btn-bgr-tile.png);
+	background-repeat: repeat-x;
+	cursor: default;
+	cursor: pointer;
+	margin-top: 15px;
+	margin-right: 10px;
+	margin-left: 5px;
+	padding: 0px;
+	border: 1px solid #aaaaaa;
+	color: white;
+}
+
+.default-user-id-panel
+{
+	width: 130px;
+	padding-left: 5px;
+}
+
+.default-user-id-field-label
+{
+	font-weight: bold;
+	margin-left: 1px;
+	margin-right: 5px;
+	text-align: left;
+	width: 60px;
+	color: white;
+}
+
+.default-user-id-field-image
+{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.default-password-field-label
+{
+	
+	font-weight: bold;
+	margin-left: 1px;
+	margin-right: 5px;
+	text-align: left;
+	color: white;
+	width: 60px;
+}
+
+.default-password-field-image
+{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.default-forgot-password-label
+{
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-align: left;
+	color: white;
+}
+
+.default-common-form-field-border
+{
+	border: 1px solid #AAAAAA;
+}
+
+.default-common-textbox
+{
+	margin-top: 1px;
+	width: 160px;
+	margin-bottom: 1px;
+	background-color: white;
+	padding-left: 3px;
+}
+
+.default-common-radio-button
+{
+	margin-top: 1px;
+	margin-right: 10px;
+	margin-bottom: 1px;
+	margin-left: 5px;
+	whiteSpace: nowrap;
+	vertical-align: middle;
+}
+
+.default-common-textarea
+{
+	margin-top: 1px;
+	margin-bottom: 1px;
+	background-color: white;
+	padding-left: 3px;
+	width: 160px;
+	height: 60px;
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+.default-draggable-panel-cursor
+{
+	cursor: move;
+}
+
+.default-message-panel
+{
+	width: 100%;
+	padding-left: 10px;
+}
+
+.default-message
+{
+	margin-top: 3px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+}
+
+.default-error-message
+{
+	color: red;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+/*** Signin Form  **/
+
+.default-signin-form-top-margin
+{
+	margin-top: 5px;
+}
+
+.default-signin-form
+{
+}
+
+.default-signin-form-fields-panel
+{
+}
+
+.default-forgotpassword-form-label
+{
+	width: 50px;
+}
+
+.default-changepassword-form-label
+{
+	width: 140px;
+}
+
+.default-signin-textbox
+{
+	width: 120px;
+	background-color: #acd9ff;
+	border: 1px solid white;
+}
+
+.default-signin-submit-button
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border: 1px solid white;
+}
+
+.default-user-info-label
+{
+	color: white;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.default-user-info-user-name
+{
+	font-style: italic;
+}
+
+.default-user-info-panel
+{
+	background-image: url(images/default/user-info-tile.png);
+	background-repeat: repeat-x;
+	height: 33px;
+}
+
+.default-user-info-link
+{
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+}
+
+.default-user-info-image
+{
+	margin-left: 5px;
+}
+
+.default-searchschedules-submit-button
+{
+	margin-top: 2px;
+	margin-left: 20px;
+}
+
+.default-searchschedules-form-field
+{
+	
+}
+
+.default-customer-name
+{
+	margin-top: 15px;
+}
+
+/*** Start new meeting form  **/
+
+.default-start-form
+{
+	width: 320px;
+	height: 280px;
+}
+
+.default-join-form
+{
+	width: 320px;
+}
+
+.default-searchschedules-form
+{
+	width: 320px;
+	height: 100%;
+}
+
+.default-schedule-form
+{
+	width: 500px;
+	height: 370px;
+	background-color: #acd9ff;
+}
+
+.default-next-steps-panel
+{
+	margin-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.default-next-steps-image
+{
+	margin-right: 1px;
+}
+
+.default-pagination-control-panel
+{
+	width: 120px;
+}
+
+.default-pagination-control-button
+{
+	width: 18px;
+	height: 20px;
+	border: 0px;
+	background-color: transparent;
+}
+
+.default-pagination-previous
+{
+	background-image: url(images/default/previous.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: 4px 5px;
+}
+
+* html .default-pagination-previous-block
+{
+	background-image: none;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/previous.png", sizingMethod="none");
+}
+
+.default-pagination-next
+{
+	background-image: url(images/default/next.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: 4px 5px;
+}
+
+* html .default-pagination-next-block
+{
+	background-image: none;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/next.png", sizingMethod="none");
+}
+
+.default-pagination-control-info
+{
+}
+
+.default-pagination-control-container
+{
+}
+
+.default-toolbar-container
+{
+}
+
+.default-toolbar-image
+{
+	margin-right: 5px;
+	margin-bottom: 3px;
+	margin-left: 5px;
+}
+
+/** Start New meeting and join meeting buttons page **/
+
+.default-button-type-1
+{
+	width: 144px;
+	height: 33px;
+	margin-top: 26px;
+	margin-bottom: 10px;
+	line-height: 25px;
+	background-image: url(images/default/btn-type1.png);
+	background-repeat:no-repeat;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: default;
+	cursor: pointer;
+	color: #1f3664;
+	font-weight: bold;
+}
+
+* html .default-button-type-1
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/btn-type1.png", sizingMethod="crop");
+}
+
+.default-button-text-1
+{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.default-button-text-2
+{
+	font-size: 16px;
+}
+
+.default-button-type-3
+{
+	width: 144px;
+	height: 28px;
+	margin-top: 26px;
+	margin-bottom: 15px;
+	line-height: 25px;
+	background-image: url(images/default/btn-type3.png);
+	background-repeat:no-repeat;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: default;
+	cursor: pointer;
+	color: #36360b;
+	font-weight: bold;
+}
+
+* html .default-button-type-3
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/btn-type3.png", sizingMethod="crop");
+}
+
+
+/** Specific panels **/
+
+.default-comments-box
+{
+	margin: 2px;
+}
+
+.default-scheduled-meeting-comments-box
+{
+	margin-left: 5px;
+}
+
+.default-scheduled-meeting-panel
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-bottom:solid 1px;
+	border-bottom-color:#f0f0f0;
+}
+
+.default-scheduled-meeting-even-panel
+{
+	background-color: #f3f3f3;
+}
+
+.default-scheduled-meeting-image
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.default-scheduled-meeting-action
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.default-scheduled-meeting-image-panel
+{
+}
+
+.default-customer-quotes
+{
+}
+
+.default-about-dimdim
+{
+}
+
+.default-open-meetings
+{
+}
+
+.default-dimdim-demo
+{
+}
+
+.default-demo-image-panel
+{
+	width:70px;
+}
+
+.default-contact-us
+{
+	vertical-align: middle;
+	color: white;
+	text-decoration: underline;
+	line-height: 25px;
+	cursor: default;
+	cursor: pointer;
+}
+
+.default-red-bold
+{
+	color: #990000;
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: default;
+	cursor: pointer;
+}
+
+/*** Comments and addition text styles ***/
+
+.default-comment-header-1
+{
+	color: #333333;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+
+.default-red-text-3
+{
+	color: RED;
+	font-weight: bold;
+	cursor: default;
+	cursor: pointer;
+	vertical-align: bottom;
+}
+
+.default-blue-text
+{
+	color: #003399;
+}
+
+.default-bold-text
+{
+	vertical-align: bottom;
+	font-family: Lucinda Grande,Verdana,Trebuchet MS,Arial,sans-serif,Tahoma;
+  	font-size: 10px;
+  	font-weight: bold;
+	margin-bottom: 4px;
+	margin-top: 4px;
+
+}
+
+.default-bold-text-left
+{
+	vertical-align: middle;
+	text-align: left;
+	word-wrap: break-word;
+	font-family: Lucinda Grande,Verdana,Trebuchet MS,Arial,sans-serif,Tahoma;
+  	font-size: 10px;
+  	font-weight: bold;
+	margin-bottom: 4px;
+	margin-top: 4px;
+
+}
+
+.default-comment-text-1
+{
+	color: #666666;
+}
+
+.default-comment-text-2
+{
+	color: #666666;
+}
+
+.default-red-text-1
+{
+	color: #990000;
+}
+
+.default-red-text-2
+{
+	color: #990000;
+	font-size: 14px;
+}
+
+.default-comment-panel
+{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.default-comment
+{
+	margin-top: 5px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+}
+
+.default-comment-label
+{
+	margin-right: 5px;
+	margin-left: 10px;
+	color: #666666;
+	width: 300px;
+	font-weight: bold;
+}
+
+.default-comment-label-1
+{
+	margin-right: 5px;
+	font-weight: bold;
+	width: 66px;
+	text-align: right;
+}
+
+.default-comment-prescript
+{
+	margin-top: 5px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	color: #666666;
+}
+
+.default-comment-text
+{
+	color: #666666;
+}
+
+.default-comment-postscript
+{
+	margin-top: 5px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	color: #666666;
+}
+
+.default-comment-suffix
+{
+	margin-left: 10px;
+	color: #666666;
+}
+
+.default-comment-filler
+{
+	color: white;
+}
+
+.default-waiting-message
+{
+	margin-top: 8px;
+	margin-left: 5px;
+}
+
+
+/************ Main tab panels styles *************************/
+
+
+.gwt-TabPanel
+{
+}
+
+.gwt-TabPanelBottom
+{
+}
+
+.gwt-TabBar
+{
+	color: #d4d4d4;
+	border: 0px;
+}
+
+.gwt-TabBar .gwt-TabBarFirst
+{
+	width: 20px;
+}
+
+.gwt-TabBar .gwt-TabBarRest
+{
+}
+
+.gwt-TabBar .gwt-TabBarItem
+{
+	width: 121px;
+	height: 25px;
+	margin-left:1px;
+	margin-right:1px;
+	background-image: url(images/default/tab.png);
+	color: black;
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+	line-height: 25px;
+	font-family: Lucinda Grande, Verdana, Trebuchet MS, Arial, sans-serif, Tahoma;
+	font-size: 12px;
+}
+
+* html .gwt-TabBar .gwt-TabBarItem
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/tab.png", sizingMethod="none");
+}
+
+.gwt-TabBar .gwt-TabBarItem-selected
+{
+	font-weight: bold;
+	background-image: url(images/default/tab-hl.png);
+	color: white;
+	cursor: default;
+}
+
+* html .gwt-TabBar .gwt-TabBarItem-selected
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/default/tab-hl.png", sizingMethod="none");
+}
+
+.gwt-RadioButton
+{
+	vertical-align: middle;
+}
+
+/************ Tab styles for multitabbed forms *****************/
+
+
+.default-multitabbed-form-gwt-TabPanel {
+	margin: 5px;
+}
+
+.default-multitabbed-form-gwt-TabPanelBottom {
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  background-color: #f9f9f9;
+  background: #f9f9f9;
+  padding-top: 5px;
+}
+
+.default-multitabbed-form-gwt-TabBar {
+  font-size: smaller;
+}
+
+.default-multitabbed-form-gwt-TabBar .default-multitabbed-form-gwt-TabBarFirst {
+  width: 10px;
+  border-bottom: 1px solid #cccccc;
+  -moz-box-sizing: border-box;
+}
+
+.default-multitabbed-form-gwt-TabBar .default-multitabbed-form-gwt-TabBarRest {
+  border-bottom: 1px solid #cccccc;
+  -moz-box-sizing: border-box;
+}
+
+.default-multitabbed-form-gwt-TabBar .default-multitabbed-form-gwt-TabBarItem {
+  border-bottom: 1px solid #cccccc;
+  background-color: #ddd;
+	font-family: Helvetica;
+	font-size: 12px;
+  padding-top: 2px;
+  padding-right: 7px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  cursor: pointer;
+  cursor: hand;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.default-multitabbed-form-gwt-TabBar .default-multitabbed-form-gwt-TabBarItem-selected {
+  font-weight: bold;
+  background-color: #d7e5f2;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  padding-top: 2px;
+  padding-right: 7px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  cursor: default;
+}
+
+.default-button-text-area
+{
+	border: 0px ;
+	font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+	font-size: 10px;
+	overflow-x: auto;
+	overflow-y: auto;
+	background-color: transparent
+}
+
+.default-button-description
+{
+	width: 200px;
+	height: 410px;
+	
+}
+
+.default-button-pick
+{
+	width: 600px;
+	height: 410px;
+	
+}
+
+.default-button-panel
+{
+	border-bottom: 1px solid GREY	
+}
+
+/*********** Tk styles *******************/
+
+
+.tk-GlassPanel {
+  background: black;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  cursor: not-allowed;
+}
+
+.tk-ModalDialog {
+  border: 1px solid black;
+  background-color: white; //rgb(195, 217, 255);
+  padding: 0px;
+}
+
+.tk-ModalDialog .Caption {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  
+  background-image: url(images/default/modal-dialog-header-tile.png);
+  background-repeat: repeat-x;
+  padding: 3px;
+  margin: 1px;
+  cursor: default;
+}
+
+
+.tk-ModalDialog-content {
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px;
+}
+
+.tk-ModalDialog-content .gwt-Button {
+  margin-top: 8px;
+}
+
+/***************** Simple Date Picker Styles **************************/
+
+TABLE.monthDates TD {
+	font-family:tahoma,sans-serif;
+	font-size:11px;
+	color:#104A7B;
+	text-align:center;
+}
+
+.txtbox	{
+	font-family: Lucinda Grande, Verdana, Tahoma, sans-serif;
+	font-size:10px;
+	width: 120px;
+	color: #666666;
+	border: 1px solid #AAAAAA;;
+}
+	
+.popupPanel	{
+	font-family:tahoma,sans-serif;
+	font-size:10px;
+	background: #FFFFFF;
+
+}
+	
+.calendarPanel	{
+	font-family:tahoma,sans-serif;
+	font-size:10px;
+	color:#104A7B;
+	background: #f9f9f9;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+	border-top:1px solid gray;
+ }
+ 
+.todayPanel	{
+	font-family:tahoma,sans-serif;font-size:11px;
+	float: right;
+	font-weight:bold;
+	color:#104A7B;
+	background: #FFFFFF;
+	text-align:center;
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+ } 
+ 
+ .todayLink	{
+ 	font-family:tahoma,sans-serif;font-size:11px;
+ 	float: right;
+ 	font-weight:bold;
+ 	color:#104A7B;
+	background: #FFFFFF;
+	width: 100%;
+	text-align:center;
+	text-decoration:underline;
+	cursor:pointer;cursor:hand;
+ } 
+ 
+ .monthHeader {
+ 	font-family:tahoma,sans-serif;
+ 	font-size:10px;
+ 	font-weight:BOLD;
+ 	color:#000000;
+ 	text-align:center;
+ }
+
+ 
+.holidayWeek {
+ 	font-family:tahoma,sans-serif;
+ 	font-size:10px;
+ 	font-weight:BOLD;
+ 	color:gray;
+ 	text-align:center;
+ }
+ 
+.holiday {
+ 	font-family:Arial,tahoma,sans-serif;
+ 	font-size:10px;
+ 	color:gray;
+ 	text-align:center;
+ }
+ 
+ .holidaySelectable {
+ 	font-family:Arial,tahoma,sans-serif;
+ 	font-size:10px;
+
+ 	color:gray;
+ 	text-align:center;
+	cursor:pointer;cursor:hand;
+ } 
+
+.monthYearTraversorBtn	{
+	font-family:tahoma,sans-serif;font-size:11px;
+	background: #104A7B;
+	color: #FFFFFF;
+	font-weight:bold;
+	border-right: 0px solid gray;
+	border-left: 0px solid gray;
+	border-bottom: 0px solid gray;
+	border-top: 0px solid gray;
+	cursor:pointer;cursor:hand;
+}
+	
+.monthYearTraversor	{
+	font-family:Arial,tahoma,sans-serif;font-size:11px;
+	background: #104A7B;
+	color: #FFFFFF;
+	font-weight:bold;
+	
+}	
+	
+.calendarDate {
+	font-family:Arial,tahoma,sans-serif;
+	font-size:10px;
+	color:#000000;
+	text-decoration:none;
+	cursor:pointer;cursor:hand;
+  }
+  
+.currentDate {
+	font-family:tahoma,sans-serif;
+	font-size:10px;
+	color:#104A7B;
+	font-weight:BOLD;
+	background: #FFFFFF;
+	text-decoration:none;
+	cursor:pointer;cursor:hand;
+	border-bottom: 1px solid #336699;
+	border-right: 1px solid #336699;
+	border-left: 1px solid #336699;
+	border-top:1px solid #336699;	
+  }
+
+
+/*****************Image uploader styles copied from console**************************/
+
+.console-logo-image
+{
+	width: 138px;
+	height: 58px;
+}
+
+.console-label
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.ppt-upload-filename-textbox
+{
+  margin-top: 8px;
+}
+
+.console-button
+{
+  font-family: Verdana, Tahoma, Arial, sans-serif, Trebuchet MS;
+  font-size: 11px;
+  background-color: #C3D9FF;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.panel-top-border
+{
+	width: 100%;
+	height: 100%;
+	borderTop: 1px solid GREY;
+}
+
+.overflow-auto
+{
+	overflow:auto;
+	width: 165px;
+}
+
+/***************** HTML styles used for HTML login page****************/
+
+.pagebgcolor{
+	background-color:#81b3e6;
+	background-image:url(images/bg_tile.png);
+}
+
+#main{
+	height: 748px;
+}
+
+
+.logo {
+	background-repeat: no-repeat;
+	background-image: url(images/dimdim-logo.png);
+	height: 58px;
+	width: 138px;
+	margin-top: 10px;
+	margin-left: 16px;
+		}
+		
+* html .logo
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="html/portal/images/dimdim-logo.png", sizingMethod="crop");
+}
+
+#cpod 
+{
+	width: 970px;
+	height:auto;
+}
+#cpod_top {
+	background-image: url(images/greypod_top.png);
+	height: 10px;
+	background-repeat: no-repeat;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+
+#cpod_top_inner {
+	background-image: url(images/greypod_topinner.png);
+	height: 4px;
+	background-repeat: no-repeat;
+}
+
+#cpod_middle {
+	background-image: url(images/greypod_tile.png);
+	background-repeat: repeat-y;
+	margin: 0px;
+	padding: 0px;
+	height:auto;
+}
+
+#cpod_bottom_inner {
+	background-image: url(images/greypod_innerbottom.png);
+	height: 4px;
+	background-repeat: no-repeat;
+}
+
+#cpod_bottom{
+	background-image: url(images/greypod_bottom.png);
+	height: 18px;
+	background-repeat: no-repeat;
+}
+
+* html #cpod_bottom
+{
+	background-image: none;
+	background-color: transparent;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="html/portal/images/greypod_bottom.png", sizingMethod="crop");
+}
+.welcometxt {
+	font-size:24px;
+	color:#FFFFFF;
+	font-family: verdana;
+	text-decoration: none;
+}
+
+
+#welcome {
+	background-image: url(images/tile.png);
+	background-repeat: repeat-x;
+	width: 950px;
+	height: 161px;
+}
+
+#login {
+	height:auto;
+	width: 335px;
+	margin-top: -147px;
+	margin-left: 570px;
+	background-repeat: repeat-y;
+	overflow: visible;
+	z-index: 10;
+	position: absolute;
+}
+
+.btn_login
+{
+	width: 57px;
+	height: 25px;
+	cursor: pointer;
+	background-image:url(images/login.png);
+	background-repeat:no-repeat;
+	padding-top: 6px;
+	padding-left: 22px;
+	color: #000000;
+}
+
+* html .btn_login
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='html/portal/images/login.png', sizingMethod='crop');
+}
+
+.btn_login_hover
+{
+	width: 57px;
+	height: 25px;
+	padding-top: 6px;
+	padding-left: 22px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	background-image:url(images/login_h.png);
+	background-repeat:no-repeat;
+	color: #FFFFFF;
+}
+
+* html .btn_login_hover
+{
+	background-image:none;
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='html/portal/images/login_h.png', sizingMethod='crop');
+}
+
+.signin-textbox
+{
+	width: 130px;
+	background-color: #ffffff;
+	border: 1px solid white;
+	height:12px;
+}
+
+.panel-header-login
+{
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.photo-file-upload-field{
+	vertical-align: middle;
+	align: center;
+}
+
+.personlization-border
+{
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+}

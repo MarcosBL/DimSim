@@ -1,0 +1,40 @@
+<project name="dimdim" default="copy" basedir=".">
+	<property file="build.properties" />
+	<property name="serverDir" value="../ServerII"/>
+
+	
+	<target name="compile" >
+		<exec dir="." executable="compile-all-pages.cmd">
+		</exec>
+	</target>
+	
+	<target name="copy" depends="compile">
+		<delete dir="${serverDir}/tmp/html" />
+		<mkdir dir="${serverDir}/tmp/html" />
+		
+		<echo message="${serverDir}" />
+		<copy todir="${serverDir}/tmp/html/layout">
+			<fileset dir="./www/com.dimdim.conference.ui.layout.NewLayout">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${serverDir}/tmp/html/popout">
+			<fileset dir="./www/com.dimdim.conference.ui.workspacepopout.WorkspacePopout">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${serverDir}/tmp/html/envcheck">
+			<fileset dir="./www/com.dimdim.conference.ui.envcheck.EnvCheck">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${tomcat_home}/webapps/dimdim">
+			<fileset dir="${serverDir}/tmp" >
+				<exclude name="**/*.properties"/>
+				<exclude name="**/*-validation.xml" />
+			</fileset>	
+		</copy>
+	</target>
+
+</project>

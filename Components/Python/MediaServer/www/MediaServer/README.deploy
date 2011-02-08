@@ -1,0 +1,9 @@
+VERSION	:  	4.1
+AUTHOR	:	Bharat Varma N.
+
+1. Install dmservice.exe as a service using -
+
+	dmservice.exe INSTALL
+2. Set up correct paths, ports etc. in the configuration files - osconfig.py, wdms.conf, lighttpd.conf
+3. Start the service.
+4. The service merely uses the scripts StartDMS.bat and StopDMS.bat available along with this codebase.

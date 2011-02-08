@@ -1,0 +1,35 @@
+Install pre-requisites
+------------------------
+yum install gcc-c++
+yum install gdb
+yum install pcre-devel
+yum install libjpeg-devel
+yum install zlib-devel
+yum install libpng-devel
+
+
+wget http://www.fastcgi.com/dist/fcgi.tar.gz
+wget http://prdownloads.sourceforge.net/corona/corona-1.0.2.tar.gz
+
+install them to directories of your choice. e.g. /root/DevLibs/fcgi-2.4.0 or /root/DevLibs/corona-1.0.2
+
+edit compile-all.sh to set FCGI and CORONA DIR variables
+
+run ./compile-all.sh
+
+mkdir libs
+cp $FCGI_DIR/lib/*so* libs/
+cp $CORONA_DIR/lib/*so* libs/
+
+copy the shell scripts and supakilla from etc/scripts to current directory.
+copy appropriate spawn-fcgi as per platform type (32/64 bit) from etc/tools to current directory and rename it to spawn-fcgi
+
+
+tar zcvf reflector_bin_pack.tgz libs/ etc/ *.sh spawn-fcgi README.deploy suapkilla
+makes the redistributable pack for the reflector.
+
+
+You can download the nginx pack for your platform from jp2 ftp site and follow the instructions in README.deploy to install and start
+
+
+

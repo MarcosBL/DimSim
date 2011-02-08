@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title>Dimdim Safari / FF OSX Test Page</title>
+<embed type="application/wkdimdim" width=1 height=1 hidden="true">
+<script LANGUAGE="JavaScript">
+
+function startShare(form)
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	var inputStr = "operation=screencast&reg=bharat&action=share&handle=0";
+	var retval = pub.performAction(inputStr);
+	if (retval == -1)
+	{
+		alert("Another meeting running. Please close that meeting and restart this meeting");
+	}
+	// screencast result 0 - still trying to start sharing
+	// screencast result 1 - successfully started sharing
+	// screencast result 2- meeting stopped due to user action
+	// screencast result 3 - unable to connect to reflector
+	// screencast result 4 - shared window handle is not available (can come in the beginning or during a successful share also)
+}
+
+function stopShare()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	pub.performAction("operation=screencast&reg=bharat&action=stop");
+}
+
+function screencastResult()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	alert(pub.getProperty("name=\"screencastResult\""));
+//	alert(embed.getProperty("name=\"BWProfile\""));
+}
+
+function runPublisher()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	alert("run publisher");
+	pub.performAction("operation=mint&action=run");
+}
+
+function exitPublisher()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	alert("exit publisher");
+	pub.performAction("operation=mint&action=exit");
+}
+
+function setPublisherData()
+
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	// Each property can either be set separately or in a single buffer
+	// NOTE: you need to add that additional integer after the URL. that integer can be anything. 0 which is used here is just an example..basically an issue of creating the correct  method on my side.
+	// once created, the activex control doesn't allow for modification. I will have to create a new activex control to fix this. so the method asks for a second variable of long type.
+
+	// Once we have the regular workflow working, we can create the new control very quickly.
+	// this method doesn't return any value
+	
+//	embed.setProperty("{screenURL:\"http://jp4.dimdim.com:8088/dimdimScreenShare/b1/s1/\"}");
+	pub.setProperty("{screenURL:\"http://209.217.107.188:8080/screenshare2/b1/s2/~dimdim_id/room_id/F60746D2-FE52-4BD6-BFF1-B0F1DCBADC26\"}");
+}
+
+function getVersion()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	alert(pub.getVersion());
+}
+
+function setHighBWProfile()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	pub.setProperty("{BWProfile:\"0\"}");
+}
+
+function setMediumBWProfile()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	pub.setProperty("{BWProfile:\"1\"}");
+}
+
+function setLowBWProfile()
+{
+	var pub = document.embeds[0].getDimdimCtrl();
+	embed.setProperty("{BWProfile:\"2\"}");
+}
+
+</script>
+
+
+</head>
+<body>
+<form id="dimdim" action="">
+INSTRUCTIONS:<br />
+	  <br />
+	  1. First click on 'Set Publisher Data' before you proceed with either conversion or screencast
+	  <br />
+	  2. To share a desktop, just click on 'Start Share' and to stop the screencast, click on 'Stop Share'
+	  <br />
+	  <br />
+	+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+	<br />
+	<br />
+	SET PUBLISHER DATA
+	<br />
+	<br />
+	<input type="button" value="Set Publisher Data" onclick="setPublisherData();" />
+	<br />
+	<br />
+	<br />
+	+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+	<br />
+	<br />
+	PUBLISHER VERSION AND SCREENCASTER PROFILES
+	<br />
+	<br />
+	<input type="button" value="Get Publisher Version" onclick="getVersion();" />
+	<br />
+	<input type="button" value="Set High Bandwidth Profile" onclick="setHighBWProfile();" />
+	<br />
+	<input type="button" value="Set Medium Bandwidth Profile" onclick="setMediumBWProfile();" />
+	<br />
+	<input type="button" value="Set Low Bandwidth Profile" onclick="setLowBWProfile();" />
+	<br />
+	<br />
+	+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+	<br />
+	<br />
+	<input type="button" value="Start Share" onclick="startShare();" />
+	<br />
+	<br />
+	<input type="button" value="Stop Share" onclick="stopShare();" />
+	<br />
+	<br />
+	<input type="button" value="Get Screencast Result" onclick="screencastResult();" />
+	<br />
+	<br />
+	<br />
+	+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+
+	<br />
+	<br />
+	MANAGEMENT INTERFACE
+	<br />
+	<br />
+	<input type="button" value="Run Publisher Component" onclick="runPublisher();" />
+	<br />
+	<br />
+	<input type="button" value="Exit Publisher Component" onclick="exitPublisher();" />
+	</form>
+
+</body>
+</html>

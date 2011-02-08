@@ -1,0 +1,67 @@
+<html><head><title></title>
+<script language="javascript1.1">
+
+connectionSpeed = 0;
+	// The variable where connection speed information
+	// will be stored when it is available.
+
+function drawCSImageTag( fileLocation, fileSize, imgTagProperties )
+{
+	start = (new Date()).getTime();
+	loc = fileLocation + '?t=' + escape(start);
+	document.write('<img src="' + loc + '" ' + imgTagProperties + ' onload="computeConnectionSpeed(' + start + ',' + fileSize + ');">');
+	
+	return;
+}
+
+function connectionType(speed)
+{
+	SLOW_MODEM = 15;
+	FAST_MODEM = 57;
+	ISDN_MODEM = 120;
+	
+	if (speed) {
+		if (speed < SLOW_MODEM) {
+			return "Slow Modem";
+		} else if (speed < FAST_MODEM) {
+			return "Fast Modem";
+		} else if (speed < ISDN_MODEM) {
+			return "ISDN Modem";
+		} else {
+			return "partial T1 or greater connection";
+		}
+	} else {
+		return "Undetermined Connection";
+	}
+}
+
+function computeConnectionSpeed( start, fileSize )
+{
+	end = (new Date()).getTime();
+	connectionSpeed = (Math.floor((((fileSize * 8) / ((end - start) / 1000)) / 1024) * 10) / 10);
+	window.parent.download_bandwidth = connectionSpeed;
+}
+
+</script>
+
+
+<script language="javascript">
+
+function showSpeed()
+{
+	alert('The Connection Speed during the download of this image was: ' + connectionSpeed + ' kbps.\n \nBased upon this information your connection device is most likely a ' + connectionType(connectionSpeed) + '.');
+	return;
+}
+
+</script>
+</head>
+<body>
+<script language=javascript1.1>
+<!--
+drawCSImageTag( 'images/test_image_1.jpg', 151984, 'border=2 height=500 alt="test_image_1"');
+//-->
+</script>
+<p><a href="#" onClick="showSpeed();return false">connection speed</a></b>
+</body>
+</html>
+

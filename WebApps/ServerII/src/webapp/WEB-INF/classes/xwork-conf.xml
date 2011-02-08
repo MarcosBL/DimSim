@@ -1,0 +1,84 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="conf" extends="webwork-default">
+    	
+		<global-results>
+			<result name="login">/jsp/common/commonResponse.jsp</result>
+			<result name="input">/jsp/common/commonResponse.jsp</result>
+			<result name="error">/jsp/common/commonResponse.jsp</result>
+			<result name="success">/jsp/common/commonResponse.jsp</result>
+		</global-results>
+		
+		<action name="GetWebAppRoot"
+				class="com.dimdim.conference.action.common.GetWebAppRootAction">
+			<result name="success" type="redirect">html/signin/signin.action?cflag=${cflag}</result>
+		</action>
+		
+		<action name="SetSessionLocale"
+				class="com.dimdim.conference.action.common.SetSessionLocaleAction">
+			<result>/jsp/common/commonResponse.jsp</result>
+		</action>
+		
+		<action name="GetI18NResourceValue"
+				class="com.dimdim.conference.action.common.GetI18NResourceValueAction">
+			<result>jsp/signin2/getI18NResourceValueResponse.jsp</result>
+		</action>
+		
+		<action name="GetCreateAndStartConferenceForm"
+				class="com.dimdim.conference.action.common.GetCreateAndStartConferenceFormAction">
+			<result name="success" type="redirect">html/signin/signin.action?cflag=${cflag}</result>
+			<result name="in_conference">jsp/signin2/InActiveConference.jsp</result>
+		</action>
+		
+		<action name="GetJoinConferenceForm"
+				class="com.dimdim.conference.action.common.GetJoinConferenceFormAction">
+			<result name="success" type="redirect">html/signin/signin.action?cflag=${cflag}</result>
+			<result name="in_conference">jsp/signin2/InActiveConference.jsp</result>
+		</action>
+		
+		<action name="CreateAndStartConference"
+					class="com.dimdim.conference.action.CreateAndStartConferenceAction">
+			<result name="login" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="input" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="error" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="success_myngle">/jsp/common/forwardToLoadConsole.jsp</result>
+			<result name="success" type="redirect">
+				<![CDATA[html/layout2/GetFullConsole.action?confKey=${confKey}&cflag=${cflag}&uri=${uri}&pubAvailable=${pubAvailable}]]>
+			</result>
+		</action>
+		
+		<action name="RejoinConference"
+					class="com.dimdim.conference.action.roster.RejoinConferenceAction">
+			<result name="login" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="input" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="error" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="success_myngle">/jsp/common/forwardToLoadConsole.jsp</result>
+			<result name="success" type="redirect">
+				<![CDATA[html/layout2/GetFullConsole.action?confKey=${confKey}&cflag=${cflag}&uri=${uri}&pubAvailable=${pubAvailable}]]>
+			</result>
+		</action>
+		
+		<action name="JoinConference"
+					class="com.dimdim.conference.action.roster.JoinConferenceAction">
+			<result name="login" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="input" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="error" >/jsp/common/StandAloneResponse.jsp</result>
+			<result name="succes_myngle">/jsp/common/forwardToLoadConsole.jsp</result>
+			<result name="success" type="redirect">
+				<![CDATA[html/layout2/GetFullConsole.action?confKey=${confKey}&cflag=${cflag}&uri=${uri}&pubAvailable=${pubAvailable}]]>
+			</result>
+		</action>
+		
+		<action name="GetDMSUrl" class="com.dimdim.conference.action.common.GetDMSUrl">
+			<result name="success">/jsp/common/jsonResponse.jsp</result>
+		</action>
+		
+		<action name="GetNewUUID" class="com.dimdim.conference.action.common.GetNewUUID">
+			<result name="success">/jsp/common/jsonResponse.jsp</result>
+		</action>
+	</package>
+</xwork>

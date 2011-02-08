@@ -1,0 +1,21 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+
+	<package name="ppt" extends="webwork-default" namespace="/html/ppt">
+    	
+		<global-results>
+			<result name="login">PPTModule.jsp?cflag=${cflag}</result>
+			<result name="input">PPTModule.jsp?cflag=${cflag}</result>
+			<result name="error">PPTModule.jsp?cflag=${cflag}</result>
+			<result name="success">PPTModule.jsp?cflag=${cflag}</result>
+		</global-results>
+		
+		<action name="GetPPTModulePage"
+				class="com.dimdim.conference.action.ui.ppt.GetPPTModulePageAction">
+		</action>
+		
+	</package>
+</xwork>

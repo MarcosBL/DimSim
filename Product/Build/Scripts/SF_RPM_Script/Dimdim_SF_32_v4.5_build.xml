@@ -1,0 +1,147 @@
+<project name="dimdim" default="help" basedir=".">
+	<property name="baseServerIIDir" value="../../../../WebApps/ServerII"/>
+	<target name="help">
+	  <echo>
+            o To build the dimdim SF pack, simply run:
+
+                 ant -f Dimdim_SF_32_v4.5_build.xml build
+
+        </echo>
+	</target>
+	
+	<target name="build">
+		<delete file="../../Distributionv4.0/dimdim-4.5.tar.gz" />
+		<!--<exec executable="sh">
+			<arg line="../../FCGIApps/Reflector/compile-all.sh"/>
+		</exec>-->
+		
+		<!-- Following code is for Cobmanager-->
+			
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/CobrowsingManager">
+				<fileset dir="../../../../Components/Python/MediaServer/Cobrowsing Manager"/>
+			</copy>
+			
+			<tar tarfile="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/CobrowsingManager.tar" basedir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/"/>
+		  	<gzip src="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/CobrowsingManager.tar" destfile="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/CobrowsingManager.tar.gz"/>
+			 <delete file="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/CobrowsingManager.tar"/>
+			 
+			<copy file="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager/CobrowsingManager.tar.gz" todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/" />
+			<delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/CobrowsingManager"/>
+		
+		<!--Following code is for red5-->
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/red5">
+				<fileset dir="../../../../PreBuildBinaries/StreamingServer/red5"/>
+			</copy>
+			
+		<!--Following code is for Nginx -->
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/nginx">
+				<fileset dir="../../../../PreBuildBinaries/nginx/Linux/x86/nginx"/>
+			</copy>
+		
+		<!-- Following code is for Reflector-->
+		
+			<exec dir="../../../../FCGIApps/Reflector/" executable="bash">
+				<arg line="compile_all.sh"/>
+			</exec>
+		
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector">
+				<fileset dir="../../../../FCGIApps/Reflector"/>
+			</copy>
+		
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector/libs">
+				<fileset dir="../../../../../../Dependencies/Reflector/corona_fcgi_libs/" />
+			</copy>
+			
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector">
+				<fileset dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector/etc/scripts/" >
+				<include name="**/*.sh"/>
+				</fileset>
+			</copy>	
+			
+			<copy file="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector/etc/scripts/supakilla" todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector/" />
+			<delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/DTP3/Reflector/src"/>
+		<!--Folowing code is for invoking Conf server build script-->
+			<ant antfile="DimdimConfernceServer_Lin_32_v4.5_build.xml" target="All" dir="../ComponentScript" inheritAll="false" />
+		<!--Following code is for conf server-->
+		<unzip src="../../ConferenceServer_Template/Conference Server Linux.zip" dest="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5"/>
+		<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim">
+			<fileset dir="${baseServerIIDir}/tmp" />
+		</copy>
+		<delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/webdav"/>
+		<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/lib">
+            <fileset dir="../../../../ThirdPartyPackages/ApacheCommon/" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="../../../../ThirdPartyPackages/HTTPClient/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/Javamail/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/Webworks/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/Streaming/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/ServerCommon/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/EnterpriseStreaming/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+                </copy>	
+				
+		<!--Please comment this line For Conf pack or Conf plus portal pack-->
+		<delete file="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/lib/RecordingAdapter.jar" />
+		<delete file="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/classes/resources/portal.properties" />	
+		
+		<delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
+		<mkdir dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
+		
+		<!-- Following code is for Media Server-->
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/Mediaserver/mods">
+				<fileset dir="../../../../Components/Python/MediaServer/Presentation Manager/OpenOffice/"/>
+			</copy>
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/Mediaserver/www">
+				<fileset dir="../../../../Components/Python/MediaServer/www/" >
+				</fileset>
+			</copy>	
+			<delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/Mediaserver/www/MediaServer"/>
+			<delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/Mediaserver/www/archive/cob"/>
+<!--			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/mailbox/dimdimMailBoxRoot">
+				  <fileset dir="../../../../Components/Python/MediaServer/Recording Manager/dimdimMailBoxRoot">
+			</fileset>
+			</copy>	-->
+		<!-- Following code is for ThidpartyPackages-->
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/ThirdPartyPackages">
+                <fileset dir="../../../../PreBuildBinaries/PresentationManager/"/>
+            </copy>
+			
+		<!--Following code is for copying Helper scripts-->
+			
+			<copy todir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5">
+				<fileset dir=".">
+					<include name="**/*.sh"/>
+				</fileset>
+				<fileset dir=".">
+					<include name="**/*.py"/>
+				</fileset>
+				<fileset dir=".">
+					<include name="**/*.pl"/>
+				</fileset>
+			</copy>
+		 <delete dir="../../ConferenceServer_Template/dimdim-4.5/dimdim-4.5/Helper" />		
+	
+		<tar tarfile="../../Distributionv4.0/dimdim-4.5.tar" basedir="../../ConferenceServer_Template/dimdim-4.5/"/>
+		<gzip src="../../Distributionv4.0/dimdim-4.5.tar" destfile="../../Distributionv4.0/dimdim-4.5.tar.gz"/>
+		<delete file="../../Distributionv4.0/dimdim-4.5.tar"/>
+		<delete dir="../../ConferenceServer_Template/dimdim-4.5"/>
+		 
+		<copy file="../../Distributionv4.0/dimdim-4.5.tar.gz" todir="/usr/src/redhat/SOURCES/" />
+		<exec dir="Helper" executable="bash">
+				<arg line="Dimdim-4.5.sh"/>
+			</exec>
+		
+	</target>
+</project>
