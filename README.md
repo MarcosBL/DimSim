@@ -197,7 +197,11 @@ v4.1/Product/Build/Scripts/SF_RPM_Script/README.txt
 
 	Now try to run Build script
 		cd <ParentDirectory>/v4.1/Product/Build/Scripts/SF_RPM_Script/
-		ant -f Dimdim_SF_32_v4.5_build.xml build
+
+New DimSim Build script
+	 ant -f DimSim_x86_build.xml
+Old rpm build script
+	ant -f Dimdim_SF_32_v4.5_build.xml build
 
 	You can find RPM under RPMS/<architecture> directory
 	If you build on 32 bit machine, RPM will be under
