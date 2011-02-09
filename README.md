@@ -198,9 +198,19 @@ v4.1/Product/Build/Scripts/SF_RPM_Script/README.txt
 	Now try to run Build script
 		cd <ParentDirectory>/v4.1/Product/Build/Scripts/SF_RPM_Script/
 
-New DimSim Build script
+* New DimSim Build script
+
 	 ant -f DimSim_x86_build.xml
-Old rpm build script
+
+This will build all components bar the reflector at this stage.
+You can copy the Product/bin/ConferenceServer_Template/linuxdist/DimSimConf-4.5/
+ConferenceServer/apache-tomcat-5.5.17/webapps directory to your own Tomcat 
+installation to test.
+
+* Old DimDim rpm build script
+Tries building all components including the Reflector and creates an RPM. Testing
+indicates it is likely to fail however.
+
 	ant -f Dimdim_SF_32_v4.5_build.xml build
 
 	You can find RPM under RPMS/<architecture> directory
