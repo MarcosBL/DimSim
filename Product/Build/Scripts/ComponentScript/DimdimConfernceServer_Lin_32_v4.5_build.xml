@@ -1,20 +1,30 @@
-<project name="dimdim" default="help" basedir=".">
+<project name="DimSim" default="help" basedir=".">
+	<property name="version" value="4.5"/>
+	<property name="output.dir" value="../../../bin" />
 	<tstamp>
 	    <format property="date" pattern="d-MMMM-yyyy" locale="en,UK"/>
 	</tstamp>
 	<property name="baseServerIIDir" value="../../../../WebApps/ServerII"/>
 	<target name="help">
 	  <echo>
-           ant -f confernce_server4.0_build.xml All - Builds the complete thing
+           ant -f confernce_server_build.xml All - Builds the complete thing
       </echo>
 	</target>
 
 
 	<target name="All" depends="BuildServerII">
 	</target>
+	
+	<target name="clean">
+		<echo>Cleaning output directories...</echo>
+		<delete file="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar.gz"/>
+		<delete dir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}"/>
+		<mkdir dir="${output.dir}/test_output" />
+	</target>
+	
 	<target name="BuildServerII">
-	<delete file="../../Distributionv4.0/dimdimConf-4.5.tar.gz"/>
-	<delete dir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5"/>
+		
+		
 		<!--Start packInfo component-->
 		<javac sourcepath="" srcdir="../BuildHelper4.0" destdir="../BuildHelper4.0" >
 			<include name="**/*.java"/>
@@ -52,19 +62,19 @@
 	 	</condition>		 	
 	</target>
 	<target name="window" depends="check" if="checkforserver">
-		<delete dir="../../ConferenceServer_Template/windowdist/dimdim"/>
-		<mkdir dir="../../ConferenceServer_Template/windowdist/dimdim"/>
+		<delete dir="${output.dir}/ConferenceServer_Template/windowdist/dimdim"/>
+		<mkdir dir="${output.dir}/ConferenceServer_Template/windowdist/dimdim"/>
 		<!--<unzip src="../../Installer/ConferenceServer/dist/Streaming Server Cluster.zip" dest="../../Installer/ConferenceServer/linuxdist/dimdim"/>-->
-		<unzip src="../../ConferenceServer_Template/Conference Server.zip" dest="../ConferenceServer_Template/windowdist/dimdim"/>
+		<unzip src="${output.dir}/ConferenceServer_Template/Conference Server.zip" dest="../ConferenceServer_Template/windowdist/dimdim"/>
 
 		<!--<delete dir="../../installer/ConferenceServer/linuxdist/dimdim/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim"/>
 		<mkdir dir="../../installer/ConferenceServer/linuxdist/dimdim/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim"/>-->
-		<copy todir="../../ConferenceServer_Template/windowdist/dimdim/Conference Server/Tomcat 5.5/webapps/dimdim">
+		<copy todir="${output.dir}/ConferenceServer_Template/windowdist/dimdim/Conference Server/Tomcat 5.5/webapps/dimdim">
 			<fileset dir="${baseServerIIDir}/tmp" />
 		</copy>
 		
-		<delete dir="../../ConferenceServer_Template/windowdist/dimdim/Conference Server/Tomcat 5.5/webapps/ROOT"/>
-		<mkdir dir="../../ConferenceServer_Template/windowdist/dimdim/Conference Server/Tomcat 5.5/webapps/ROOT"/>
+		<delete dir="${output.dir}/ConferenceServer_Template/windowdist/dimdim/Conference Server/Tomcat 5.5/webapps/ROOT"/>
+		<mkdir dir="${output.dir}/ConferenceServer_Template/windowdist/dimdim/Conference Server/Tomcat 5.5/webapps/ROOT"/>
 		<!--<copy todir="../../installer/ConferenceServer/linuxdist/dimdim/ConferenceServer/Tomcat 5.5/webapps/ROOT">
 			<fileset dir="${baseRed5Dir}/tmp"/>
 		</copy>	-->
@@ -76,27 +86,29 @@
 	    </copy>-->
 
 		<delete>
-			<fileset dir="../../Distributionv4.0/" includes="**/*.zip"/>
+			<fileset dir="${output.dir}/Distributionv${version}/" includes="**/*.zip"/>
 		</delete>
-	    <zip destfile="../../Distributionv4.0/dimdim-4.1_win_${date}.zip" basedir="../../ConferenceServer_Template/windowdist/"/>
+	    <zip destfile="${output.dir}/Distributionv${version}/${ant.project.name}-${version}_win_${date}.zip" basedir="${output.dir}/ConferenceServer_Template/windowdist/"/>
 	  	<!--<gzip src="../Installer/dist/dimdim-3.5.0.tar" destfile="../Installer/dist/dimdim-3.5.0.tar.gz"/>
 		 <delete file="../Installer/dist/dimdim-3.5.0.tar"/>-->
 	</target>
 	
 	<!--<target name="linux" depends="check" unless="checkforserver">-->
 	<target name="linux" >
-		<delete dir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5"/>
-		<mkdir dir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5"/>
+		<delete dir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}"/>
+		<mkdir dir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}"/>
 		<!--<unzip src="../../Installer/ConferenceServer/dist/Streaming Server Cluster.zip" dest="../../Installer/ConferenceServer/linuxdist/dimdim"/>-->
-		<unzip src="../../ConferenceServer_Template/Conference Server Linux.zip" dest="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5"/>
+		
+		<echo>===== Skipping the unzipping of Conference Server Linux.zip =====</echo>
+		<!-- <unzip src="${output.dir}/ConferenceServer_Template/Conference Server Linux.zip" dest="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}"/> -->
 
 		<!--<delete dir="../../installer/ConferenceServer/linuxdist/dimdim/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim"/>
 		<mkdir dir="../../installer/ConferenceServer/linuxdist/dimdim/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim"/>-->
-		<copy todir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim">
+		<copy todir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim">
 			<fileset dir="${baseServerIIDir}/tmp" />
 		</copy>
 		<delete dir="../../../installer/ConferenceServer/linuxdist/dimdim/ConferenceServer/apache-tomcat-5.5.17/webapps/webdav"/>
-		<copy todir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/lib">
+		<copy todir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/lib">
                         <fileset dir="../../../../ThirdPartyPackages/ApacheCommon/" >
 			<include name="**/*.jar"/>
 			</fileset>
@@ -119,9 +131,12 @@
                         <include name="**/*.jar"/>
                         </fileset>
                 </copy>		
-		<delete dir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
-		<mkdir dir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
-		<!--<copy todir="../../installer/ConferenceServer/linuxdist/dimdimConf-4.5/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT">
+                
+        <!--        
+		<delete dir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
+		<mkdir dir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/> -->
+		
+		<!--<copy todir="../../installer/ConferenceServer/linuxdist/${ant.project.name}Conf-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT">
 			<fileset dir="${baseRed5Dir}/tmp"/>
 		</copy>	-->
 		
@@ -130,19 +145,28 @@
 	        <include name="**/*.*" />
 	      </fileset>
 	    </copy>-->
-
+	    
+	    <!-- Failed to find Distribution folder so creating it here - Mattw-->
+	    
+	    <!-- Useless wtf
+		<mkdir dir="${output.dir}/Distributionv${version}/" />
 		<delete>
-			<fileset dir="../../Distributionv4.0/" includes="**/*.tar.gz"/>
+			<fileset dir="${output.dir}/Distributionv${version}/" includes="**/*.tar.gz"/>
 		</delete>
-	    <tar tarfile="../../Distributionv4.0/dimdimConf-4.5.tar" basedir="../../ConferenceServer_Template/linuxdist/"/>
-	  	<gzip src="../../Distributionv4.0/dimdimConf-4.5.tar" destfile="../../Distributionv4.0/dimdimConf-4.5.tar.gz"/>
-		<delete file="../../Distributionv4.0/dimdimConf-4.5.tar"/>
-		<!-- <copy file="../../Distributionv4.0/dimdimConf-4.5.tar.gz" todir="/usr/src/redhat/SOURCES/" />	
+		
+	    <tar tarfile="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar" basedir="${output.dir}/ConferenceServer_Template/linuxdist/"/>
+	  	<gzip src="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar" destfile="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar.gz"/>
+		<delete file="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar"/>
+		-->
+		<!-- <copy file="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar.gz" todir="/usr/src/redhat/SOURCES/" />	
 		<exec dir="../ScriptHelper4.5/dimdimConf" executable="bash">
 				<arg line="dimdimConf.sh"/>
 			</exec>	-->
-		<delete file="../../Distributionv4.0/dimdimConf-4.5.tar.gz"/>
-		<delete dir="../../ConferenceServer_Template/linuxdist/dimdimConf-4.5"/>
+			
+		<!--
+		<delete file="${output.dir}/Distributionv${version}/${ant.project.name}Conf-${version}.tar.gz"/>
+		<delete dir="${output.dir}/ConferenceServer_Template/linuxdist/${ant.project.name}Conf-${version}"/>
+		-->
 	</target>
 	
 	<target name="windowNlinux" depends="check">

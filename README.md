@@ -16,9 +16,13 @@ open and free web meeting alternative.
 
 ## Initial Plans
 
-Initial plans are to refactor the code base and annotate as many functions as
-possible. Documentation was very poor in the original product the plan is to
-try and clean it as we go as well.
+* Annotate as many functions as possible. 
+* Update Documentation as it was very poor in the original product. 
+* Remove dependency on rpmbuild and Centos oriented build sequences 
+* Split modules into logical folder structures 
+* Refactor the code base
+* Update libraries
+* Update build scripts
 
   
 ## Dependencies
@@ -34,6 +38,9 @@ to pull in deps and compile.
 Priority is to determine which packages are actually needed and which can be
 updated to their latest versions.
 
+* rpmbuild
+* jdk 1.6 +
+* ant-1.7
 * Red5 - Java based Flash Server - http://www.red5.org
 * ffmpeg - http://ffmpeg.org
 * swftools - http://www.swftools.org

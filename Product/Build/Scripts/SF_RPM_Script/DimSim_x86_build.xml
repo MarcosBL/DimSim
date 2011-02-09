@@ -1,0 +1,200 @@
+<project name="DimSim" default="help" basedir=".">
+	<property name="baseServerIIDir" value="../../../../WebApps/ServerII"/>
+	
+
+	<property name="output.dir" value="../../../bin" />
+	<property name="version" value="4.5" />
+	<target name="help">
+	  <echo>
+            To build the ${ant.project.name} Server, run:
+
+                 ant -f ${ant.project.name}_x86__build.xml build
+
+		Default output directory is Product/bin/
+
+        </echo>
+	</target>
+	
+	<target name="clean">
+		<echo>Cleaning previous build...</echo>
+		<delete dir="${output.dir}"/>
+		<delete file="${output.dir}/Distributionv${version}/${ant.project.name}-${version}.tar.gz" />
+	</target>
+
+	<target name="resolveDeps">
+		<echo>Resolving dependencies</echo>
+		
+		<!--Following code is for red5-->
+			<echo>Copying red5 to output dir</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/red5">
+				<fileset dir="../../../../PreBuildBinaries/StreamingServer/red5"/>
+			</copy>
+			
+		<!--Following code is for Nginx -->
+			<echo>Copying nginx to output dir</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/nginx">
+				<fileset dir="../../../../PreBuildBinaries/nginx/Linux/x86/nginx"/>
+			</copy>
+		
+	</target>
+	
+	<target name="build-reflector">
+	
+			<!--<exec executable="sh">
+			<arg line="../../FCGIApps/Reflector/compile-all.sh"/>
+			</exec>-->
+			<!-- Following code is for Reflector-->
+			<echo>Compiling Reflector</echo>
+			<exec dir="../../../../FCGIApps/Reflector/" executable="bash">
+				<arg line="compile_all.sh"/>
+			</exec>
+			<echo>Copying FCGIApps/Reflector to output.dir</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector">
+				<fileset dir="../../../../FCGIApps/Reflector"/>
+			</copy>
+			<echo>Copying Corona fcgi Reflector Libs to Reflector Libs dir</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector/libs">
+				<fileset dir="../../../../../../Dependencies/Reflector/corona_fcgi_libs/" />
+			</copy>
+			<echo>Copying DTP3/Reflector/etc/scripts to DTP3/Reflector</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector">
+				<fileset dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector/etc/scripts/" >
+				<include name="**/*.sh"/>
+				</fileset>
+			</copy>	
+			
+			<copy file="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector/etc/scripts/supakilla" todir="../../ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector/" />
+			<delete dir="${output.dir}ConferenceServer_Template/${ant.project.name}-${version}/DTP3/Reflector/src"/>
+	</target>
+	
+	<target name="build-cobrowser-manager">
+			<!-- Following code is for Cobmanager-->
+			<echo>Copying Cobrowser Manager - ConferenceServer_Template...</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/CobrowsingManager">
+				<fileset dir="../../../../Components/Python/MediaServer/Cobrowsing Manager"/>
+			</copy>
+			<echo>gzipping ConferenceServer_Template</echo>
+			<tar tarfile="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/CobrowsingManager.tar" basedir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/"/>
+		  	<gzip src="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/CobrowsingManager.tar" destfile="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/CobrowsingManager.tar.gz"/>
+			 <delete file="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/CobrowsingManager.tar"/>
+			 
+			<echo>Copying CobrowserManager.tar.gz to output dir</echo>
+			<copy file="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager/CobrowsingManager.tar.gz" todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/" />
+			<delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/CobrowsingManager"/>
+		
+	</target>
+	
+	<target name="build-conf-server">
+	<!--Folowing code is for invoking Conf server build script-->
+			<ant antfile="DimdimConfernceServer_Lin_32_v4.5_build.xml" target="All" dir="../ComponentScript" inheritAll="false" />
+			
+				<!--Following code is for conf server-->
+				<!--
+		<unzip src="${output.dir}/ConferenceServer_Template/Conference Server Linux.zip" dest="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}"/>
+		<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim">
+			<fileset dir="${baseServerIIDir}/tmp" />
+		</copy>
+		<delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/webdav"/>
+		<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/lib">
+            <fileset dir="../../../../ThirdPartyPackages/ApacheCommon/" >
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="../../../../ThirdPartyPackages/HTTPClient/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/Javamail/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/Webworks/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/Streaming/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/ServerCommon/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+			<fileset dir="../../../../ThirdPartyPackages/EnterpriseStreaming/" >
+                        <include name="**/*.jar"/>
+                        </fileset>
+                </copy>	
+			-->
+		<!--Please comment this line For Conf pack or Conf plus portal pack-->
+		<delete file="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/lib/RecordingAdapter.jar" />
+		<delete file="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/dimdim/WEB-INF/classes/resources/portal.properties" />	
+		
+		<delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
+		<mkdir dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ConferenceServer/apache-tomcat-5.5.17/webapps/ROOT"/>
+	
+			
+	</target>
+	
+	<target name="build-media-server">
+		<!-- Following code is for Media Server-->
+		<echo>Start building the Media Server...</echo>
+		<echo>Copying Components/Python/MediaServer/Presentation Manager/OpenOffice/ to /MediaServer/mods</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/Mediaserver/mods">
+				<fileset dir="../../../../Components/Python/MediaServer/Presentation Manager/OpenOffice/"/>
+			</copy>
+			<echo>Copying Components/Python/MediaServer/www/ to /MediaServer/www</echo>
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/Mediaserver/www">
+				<fileset dir="../../../../Components/Python/MediaServer/www/" >
+				</fileset>
+			</copy>	
+			<delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/Mediaserver/www/MediaServer"/>
+			<delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/Mediaserver/www/archive/cob"/>
+<!--			<copy todir="../../ConferenceServer_Template/${ant.project.name}-${version}/mailbox/dimdimMailBoxRoot">
+				  <fileset dir="../../../../Components/Python/MediaServer/Recording Manager/dimdimMailBoxRoot">
+			</fileset>
+			</copy>	-->
+	</target>
+	
+	<target name="build-third-party">
+			<!-- Following code is for ThidpartyPackages-->
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/ThirdPartyPackages">
+                <fileset dir="../../../../PreBuildBinaries/PresentationManager/"/>
+            </copy>
+	</target>
+	
+	<target name="copy-helper-scripts">
+		<!--Following code is for copying Helper scripts-->
+			
+			<copy todir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}">
+				<fileset dir=".">
+					<include name="**/*.sh"/>
+				</fileset>
+				<fileset dir=".">
+					<include name="**/*.py"/>
+				</fileset>
+				<fileset dir=".">
+					<include name="**/*.pl"/>
+				</fileset>
+			</copy>
+		 <delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}/Helper" />		
+	
+	</target>
+	
+	<!-- <target name="build" depends="clean, resolveDeps, build-cobrowser-manager, build-reflector, build-conf-server, build-media-server, build-third-party"> -->
+	<target name="build" depends="clean, resolveDeps, build-cobrowser-manager, build-conf-server, build-media-server, build-third-party">
+		<echo>WARNING: Not building Reflector...</echo>
+
+		
+		<tar tarfile="${output.dir}/Distributionv${version}/${ant.project.name}-${version}.tar" basedir="../../ConferenceServer_Template/${ant.project.name}-${version}/"/>
+		<gzip src="${output.dir}/Distributionv${version}/${ant.project.name}-${version}.tar" destfile="../../Distributionv${version}/${ant.project.name}-${version}.tar.gz"/>
+		<delete file="${output.dir}/Distributionv${version}/${ant.project.name}-${version}.tar"/>
+		<delete dir="${output.dir}/ConferenceServer_Template/${ant.project.name}-${version}"/>
+		 
+		 <echo>WARN - not copying files to RedHat Sources dir</echo>
+		<!--  
+		<copy file="${output.dir}/Distributionv${version}/${ant.project.name}-${version}.tar.gz" todir="/usr/src/redhat/SOURCES/" />
+		-->
+	</target>
+	
+	<target name="build-rpm" depends="build" description="Outputs an rpm">
+		
+		<exec dir="Helper" executable="bash">
+				<arg line="${ant.project.name}.sh"/>
+		</exec>
+		
+	</target>
+</project>
