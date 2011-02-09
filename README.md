@@ -5,7 +5,14 @@ Created: 08 Feb 2011
 Last Modifeid: 08 Feb 2011
 
 This is a fork of the recently acquired DimDim software. It is based on the last
-publicly released version, 4.1. 
+publicly released version, 4.5.
+
+DimSim is a free web conferencing service where you can share your desktop, show 
+slides, collaborate, chat, talk and broadcast via webcam with absolutely no 
+download required for attendees. Dimdim is100% browser-based and is your easy, 
+open and free web meeting alternative.
+
+ 
 
 ## Initial Plans
 
@@ -86,13 +93,111 @@ updated to their latest versions.
 
 
 ## Overview
-TODO
+
+NOTE: Taken from the DimDim integration document in Documentation folder
+
+The major components of DimSim Server are:
+* DimSim Conference Server (DCS)
+* DimSim Media Server (DMS)
+* DimSim Screenshare Server (Reflector)
+* DimSim Streaming Server (DSS)
+
+These components are accessed via an nginx based reverse proxy and thus from an 
+external perspective all of them are available at a single HTTP port end point 
+with the URL patterns serving as the differentiator.
+
+This reduces the complexity of the port architecture and also allows for easier 
+firewall management policies when deploying DimSim Web Meeting Server.
+
+* DimSim Conference Server (DCS) provides the infrastructure for conferences
+(along with attendees and hosts) to interact using a messaging infrastructure that 
+is responsible for state management of the conference itself along with its 
+participants.
+
+* DimSim Media Server (DMS) is responsible for handling varied media resources 
+like powerpoint presentations, pdf files etc. and also handles pre-uploaded content 
+for conferences in future. In conjunction with portal it also provides a mailbox 
+system namespaced by DimSim user id and meeting id to provide dynamic as well as 
+static content required for personalization/branding of DimSim Web Meeting.
+
+* Dimdim Screenshare Server (Reflector) provides a robust scalable screen share 
+protocol server that runs a modified VNC protocol over HTTP/S by leveraging the 
+FastCGI protocol. It can support multiple screens each with one presenter and 
+multiple viewers.
+
+* DimSim Streaming Server (DSS) provides live streaming capabilities for Audio and 
+Video using RTMP or RTMPT (RTMP over HTTP/S) and whiteboard features. It is 
+usually commoditized by using either Flash Media Server (FMS) or Wowza Media 
+Server (WMS) or Red5 Open source media server.
+
+###Port Architecture
+One of the central design motifs of the original DimDim was to lower the number of
+ports that have to be opened up for the DimDim infrastructure to function. Because
+of the wonderful reverse-proxy capabilities of nginx web server, it is possible to
+run DimDim with only one HTTP port open to the world at large. However it is
+recommended to open up TCP/1935 for direct RTMP access for optimized performance 
+of live A/V streaming and Whiteboard features. Future versions of DimSim will 
+hopefully continue this philosophy.
 
 
 
 
 ## Getting Started
-TODO
+TODO - Update build scripts etc and write new documentation for make/install.
+
+For now the original process is:
+
+v4.1/Product/Build/Scripts/SF_RPM_Script/README.txt
+
+	This file will guide you how to build Dimdim Web Meeting Server
+	***************************************************************
+
+
+
+	You need to have rpmbuild, jdk 1.6 and  ant-1.7 installed.
+
+	You need to setup Build environment(Specially for Reflector) before building Dimdim Web meeting Server.
+
+	Reflector: It is a part of Dimdim 4.5. It use for DTP(desktop sharing).
+
+	Dependencies:
+	To build reflector you need to have corona-1.0.2 and fcgi-2.4.0 installed.
+
+
+	Setting environment:
+	go to 
+		cd v4.1/FCGIApps/Reflector
+		vi compile_all.sh
+
+	Specify corona and fcgi installed path like
+
+		export FCGI_DIR=/usr/local/Code/Dependencies/Reflector/fcgi
+		export CORONA_DIR=/usr/local/Code/Dependencies/Reflector/corona
+
+	Now make a directory structure above to v4.1 as shown below
+	
+		<ParentDirectory>
+			v4.1
+			Dependencies
+				Reflector
+					corona_fcgi_libs
+	
+
+	Now do 
+		cp /path/to/corona/lib/*so* <ParentDirectory>Dependencies/Reflector/corona_fcgi_libs/
+		cp /path/to/fcgi/lib/*so* <ParentDirectory>Dependencies/Reflector/corona_fcgi_libs/
+
+
+	Now try to run Build script
+		cd <ParentDirectory>/v4.1/Product/Build/Scripts/SF_RPM_Script/
+		ant -f Dimdim_SF_32_v4.5_build.xml build
+
+	You can find RPM under RPMS/<architecture> directory
+	If you build on 32 bit machine, RPM will be under
+		/usr/src/redhat/RPMS/i386/dimdim-4.5-1.i386.rpm
+
+	If you build on 64 bit machine, RPM will be under
+		/usr/src/redhat/RPMS/x86_64/dimdim-4.5-1.x86_64.rpm
 
 ### Project Setup
 TODO
