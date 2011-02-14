@@ -2,7 +2,7 @@
 
 Written By: Matthew Wilmott mattwilmott@gmail.com
 Created: 08 Feb 2011
-Last Modifeid: 08 Feb 2011
+Last Modifeid: 14 Feb 2011
 
 This is a fork of the recently acquired DimDim software. It is based on the last
 publicly released version, 4.5.
@@ -12,7 +12,10 @@ slides, collaborate, chat, talk and broadcast via webcam with absolutely no
 download required for attendees. Dimdim is100% browser-based and is your easy, 
 open and free web meeting alternative.
 
- 
+## Current State
+ Broken - Working on breaking apart the components, modifying the build scripts and generally tidying the code base.
+
+The webapp component can be built currently and imported into an existing Tomcat installation for testing. Basic chat functionality exists.
 
 ## Initial Plans
 
@@ -103,7 +106,8 @@ updated to their latest versions.
 
 NOTE: Taken from the DimDim integration document in Documentation folder
 
-The major components of DimSim Server are:
+The major components of DimSim Server are
+
 * DimSim Conference Server (DCS)
 * DimSim Media Server (DMS)
 * DimSim Screenshare Server (Reflector)
@@ -200,7 +204,7 @@ v4.1/Product/Build/Scripts/SF_RPM_Script/README.txt
 
 * New DimSim Build script
 
-	 ant -f DimSim_x86_build.xml
+	     ant -f DimSim_x86_build.xml
 
 This will build all components bar the reflector at this stage.
 You can copy the Product/bin/ConferenceServer_Template/linuxdist/DimSimConf-4.5/
